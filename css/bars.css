@@ -1,0 +1,45 @@
+#EnergyProgress {
+  width: 100%;
+  background-color: #ddd;
+}
+#EnergyBar {
+  height: 10px;
+  background-color: #4CAF50;
+  text-align: center;
+  line-height: 30px;
+  color: white;
+}
+#HappyProgress {
+  width: 100%;
+  background-color: #ddd;
+}
+#HappyBar {
+  height: 10px;
+  background-color: #FFC300;
+  text-align: center;
+  line-height: 30px;
+  color: white;
+}
+#NerveProgress {
+  width: 100%;
+  background-color: #ddd;
+}
+#NerveBar {
+  height: 10px;
+  background-color: #FF0000;
+  text-align: center;
+  line-height: 30px;
+  color: white;
+}
+#LifeProgress {
+  width: 100%;
+  background-color: #ddd;
+}
+#LifeBar {
+  height: 10px;
+  background-color: #0000A0
+;
+  text-align: center;
+  line-height: 30px;
+  color: white;
+}

@@ -1,0 +1,40 @@
+ /* -------------------------------------
+          Dark Theme
+      ------------------------------------- */
+html{
+        background-color: #27292C;
+        }
+.body {
+        background-color: #27292C;
+        color: white;
+      }
+.main {
+        background: #35383C;
+      }
+body {
+        background-color: #27292C;
+     }
+h1,
+h2,
+h3,
+h4   {
+      color: #ffffff;
+     }
+.btn a {
+      background-color: #ffffff;
+      border: solid 1px #27292C;
+      color: #27292C;
+      }
+.btn-primary table td {
+      background-color: #27292C; }
+.btn-primary a {
+      background-color: #27292C;
+      border-color: #27292C;
+      color: #ffffff; 
+      }
+p,
+span,
+ul,
+ol   {
+      color:white;
+     }

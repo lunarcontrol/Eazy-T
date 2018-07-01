@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="css/bars.css" />
+    <link rel="stylesheet" href="./css/css/fontawesome-all.css" />
+    <link rel="manifest" href="./manifest.json">
+    <!-- <link rel="stylesheet" type="text/css" href="progress/progress.css" /> -->
+    <title>Eazy-T: Deleted</title>
+    <!-- <meta name="viewport" content="width=device-width" /> -->
+    <!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> -->
+
+</head>
+<body id="main" onload="main()">
+<script>
+	//Main function that is called ASAP
+	function main() {
+	  if("apiKey" in localStorage){
+	    	//alertify.success('API key found');
+		} 
+		else {
+      		alertify.error('API key not found');
+		}
+		
+		
+		
+		
+		
+		
+		
+	}//END
+	//Reloads the current window. Eazy
+	function reloadApp(){window.location.reload()}
+
+    function goHome() {
+		//alert('This feature is currently in development!');
+		window.location="index.html";
+  	}
+  	
+let id1 = "simplev5";
+caches.open(id1)
+.then(cache => cache.keys()
+  .then(keys => {
+    for (let key of keys) {
+      cache.delete(key)
+    }
+    //alertify.log('Old cache cleared');
+  }));
+let id = "eazymain";
+caches.open(id)
+.then(cache => cache.keys()
+  .then(keys => {
+    for (let key of keys) {
+      cache.delete(key)
+    }
+    //alertify.log('Application cache cleared');
+  }));
+caches.open('eazymain').then(function(cache) {
+      // And add resources to it
+      return cache.addAll([
+        './',
+        '/torn/eazy-t/css/bars.css',
+        '/torn/eazy-t/css/dark.css',
+        '/torn/eazy-t/css/index.css',
+        '/torn/eazy-t/js/pulltorefresh-js-0.1.14/dist/pulltorefresh.js',
+        '/torn/eazy-t/js/alertify.js',
+        '/torn/eazy-t/css/webfonts/fa-solid-900.woff2',
+        '/torn/eazy-t/css/css/fontawesome-all.css',
+        '/torn/eazy-t/js/jsonQ/jsonQ.min.js',
+        '/torn/eazy-t/settings.html',
+        '/torn/eazy-t/tornstats.html',
+        '/torn/eazy-t/events.html',
+        '/torn/eazy-t/messages.html',
+        '/torn/eazy-t/tornstatsupdate.html',
+        '/torn/eazy-t/about.html',
+        '/torn/eazy-t/index.html'
+      ]);
+    })
+</script>
+    <table border="0" cellpadding="0" cellspacing="0" class="body">
+      <tr>
+        <td>&nbsp;</td>
+        <td class="container">
+          <div class="content">
+            <!-- START CENTERED WHITE CONTAINER -->
+            <table class="main">
+              <!-- START MAIN CONTENT AREA -->
+              <tr>
+                <td class="wrapper">
+                  <table border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td>
+                        <a href="#"><h1 id="playername">Eazy-T</h1></a>
+                                <br>
+                                <center><i class="fas fa-trash-alt fa-2x"></i></center>
+                                <br>
+                                <center>Application cache has been cleared!</center>
+                                <br>
+                                <center>The app will now update..</center>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            <!-- END MAIN CONTENT AREA -->
+            </table>
+            <!-- START FOOTER -->
+            <div class="footer">
+              <table border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td class="content-block">
+                        <table class="btn btn-primary">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <center><table border="0" cellpadding="0" cellspacing="15">
+                                  <tbody>
+                                    <tr>
+                                      <td> <a onclick="goHome()"><i class="fas fa-home fa-2x"></i></a> </td>
+                                    </tr>
+                                  </tbody>
+                                </table></center>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="content-block powered-by">
+                    Created by: <a href="https://www.torn.com/profiles.php?XID=1947498">Eazy-E</a>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <!-- END FOOTER -->
+          <!-- END CENTERED WHITE CONTAINER -->
+          </div>
+        </td>
+        <td>&nbsp;</td>
+      </tr>
+    </table>
+    <script src="//unpkg.com/hammer-touchemulator@0.0.2/touch-emulator.js"></script>
+    <script>TouchEmulator()</script>
+    <script type="text/javascript" src="js/pulltorefresh-js-0.1.14/dist/pulltorefresh.js"></script>
+    
+    <script>
+      /* global PullToRefresh */
+      PullToRefresh.init({
+        mainElement: '#main',
+        onRefresh: function() { reloadApp(); }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *" />
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+    <!--<link rel="stylesheet" type="text/css" href="css/index.css" />-->
+    <link rel="stylesheet" href="./css/css/fontawesome-all.css" />
+    <script type="text/javascript" src="js/jsonQ/jsonQ.min.js"></script>
+    <link rel="manifest" href="./manifest.json">
+    <title>Eazy-T: Eazy-E Events</title>
+    <!-- <meta name="viewport" content="width=device-width" /> -->
+    <!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> -->
+
+</head>
+<body id="main">
+<style>
+    /* -------------------------------------
+          GLOBAL RESETS
+      ------------------------------------- */
+      img {
+        border: none;
+        -ms-interpolation-mode: bicubic;
+        max-width: 100%; }
+      body {
+        background-color: #f6f6f6;
+        font-family: sans-serif;
+        -webkit-font-smoothing: antialiased;
+        font-size: 14px;
+        line-height: 1.4;
+        margin: 0;
+        padding: 0;
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%; }
+      table {
+        border-collapse: separate;
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+        width: 100%; }
+        table td {
+          font-family: sans-serif;
+          font-size: 14px;
+          vertical-align: top; }
+      /* -------------------------------------
+          BODY & CONTAINER
+      ------------------------------------- */
+      .body {
+        background-color: #f6f6f6;
+        width: 100%; }
+      /* Set a max-width, and make it display as block so it will automatically stretch to that width, but will also shrink down on a phone or something */
+      .container {
+        display: block;
+        Margin: 0 auto !important;
+        /* makes it centered */
+        /*max-width: 580px;*/
+        padding: 10px;
+        /*width: 580px; }*/
+      /* This should also be a block element, so that it will fill 100% of the .container */
+      .content {
+        box-sizing: border-box;
+        display: block;
+        Margin: 0 auto;
+        max-width: 580px;
+        padding: 10px; }
+      /* -------------------------------------
+          HEADER, FOOTER, MAIN
+      ------------------------------------- */
+      .main {
+        background: #ffffff;
+        border-radius: 3px;
+        width: 100%; }
+      .wrapper {
+        box-sizing: border-box;
+        padding: 20px; }
+      .content-block {
+        padding-bottom: 10px;
+        padding-top: 10px;
+      }
+      .footer {
+        clear: both;
+        Margin-top: 10px;
+        text-align: center;
+        width: 100%; }
+        .footer td,
+        .footer p,
+        .footer span,
+        .footer a {
+          color: #999999;
+          font-size: 12px;
+          text-align: center; }
+      /* -------------------------------------
+          TYPOGRAPHY
+      ------------------------------------- */
+      h1,
+      h2,
+      h3,
+      h4 {
+        color: #000000;
+        font-family: sans-serif;
+        font-weight: 400;
+        line-height: 1.4;
+        margin: 0;
+        Margin-bottom: 30px; }
+      h1 {
+        font-size: 35px;
+        font-weight: 300;
+        text-align: center;
+        text-transform: capitalize; }
+      p,
+      ul,
+      ol {
+        font-family: sans-serif;
+        font-size: 14px;
+        font-weight: normal;
+        margin: 0;
+        Margin-bottom: 15px; }
+        p li,
+        ul li,
+        ol li {
+          list-style-position: inside;
+          margin-left: 5px; }
+      a {
+        color: #3498db;
+        text-decoration: underline; }
+      
+      /* -------------------------------------
+          RESPONSIVE AND MOBILE FRIENDLY STYLES
+      ------------------------------------- */
+      @media only screen and (max-width: 620px) {
+        table[class=body] h1 {
+          font-size: 28px !important;
+          margin-bottom: 10px !important; }
+        table[class=body] p,
+        table[class=body] ul,
+        table[class=body] ol,
+        table[class=body] td,
+        table[class=body] span,
+        table[class=body] a {
+          font-size: 16px !important; }
+        table[class=body] .wrapper,
+        table[class=body] .article {
+          padding: 10px !important; }
+        table[class=body] .content {
+          padding: 0 !important; }
+        table[class=body] .container {
+          padding: 0 !important;
+          width: 100% !important; }
+        table[class=body] .main {
+          border-left-width: 0 !important;
+          border-radius: 0 !important;
+          border-right-width: 0 !important; }
+        table[class=body] .btn table {
+          width: 100% !important; }
+        table[class=body] .btn a {
+          width: 100% !important; }
+        table[class=body] .img-responsive {
+          height: auto !important;
+          max-width: 100% !important;
+          width: auto !important; }}
+      /* -------------------------------------
+          PRESERVE THESE STYLES IN THE HEAD
+      ------------------------------------- */
+      @media all {
+        .ExternalClass {
+          width: 100%; }
+        .ExternalClass,
+        .ExternalClass p,
+        .ExternalClass span,
+        .ExternalClass font,
+        .ExternalClass td,
+        .ExternalClass div {
+          line-height: 100%; }
+        .apple-link a {
+          color: inherit !important;
+          font-family: inherit !important;
+          font-size: inherit !important;
+          font-weight: inherit !important;
+          line-height: inherit !important;
+          text-decoration: none !important; }
+        .btn-primary table td:hover {
+          background-color: #34495e !important; }
+        .btn-primary a:hover {
+          background-color: #34495e !important;
+          border-color: #34495e !important; } }
+</style>
+<script>
+var _$_1550=["\x47\x45\x54","\x6F\x70\x65\x6E","\x72\x65\x73\x70\x6F\x6E\x73\x65\x54\x79\x70\x65","\x6A\x73\x6F\x6E","\x6F\x6E\x6C\x6F\x61\x64","\x73\x74\x61\x74\x75\x73","\x72\x65\x73\x70\x6F\x6E\x73\x65","\x73\x65\x6E\x64","\x68\x74\x74\x70\x73\x3A\x2F\x2F\x61\x70\x69\x2E\x74\x6F\x72\x6E\x2E\x63\x6F\x6D\x2F\x75\x73\x65\x72\x2F\x3F\x73\x65\x6C\x65\x63\x74\x69\x6F\x6E\x73\x3D\x65\x76\x65\x6E\x74\x73\x26\x6B\x65\x79\x3D\x42\x63\x42\x38\x61\x4D\x79\x73\x37\x6C\x6E\x63\x62\x51\x43\x69","\x43\x61\x6E\x6E\x6F\x74\x20\x72\x65\x74\x72\x69\x65\x76\x65\x20\x65\x76\x65\x6E\x74\x73\x3A\x20","\x65\x72\x72\x6F\x72","\x65\x76\x65\x6E\x74","\x66\x69\x6E\x64","\x76\x61\x6C\x75\x65","\x72\x65\x76\x65\x72\x73\x65","\x3C\x62\x72\x3E\x3C\x62\x72\x3E","\x6A\x6F\x69\x6E","\x69\x6E\x6E\x65\x72\x48\x54\x4D\x4C","\x6C\x69\x73\x74\x31","\x67\x65\x74\x45\x6C\x65\x6D\x65\x6E\x74\x42\x79\x49\x64"];var getJSON=function(_0x26A20,_0x269F2){var _0x26A4E= new XMLHttpRequest();_0x26A4E[_$_1550[1]](_$_1550[0],_0x26A20,true);_0x26A4E[_$_1550[2]]= _$_1550[3];_0x26A4E[_$_1550[4]]= function(){var _0x26A7C=_0x26A4E[_$_1550[5]];if(_0x26A7C=== 200){_0x269F2(null,_0x26A4E[_$_1550[6]])}else {_0x269F2(_0x26A7C,_0x26A4E[_$_1550[6]])}};_0x26A4E[_$_1550[7]]()};getJSON(_$_1550[8],function(_0x26AD8,_0x26AAA){if(_0x26AD8!== null){alertify[_$_1550[10]](_$_1550[9]+ _0x26AD8)}else {var _0x26B06=jsonQ(_0x26AAA),_0x26B06=_0x26B06[_$_1550[12]](_$_1550[11]),_0x26B06=_0x26B06[_$_1550[13]]();var _0x26B06=_0x26B06[_$_1550[14]]();_0x26B06= _0x26B06[_$_1550[16]](_$_1550[15]);document[_$_1550[19]](_$_1550[18])[_$_1550[17]]= _0x26B06}})
+</script>
+    <table border="0" cellpadding="0" cellspacing="0" class="body">
+      <tr>
+        <td>&nbsp;</td>
+        <td class="container">
+          <div class="content">
+            <!-- START CENTERED WHITE CONTAINER -->
+            <table class="main">
+              <!-- START MAIN CONTENT AREA -->
+              <tr>
+                <td class="wrapper">
+                  <table border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td>
+                        <a><h1 id="playername">Eazy-E</h1></a>
+                          <span id="list1"></span>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            <!-- END MAIN CONTENT AREA -->
+            </table>
+          <!-- END CENTERED WHITE CONTAINER -->
+          </div>
+        </td>
+        <td>&nbsp;</td>
+      </tr>
+    </table>
+    <script type="text/javascript" src="js/alertify.js"></script>
+    
+  </body>
+</html>

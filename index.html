@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+    <style>
+    html{
+        background-color: #27292C;
+    }
+    </style>
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+	
+    <link rel="apple-touch-icon" href="/TornMobile/res/icon/ios/icon.png">
+    <meta name="apple-mobile-web-app-title" content="Eazy-T">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    
+ 	<link rel="apple-touch-icon" href="touch-icon-iphone.png">
+ 	<link rel="apple-touch-icon" sizes="152x152" href="touch-icon-ipad.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="touch-icon-iphone-retina.png">
+	<link rel="apple-touch-icon" sizes="167x167" href="touch-icon-ipad-retina.png">
+    
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *" />
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="css/bars.css" />
+    <link rel="stylesheet" href="./css/css/fontawesome-all.css" />
+    <link rel="manifest" href="./manifest.json">
+    <script>
+        
+        // var element = document.createElement("link");
+        //     element.setAttribute("rel", "stylesheet");
+        //     element.setAttribute("type", "text/css");
+        //     element.setAttribute("href", "/torn/eazy-t/css/dark.css");
+        //     document.getElementsByTagName("head")[0].appendChild(element);
+    </script>
+    <!--<link id="darkstyle" rel="stylesheet" type="text/css" href="" />-->
+    <!-- <link rel="stylesheet" type="text/css" href="progress/progress.css" /> -->
+    <title>Eazy-T</title>
+    <!-- <meta name="viewport" content="width=device-width" /> -->
+    <!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> -->
+
+</head>
+<body onload="main()" id="main">
+<script>
+
+	//APP LAYOUT
+	//1. Listens for DEVICE READY
+	//2. MAIN:
+		//Continues if API KEY found.
+		//ASKS for API
+			//Reloads after API recieved
+		//Processes JSON
+		//Sets variables
+    //Updates graphs
+
+	//Main function that is called ASAP
+	function main() {
+	    if(localStorage.dark == 'true'){
+            var element = document.createElement("link");
+            element.setAttribute("rel", "stylesheet");
+            element.setAttribute("type", "text/css");
+            element.setAttribute("href", "/torn/eazy-t/css/dark.css");
+            document.getElementsByTagName("head")[0].appendChild(element);
+        }
+
+	//Service Worker
+	//
+if('serviceWorker' in navigator) {
+	navigator.serviceWorker.register('/sw.js', {
+		scope: '/torn/eazy-t/'
+	}).then(function(reg) {
+			console.log("Service worker registered")
+		}).catch(function(err) {
+			console.log(err);
+		});
+}
+	
+	
+	if("refreshrate" in localStorage){
+	    	//Do nothing, continue
+		} 
+	else {window.location="intro.html";}
+	
+	if("apiKey" in localStorage){
+	    	//Do nothing, continue
+        var reloadnotify = localStorage.refreshrate - 3000
+        setTimeout(function(){
+          alertify.log("Reloading");
+        },reloadnotify)
+        setTimeout(function(){
+          reloadApp();
+        },localStorage.refreshrate)
+		} 
+	else {window.location="intro.html";}
+
+	//Core Json function
+	//Opens JSON request & sends it to APP
+	var getJSON = function(url, callback) {
+	    var xhr = new XMLHttpRequest();
+	    xhr.open('GET', url, true);
+	    xhr.responseType = 'json';
+	    xhr.onload = function() {
+	      var status = xhr.status;
+	      if (status === 200) {
+	        callback(null, xhr.response);
+	      } else {
+	        callback(status, xhr.response);
+	      }
+	    };
+	    xhr.send();
+	};
+
+	//Reloads the current window. Eazy
+	function reloadApp(){window.location.reload()}
+
+	//Graps the profile [BASIC] data from TORN
+	getJSON('https://api.torn.com/user/?selections=basic&key=' + localStorage.apiKey,
+		function(err, data) {
+		if (err !== null) {
+		alertify.log('Cannot retrieve BASIC information: ' + err);
+		} //MjyUA
+		else {
+
+  //
+	//Profile Information
+  //
+		//var playerLevel = data.level;
+		//var playerID = data.player_id;
+		var playerName = data.name;
+    var playerStatus1 = data.status[0];
+    var playerStatus2 = data.status[1];
+		document.getElementById("playername").innerHTML = playerName;
+		document.getElementById('playerlink').href = 'http://www.torn.com/profiles.php?NID=' + playerName + '';
+    document.getElementById('playerstatus1').innerHTML = playerStatus1;
+    document.getElementById('playerstatus2').innerHTML = playerStatus2;
+		}
+	});
+
+  //Grabs BAR information from TORN
+  getJSON('https://api.torn.com/user/?selections=bars&key=' + localStorage.apiKey,
+    function(err, data) {
+    if (err !== null) {
+    alertify.log('Cannot retrieve BAR information: ' + err);
+    }
+    else {
+
+  //
+  //HAPPY
+  //
+    var playerHappymax = data.happy.maximum;
+    var playerHappycurrent = data.happy.current;
+    var playerHappybar = playerHappycurrent / playerHappymax;
+    document.getElementById("playerHappycurrent").innerHTML = playerHappycurrent;
+    document.getElementById("playerHappymax").innerHTML = playerHappymax;
+    //if (playerHappycurrent > playerHappymax)playerHappybar = 100;
+    if (playerHappybar == 1)playerHappybar = 100;
+    else {
+      playerHappybar = playerHappybar * 100
+    }
+    getplayerHappybar = playerHappybar;
+    //document.getElementById("HappyBar").innerHTML = playerHappybar;
+
+  //
+  //ENERGY
+  //
+    var playerEnergymax = data.energy.maximum;
+    var playerEnergycurrent = data.energy.current;
+    var playerEnergybar = playerEnergycurrent / playerEnergymax;
+    document.getElementById("playerEnergycurrent").innerHTML = playerEnergycurrent;
+    document.getElementById("playerEnergymax").innerHTML = playerEnergymax;
+    if(playerEnergybar == 1)playerEnergybar = 100;
+    if(playerEnergybar > 1)playerEnergybar = 100;
+    if(playerEnergybar < 1)playerEnergybar = playerEnergybar * 100;
+    getplayerEnergybar = playerEnergybar;
+    // document.getElementById("EnergyBar").innerHTML = playerEnergybar;
+
+  //
+  //Nerve
+  //
+    var playerNervemax = data.nerve.maximum;
+    var playerNervecurrent = data.nerve.current;
+    var playerNervebar = playerNervecurrent / playerNervemax;
+    document.getElementById("playerNervecurrent").innerHTML = playerNervecurrent;
+    document.getElementById("playerNervemax").innerHTML = playerNervemax;
+
+    if (playerNervecurrent > playerNervemax)playerNervebar = 100;
+    if (playerNervebar == 1)playerNervebar = 100;
+    else {
+      playerNervebar = playerNervebar * 100
+    }
+    getplayerNervebar = playerNervebar;
+    // document.getElementById("EnergyBar").innerHTML = playerEnergybar;
+
+  //
+  //Life
+  //
+    var playerLifemax = data.life.maximum;
+    var playerLifecurrent = data.life.current;
+    var playerLifebar = playerLifecurrent / playerLifemax;
+    document.getElementById("playerLifecurrent").innerHTML = playerLifecurrent;
+    document.getElementById("playerLifemax").innerHTML = playerLifemax;
+    if (playerLifebar == 1)playerLifebar = 100;
+    else {
+      playerLifebar = playerLifebar * 100
+    }
+    getplayerLifebar = playerLifebar;
+
+
+    //Updates graphs
+    EnergyMove();
+    HappyMove();
+    NerveMove();
+    LifeMove();
+    }
+  });
+
+  //Formats a time of minutes into a nice format of ##:##
+  function display(a){
+    var hours = Math.trunc(a/60);
+    var minutes = a % 60;
+    if(minutes < 10)minutes = ('0' + minutes).slice(-2);
+    return(hours +":"+ minutes);
+  }
+
+  getJSON('https://api.torn.com/user/?selections=travel&key=' + localStorage.apiKey,
+      function(err, data) {
+      if (err !== null) {
+      alert('Cannot retrieve travel information: ' + err);
+      }
+      else {
+      //var playerTraveldestination = data.travel.destination;
+      var playerTraveltimeleft = data.travel.time_left;
+      if (playerTraveltimeleft == 0) {
+
+      } else{
+        var playerTraveltimeleft = playerTraveltimeleft / 60;
+        var playerTraveltimeleft = Math.round(playerTraveltimeleft);
+        var outputplayertimeleft = '<b>[' + display(playerTraveltimeleft) + ']</b>';
+        document.getElementById("traveltimeleft").innerHTML = outputplayertimeleft;
+        }
+      }
+    });
+
+  function countInstances(string, word) {
+    //forces a convert to string
+    var string = string + '';
+     return string.split(word).length - 1;
+  }
+  getJSON('https://api.torn.com/user/?selections=events&key=' + localStorage.apiKey,
+      function(err, data) {
+      if (err !== null) {
+      alert('Cannot retrieve events: ' + err);
+      }
+      else {
+      var eventsSeenstatus = jsonQ(data), eventsSeenstatus = eventsSeenstatus.find('seen');
+      var output = eventsSeenstatus.value()
+      output = countInstances(output, 0);
+      // output =1;
+
+      //var x = document.getElementById("unreadEventsbutton");
+
+      if(output == 1){
+        //x.style.display = "block";
+        document.getElementById("unreadEvents").innerHTML = output + ' <i class="fas fa-bell"></i>';
+        alertify.log(output + ' <i class="fas fa-bell"></i>');
+      }
+      if(output == 0){
+        //x.style.display = "none";
+        document.getElementById("unreadEvents").innerHTML = output + ' <i class="fas fa-bell"></i>';
+        alertify.log('0 <i class="fas fa-bell"></i>');
+      }
+      if(output > 1){
+        document.getElementById("unreadEvents").innerHTML = output + ' <i class="fas fa-bell"></i>';
+        //x.style.display = "block";
+        alertify.log(output + ' <i class="fas fa-bell"></i>');
+      }
+      }
+    });
+
+  getJSON('https://api.torn.com/user/?selections=messages&key=' + localStorage.apiKey,
+      function(err, data) {
+      if (err !== null) {
+      alert('Cannot retrieve messages: ' + err);
+      }
+      else {
+      var eventsSeenstatus = jsonQ(data), eventsSeenstatus = eventsSeenstatus.find('seen');
+      var output = eventsSeenstatus.value()
+      output = countInstances(output, 0);
+      //output = 1;
+
+     // var y = document.getElementById("unreadMessagesbutton");
+
+      if(output == 0){
+        //y.style.display = "none";
+        document.getElementById("unreadMessages").innerHTML = output + ' <i class="fas fa-envelope"></i>';
+        alertify.log('0 <i class="fas fa-envelope"></i>');
+      }
+      if(output > 0){
+        //y.style.display = "block";
+        document.getElementById("unreadMessages").innerHTML = output + ' <i class="fas fa-envelope"></i>';
+        alertify.log(output + ' <i class="fas fa-envelope"></i>');
+      }
+    }
+  });
+    //INITS PULL TO REFRESH
+    PullToRefresh.init({
+        mainElement: '#main',
+        onRefresh: function() { reloadApp(); }
+      });
+}//Endof device ready
+</script>
+    <table border="0" cellpadding="0" cellspacing="0" class="body">
+      <tr>
+        <td>&nbsp;</td>
+        <td class="container">
+          <div class="content">
+            <!-- START CENTERED WHITE CONTAINER -->
+            <table class="main">
+              <!-- START MAIN CONTENT AREA -->
+              <tr>
+                <td class="wrapper">
+                  <table border="0" cellpadding="0" cellspacing="0"> <!-- 291 -->
+                    <tr>
+                      <td>
+                        <a id="playerlink"><h1 id="playername">Eazy-T</h1></a>
+                        <p></p>
+
+                        <p>Status: <span id="playerstatus1"></span> <span id="traveltimeleft"></span><span id="playerstatus2"></span></p>
+                        <b><center><span id="onlinestatus"></span></center></b>
+
+                        <table class="btn btn-primary">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <center><table border="0" cellpadding="0" cellspacing="15">
+                                  <tbody>
+                                    <tr>
+                                      <script>function openEvents() {window.location="events.html"}</script>
+                                      <script>function openMessages() {window.location="messages.html"}</script>
+                                      <td id="unreadEventsbutton"> <a id="unreadEvents" onclick="openEvents()"></a> </td>
+                                      <td id="unreadMessagesbutton"> <a id="unreadMessages" onclick="openMessages()"></a> </td>
+                                    </tr>
+                                  </tbody>
+                                </table></center>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+
+                          Energy - <span id="playerEnergycurrent"></span> / <span id="playerEnergymax"></span>
+                          <div id="EnergyProgress">
+                            <div id="EnergyBar"></div>
+                          </div>
+                          <br>
+                          <script>
+                          function EnergyMove() {
+                            var elem = document.getElementById("EnergyBar");   
+                            elem.style.width = getplayerEnergybar + '%'; 
+                          }
+                          </script>
+
+
+                          Nerve - <span id="playerNervecurrent"></span> / <span id="playerNervemax"></span>
+                          <div id="NerveProgress">
+                            <div id="NerveBar"></div>
+                          </div>
+                          <br>
+                          <script>
+                          function NerveMove() {
+                            var elem = document.getElementById("NerveBar");   
+                            elem.style.width = getplayerNervebar + '%'; 
+                          }
+                          </script>
+
+
+
+                          Happy - <span id="playerHappycurrent"></span> / <span id="playerHappymax"></span>
+                          <div id="HappyProgress">
+                            <div id="HappyBar"></div>
+                          </div>
+                          <br>
+                          <script>
+                          function HappyMove() {
+                            var elem = document.getElementById("HappyBar");   
+                            elem.style.width = getplayerHappybar + '%'; 
+                          }
+                          </script>
+
+                          Life - <span id="playerLifecurrent"></span> / <span id="playerLifemax"></span>
+                          <div id="LifeProgress">
+                            <div id="LifeBar"></div>
+                          </div>
+                          <br>
+                          <script>
+                          function LifeMove() {
+                            var elem = document.getElementById("LifeBar");   
+                            elem.style.width = getplayerLifebar + '%'; 
+                          }
+                          </script>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            <!-- END MAIN CONTENT AREA -->
+            </table>
+            
+            <div class="footer">
+              <table border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td class="content-block">
+                    <script>function openSettings() {window.location="settings.html"}</script>
+                    <script>function openStats() {window.location="tornstats.html"}</script>
+                        <table class="btn btn-primary">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <center><table border="0" cellpadding="0" cellspacing="15">
+                                  <tbody>
+                                    <tr>
+                                      <td> <a onclick="openStats()"><i class="fa fa-chart-line fa-2x fa-fw"></i></a> </td>
+                                      <td> <a onclick="openSettings()"><i class="fa fa-cog fa-spin fa-2x fa-fw"></i></a> </td>
+                                    </tr>
+                                  </tbody>
+                                </table></center>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                    Created by: <a href="https://www.torn.com/profiles.php?XID=1947498">Eazy-E</a>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <!-- END -->
+            <!-- END FOOTER -->
+          <!-- END CENTERED WHITE CONTAINER -->
+          </div>
+        </td>
+        <td>&nbsp;</td>
+      </tr>
+    </table>
+    <script src="//unpkg.com/hammer-touchemulator@0.0.2/touch-emulator.js"></script>
+    <script>TouchEmulator()</script>
+    <script type="text/javascript" src="js/pulltorefresh-js-0.1.14/dist/pulltorefresh.js"></script>
+    <script src="js/alertify.js"></script>
+    <script src="js/jsonQ/jsonQ.min.js"></script>
+   
+
+  </body>
+</html>

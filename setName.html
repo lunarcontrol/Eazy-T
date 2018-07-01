@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="css/bars.css" />
+    <link rel="stylesheet" href="./css/css/fontawesome-all.css" />
+    <link rel="manifest" href="./manifest.json">
+    <!-- <link rel="stylesheet" type="text/css" href="progress/progress.css" /> -->
+    <title>Eazy-T: SetName</title>
+    <!-- <meta name="viewport" content="width=device-width" /> -->
+    <!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> -->
+
+</head>
+<body id="main" onload="main()">
+<script>
+	//Main function that is called ASAP
+	function main() {
+	  	if("apiKey" in localStorage){
+	    	alertify.success('API key found');
+		} 
+		else {
+			alertify.error("API key not found");
+			goHome();
+		}
+
+		if("refreshrate" in localStorage){
+	    	alertify.log('Refreshrate was found')
+		} 
+		else {
+			alertify.error("Refreshrate was not set for some reason. Weird!");
+			var refreshrate = 20000;
+			localStorage.setItem("refreshrate", refreshrate);
+			alertify.success("It's all good now..");
+		}
+	}//END
+
+  	function goHome() {
+    	window.location="index.html";
+  	}
+  	var getJSON = function(url, callback) {
+	    var xhr = new XMLHttpRequest();
+	    xhr.open('GET', url, true);
+	    xhr.responseType = 'json';
+	    xhr.onload = function() {
+	      var status = xhr.status;
+	      if (status === 200) {
+	        callback(null, xhr.response);
+	      } else {
+	        callback(status, xhr.response);
+	      }
+	    };
+	    xhr.send();
+	};
+
+	//Graps the profile [BASIC] data from TORN
+	getJSON('https://api.torn.com/user/?selections=basic&key=' + localStorage.apiKey,
+		function(err, data) {
+		if (err !== null) {
+		alert('Cannot retrieve BASIC information: ' + err);
+		} //MjyUA
+		else {
+		  //
+			//Profile Information
+		  //
+				//var playerLevel = data.level;
+				//var playerID = data.player_id;
+				var playerName = data.name;
+			    if("playerName" in localStorage){
+			      alertify.log('Name was already saved?');
+			    }
+			    else{
+			      localStorage.setItem("playerName", playerName);
+			      alertify.success('Saved name to local storage!');
+			    }
+			}
+			alertify.log('Everything seems to be in order.');
+			loadingHome();
+	});
+
+  function loadingHome(){
+  	setTimeout(function(){ goHome(); }, 3000);
+  }
+</script>
+    <table border="0" cellpadding="0" cellspacing="0" class="body">
+      <tr>
+        <td>&nbsp;</td>
+        <td class="container">
+          <div class="content">
+            <!-- START CENTERED WHITE CONTAINER -->
+            <table class="main">
+              <!-- START MAIN CONTENT AREA -->
+              <tr>
+                <td class="wrapper">
+                  <table border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td>
+                        <a href="#"><h1 id="playername">Eazy-T</h1></a>
+                        <p>Getting everything ready!</p> 
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            <!-- END MAIN CONTENT AREA -->
+            </table>
+            <!-- START FOOTER -->
+            <div class="footer">
+              <table border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td class="content-block">
+                    <!-- <span class="apple-link">Settings: </span> -->
+                    <!-- <button onclick="reloadApp()">Refresh</button> -->
+                  </td>
+                </tr>
+                <tr>
+                  <td class="content-block powered-by">
+                    Created by: <a href="https://www.torn.com/profiles.php?XID=1947498">Eazy-E</a>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <!-- END FOOTER -->
+          <!-- END CENTERED WHITE CONTAINER -->
+          </div>
+        </td>
+        <td>&nbsp;</td>
+      </tr>
+    </table>
+    <script src="//unpkg.com/hammer-touchemulator@0.0.2/touch-emulator.js"></script>
+    <script>TouchEmulator()</script>
+    <script type="text/javascript" src="js/pulltorefresh-js-0.1.14/dist/pulltorefresh.js"></script>
+    <script type="text/javascript" src="js/alertify.js"></script>
+    <script>
+      /* global PullToRefresh */
+      PullToRefresh.init({
+        mainElement: '#main',
+        onRefresh: function() { reloadApp(); }
+      });
+    </script>
+  </body>
+</html>

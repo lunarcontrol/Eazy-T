@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="css/bars.css" />
+    <link rel="stylesheet" href="./css/css/fontawesome-all.css" />
+    <link rel="manifest" href="./manifest.json">
+    <!-- <link rel="stylesheet" type="text/css" href="progress/progress.css" /> -->
+    <title>Eazy-T: Setup</title>
+    <!-- <meta name="viewport" content="width=device-width" /> -->
+    <!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> -->
+
+</head>
+<body id="main" onload="main()">
+<script>
+	//Main function that is called ASAP
+	function main() {
+	  	if("apiKey" in localStorage){
+	    	window.location="index.html";
+		} 
+		else {
+			alertify.error("API key not found");
+		}
+
+		if("refreshrate" in localStorage){
+	    	alertify.log('Refreshrate was successfully set!')
+		} 
+		else {
+			alertify.error("Refreshrate was not set for some reason. Weird!");
+			var refreshrate = 20000;
+			localStorage.setItem("refreshrate", refreshrate);
+			alertify.success("It's all good now..");
+		}
+		if("dark" in localStorage){
+	    	alertify.log('Dark theme setting found!')
+		} 
+		else {
+			//alertify.error("Setting up dark theme");
+			var dark = false;
+			localStorage.setItem("dark", dark);
+			alertify.success("Dark theme has been configured!");
+		}
+	}//END
+	function reloadApp(){window.location.reload()}
+
+  	function goHome() {
+    	window.location="index.html";
+  	}
+  	function askUser(){
+  			//alertify.error("API key not found");
+  			alertify.confirm("Your API key will be stored locally and only sent to TORN & TornStats.", function () {
+			    // user clicked "ok"
+			    setAPI();
+			}, function() {
+			    alertify.error('You must accept!');
+			});
+  			//alert('Your API key will be stored locally and only sent to TORN.com servers.');
+	   		//var apiKey = prompt("Please enter your API Key:", "");
+	   		//localStorage.setItem("apiKey", apiKey);
+	   		//alert("Reloading the app & performing first time setup!");
+	   		//goHome();
+  	}
+  	function setAPI() {
+		  alertify.defaultValue("")
+		  alertify.prompt("please enter your API key: ",
+		    function (apiKey, ev) {
+
+		      // The click event is in the event variable, so you can use it here.
+		      ev.preventDefault();
+
+		      // The value entered is availble in the val variable.
+		      alertify.success("Success! [ " + apiKey + ' ]');
+		      localStorage.setItem("apiKey", apiKey);
+		      alertify.log('Performing initial setup...');
+		      setName();
+		    }, function(ev) {
+
+		      // The click event is in the event variable, so you can use it here.
+		      ev.preventDefault();
+
+		      alertify.error("You've clicked Cancel. Why?");
+
+		    }
+		  );
+  	}
+
+  	function setName(){
+  		window.location="setName.html";
+  	}
+
+  function loadingHome(){
+  	setTimeout(function(){ goHome(); }, 3000);
+  }
+  function tutorial(){
+  	document.getElementById('tutorial').src = 'https://i.imgur.com/MwxQGip.png';
+  }
+</script>
+    <table border="0" cellpadding="0" cellspacing="0" class="body">
+      <tr>
+        <td>&nbsp;</td>
+        <td class="container">
+          <div class="content">
+            <!-- START CENTERED WHITE CONTAINER -->
+            <table class="main">
+              <!-- START MAIN CONTENT AREA -->
+              <tr>
+                <td class="wrapper">
+                  <table border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td>
+                        <a href="#"><h1 id="playername">Eazy-T</h1></a>
+                        <!--<button class="btn btn-primary" onclick="askUser()" type="button">Enter API key!</button>-->
+                        <!--<p></p> -->
+                        <!--<button class="btn btn-primary" onclick="tutorial()" type="button">Where is my api key?</button>-->
+                        <!--<p></p>-->
+                        
+                        
+                        <table class="btn btn-primary">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <center><table border="0" cellpadding="0" cellspacing="15">
+                                  <tbody>
+                                    <tr>
+                                      <td> <a onclick="askUser()"><i class="fas fa-sign-in-alt"> API</i></a> </td>
+                                      <td> <a onclick="tutorial()"><i class="fas fa-question-circle"> Help</i></a> </td>
+                                    </tr>
+                                  </tbody>
+                                </table></center>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        
+                        
+                        <center><img id="tutorial" src=""></img></center>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            <!-- END MAIN CONTENT AREA -->
+            </table>
+            <!-- START FOOTER -->
+            <div class="footer">
+              <table border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td class="content-block">
+                    
+                    
+                    <table class="btn btn-primary">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <center><table border="0" cellpadding="0" cellspacing="15">
+                                  <tbody>
+                                    <tr>
+                                      <td> <a onclick="goHome()"><i class="fas fa-long-arrow-alt-left fa-2x"></i></a> </td>
+                                    </tr>
+                                  </tbody>
+                                </table></center>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                    
+                    
+                    
+                    
+                  </td>
+                </tr>
+                <tr>
+                  <td class="content-block powered-by">
+                    Created by: <a href="https://www.torn.com/profiles.php?XID=1947498">Eazy-E</a>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <!-- END FOOTER -->
+          <!-- END CENTERED WHITE CONTAINER -->
+          </div>
+        </td>
+        <td>&nbsp;</td>
+      </tr>
+    </table>
+    <script src="//unpkg.com/hammer-touchemulator@0.0.2/touch-emulator.js"></script>
+    <script>TouchEmulator()</script>
+    <script type="text/javascript" src="js/pulltorefresh-js-0.1.14/dist/pulltorefresh.js"></script>
+    <script type="text/javascript" src="js/alertify.js"></script>
+    <script>
+      /* global PullToRefresh */
+      PullToRefresh.init({
+        mainElement: '#main',
+        onRefresh: function() { reloadApp(); }
+      });
+    </script>
+  </body>
+</html>

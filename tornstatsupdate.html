@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+    <link rel="stylesheet" href="./css/css/fontawesome-all.css" />
+    <link rel="manifest" href="./manifest.json">
+    <!-- <link rel="stylesheet" type="text/css" href="progress/progress.css" /> -->
+    <title>Eazy-T: Torn Stats Update</title>
+    <!-- <meta name="viewport" content="width=device-width" /> -->
+    <!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> -->
+
+</head>
+<body>
+<script>
+	//Main function that is called ASAP
+	
+
+var getJSON = function(url, callback) {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', url, true);
+      xhr.responseType = 'json';
+      xhr.onload = function() {
+        var status = xhr.status;
+        if (status === 200) {
+          callback(null, xhr.response);
+        } else {
+          callback(status, xhr.response);
+        }
+      };
+      xhr.send();
+  };
+
+  //Graps the profile [BASIC] data from TORN
+  getJSON('https://www.tornstats.com/doctorn_api.php?action=recordStats&key=' + localStorage.apiKey,
+    function(err, data) {
+    if (err !== null) {
+    alertify.log('Cannot connect to TornStats: ' + err);
+    }
+    else {
+  //
+  //TornStats Login
+  //
+    var age = data.age;
+    var status = data.status;
+    var deltaStrength = data.deltaStrength;
+    var deltaDefense = data.deltaDefense;
+    var deltaDexterity = data.deltaDexterity;
+    var deltaSpeed = data.deltaSpeed;
+    
+
+    document.getElementById("age").innerHTML = age;
+    
+    if(deltaStrength > 1){
+    document.getElementById("deltaStrength").innerHTML = ' Strength: ' + deltaStrength;
+    } else{
+        //Do Nothing
+        }
+    if(deltaSpeed > 1){
+    document.getElementById("deltaSpeed").innerHTML = ' / Speed: ' + deltaSpeed;
+    } else {
+        //Do Nothing
+        }
+    if(deltaDefense > 1){
+    document.getElementById("deltaDefense").innerHTML = '<br>Defense: ' + deltaDefense;
+    } else {
+        //Do Nothing
+        }
+    if(deltaDexterity > 1) {
+    document.getElementById("deltaDexterity").innerHTML = ' / Dexterity: ' + deltaDexterity;
+    } else {
+        //Do Nothing
+    }
+    
+    if(deltaDexterity < 1 && deltaStrength < 1 && deltaSpeed < 1 && deltaDefense < 1) {
+    document.getElementById("deltaNone").innerHTML = 'No change in stats!';
+    } else {
+        //Do Nothing
+        }
+    
+    }
+  });
+</script>
+    Last update <span id="age"></span>.<br> <span id="deltaStrength"></span> <span id="deltaSpeed"></span> <span id="deltaDefense"></span> <span id="deltaDexterity"></span> <span id="deltaNone"></span>
+
+    <script src="js/alertify.js"></script>
+    
+  </body>
+</html>
