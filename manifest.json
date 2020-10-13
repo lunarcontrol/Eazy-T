@@ -4,8 +4,8 @@
   "theme_color": "#2196f3",
   "background_color": "#2196f3",
   "display": "standalone",
-  "Scope": "/torn/Eazy-T/",
-  "start_url": "/torn/Eazy-T/",
+  "Scope": "/Eazy-T/",
+  "start_url": "/Eazy-T/",
   "icons": [
     {
       "src": "https://lunarcontrol.github.io/Eazy-T/images/icons/icon-72x72.png",
