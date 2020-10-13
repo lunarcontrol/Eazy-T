@@ -139,8 +139,8 @@ if('serviceWorker' in navigator) {
 		//var playerLevel = data.level;
 		//var playerID = data.player_id;
 		var playerName = data.name;
-    var playerStatus1 = data.status[0];
-    var playerStatus2 = data.status[1];
+    var playerStatus1 = data.status["description"];
+    var playerStatus2 = data.status["state"];
 		document.getElementById("playername").innerHTML = playerName;
 		document.getElementById('playerlink').href = 'http://www.torn.com/profiles.php?NID=' + playerName + '';
     document.getElementById('playerstatus1').innerHTML = playerStatus1;
