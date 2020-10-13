@@ -129,22 +129,22 @@ if('serviceWorker' in navigator) {
 	getJSON('https://api.torn.com/user/?selections=basic&key=' + localStorage.apiKey,
 		function(err, data) {
 		if (err !== null) {
-		alertify.log('Cannot retrieve BASIC information: ' + err);
+			alertify.log('Cannot retrieve BASIC information: ' + err);
 		} //MjyUA
 		else {
 
-  //
-	//Profile Information
-  //
+		//
+		//Profile Information
+		//
 		//var playerLevel = data.level;
 		//var playerID = data.player_id;
 		var playerName = data.name;
-    var playerStatus1 = data.status["description"];
-    var playerStatus2 = data.status["state"];
+    		var playerStatus1 = data.status["description"];
+    		var playerStatus2 = data.status["state"];
 		document.getElementById("playername").innerHTML = playerName;
 		document.getElementById('playerlink').href = 'http://www.torn.com/profiles.php?NID=' + playerName + '';
-    document.getElementById('playerstatus1').innerHTML = playerStatus1;
-    document.getElementById('playerstatus2').innerHTML = playerStatus2;
+    		document.getElementById('playerstatus1').innerHTML = playerStatus1;
+    		document.getElementById('playerstatus2').innerHTML = playerStatus2;
 		}
 	});
 
@@ -337,7 +337,7 @@ if('serviceWorker' in navigator) {
                         <a id="playerlink"><h1 id="playername">Eazy-T</h1></a>
                         <p></p>
 
-                        <p>Status: <span id="playerstatus1"></span> <span id="traveltimeleft"></span><span id="playerstatus2"></span></p>
+                        <p>Status: <span id="playerstatus1"></span> <span id="traveltimeleft"></span> <span id="playerstatus2"></span></p>
                         <b><center><span id="onlinestatus"></span></center></b>
 
                         <table class="btn btn-primary">
