@@ -404,10 +404,9 @@ if('serviceWorker' in navigator) {
 		var proxy_url = 'https://cors-anywhere.herokuapp.com/';
 		var main_url = 'https://www.torn.com/indexevents.php';
 
-		fetch(proxy_url + main_url){
+		fetch(proxy_url + main_url)
 			.then(response => response.text())
 			.then(data => console.log(data));
-		}
 		
 		
     //INITS PULL TO REFRESH
