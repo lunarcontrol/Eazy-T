@@ -319,7 +319,7 @@ if('serviceWorker' in navigator) {
 		
 		//Calc time 
 		var currentTime = data.travel.timestamp;
-		var departedTime = data.travel.departed
+		var departedTime = data.travel.departed;
 		var totalTime = currentTime - departedTime;
 		alertify.log(totalTime);
 		console.log(totalTime);
