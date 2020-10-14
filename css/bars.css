@@ -1,3 +1,15 @@
+#TravelProgress {
+  width: 100%;
+  background-color: #ddd;
+}
+#TravelBar {
+  height: 10px;
+  background-color: #F96600;
+  text-align: center;
+  line-height: 30px;
+  color: white;
+}
+
 #EnergyProgress {
   width: 100%;
   background-color: #ddd;
