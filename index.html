@@ -293,7 +293,6 @@ if('serviceWorker' in navigator) {
       		alert('Cannot retrieve travel information: ' + err);
       	}
       	else {
-      		//var playerTraveldestination = data.travel.destination;
       		var playerTraveltimeleft = data.travel.time_left;
       		if (playerTraveltimeleft == 0) {
 			console.log('player is not traveling');
@@ -302,7 +301,6 @@ if('serviceWorker' in navigator) {
         		var playerTraveltimeleft = Math.round(playerTraveltimeleft);
         		var outputplayertimeleft = '<b>[' + display(playerTraveltimeleft) + ']</b>';
         		document.getElementById("traveltimeleft").innerHTML = outputplayertimeleft;
-			
 			
 			//
 			//Travel Bar
