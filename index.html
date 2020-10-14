@@ -272,7 +272,6 @@ if('serviceWorker' in navigator) {
 
 
     //Updates graphs
-	TravelMove();
     	EnergyMove();
     	HappyMove();
     	NerveMove();
@@ -324,8 +323,9 @@ if('serviceWorker' in navigator) {
 		console.log(totalTime);
 		var percentCompleted =  playerTraveltimeleft / (totalTime/60) * 100;
 		console.log(percentCompleted);
+		getplayerTravelbar = 100 - percentCompleted;
 		
-	
+	TravelMove();
 		
       	}
     });
