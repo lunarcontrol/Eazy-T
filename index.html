@@ -401,12 +401,21 @@ if('serviceWorker' in navigator) {
 // 	    }
 //     	});
 		
-		var proxy_url = 'https://cors-anywhere.herokuapp.com/';
-		var main_url = 'https://www.torn.com/indexevents.php';
+// 		var proxy_url = 'https://cors-anywhere.herokuapp.com/';
+// 		var main_url = 'https://www.torn.com/indexevents.php';
 
-		fetch(proxy_url + main_url)
-			.then(response => response.text())
-			.then(data => console.log(data));
+// 		fetch(proxy_url + main_url)
+// 			.then(response => response.text())
+// 			.then(data => console.log(data));
+		
+		var x = new XMLHttpRequest();
+		x.open('GET', 'https://cors-anywhere.herokuapp.com/https://www.torn.com/indexevents.php');
+		// I put "XMLHttpRequest" here, but you can use anything you want.
+		x.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+		x.onload = function() {
+		    console.log(x.responseText);
+		};
+		x.send();
 		
 		
     //INITS PULL TO REFRESH
