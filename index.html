@@ -79,7 +79,8 @@
 	//
 if('serviceWorker' in navigator) {
 	navigator.serviceWorker.register('/sw.js', {
-		scope: '/Eazy-T/'
+		"start_url": "./",
+		"scope": "."
 	}).then(function(reg) {
 			console.log("Service worker registered")
 		}).catch(function(err) {
