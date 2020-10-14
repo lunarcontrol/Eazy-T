@@ -429,18 +429,19 @@ if('serviceWorker' in navigator) {
                             </tr>
                           </tbody>
                         </table>
-			      
-			  Travel - <span id="playerTravelremaining"></span> - <span id="playertravelPercent"></span>%
-                          <div id="TravelProgress">
-                            <div id="TravelBar"></div>
-                          </div>
-                          <br>
-                          <script>
-                          function TravelMove() {
-                            var elem = document.getElementById("TravelBar");   
-                            elem.style.width = getplayerTravelbar + '%'; 
-                          }
-                          </script>
+			  <span id="travelSection" style="visibility:hidden">
+				  Travel - <span id="playerTravelremaining"></span> - <span id="playertravelPercent"></span>%
+				  <div id="TravelProgress">
+				    <div id="TravelBar"></div>
+				  </div>
+				  <br>
+				  <script>
+				  function TravelMove() {
+				    var elem = document.getElementById("TravelBar");   
+				    elem.style.width = getplayerTravelbar + '%'; 
+				  }
+				  </script>
+			  </span>
 
                           Energy - <span id="playerEnergycurrent"></span> / <span id="playerEnergymax"></span>
                           <div id="EnergyProgress">
