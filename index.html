@@ -322,8 +322,8 @@ if('serviceWorker' in navigator) {
 		var departedTime = data.travel.departed;
 		var totalTime = currentTime - departedTime;
 		console.log(totalTime);
-		var minutesLeft = (totalTime/60) - (data.travel.time_left/60);
-		console.log(minutesLeft);
+		var percentCompleted =  playerTraveltimeleft / (totalTime/60) * 100;
+		console.log(percentCompleted);
 		
 	
 		
