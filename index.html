@@ -78,8 +78,8 @@
 	//Service Worker
 	//
 if('serviceWorker' in navigator) {
-	navigator.serviceWorker.register('/sw.js', {
-		"start_url": "/Eazy-T/",
+	navigator.serviceWorker.register('/Eazy-T/sw.js', {
+		"start_url": "./",
 		"scope": "."
 	}).then(function(reg) {
 			console.log("Service worker registered")
