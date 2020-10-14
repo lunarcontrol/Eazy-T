@@ -295,7 +295,6 @@ if('serviceWorker' in navigator) {
       	else {
       		var playerTraveltimeleft = data.travel.time_left;
       		if (playerTraveltimeleft == 0) {
-			document.getElementById("travelSection").style = "visibility:visible";
 			console.log('Not traveling');
       		}else{
         		var playerTraveltimeleft = playerTraveltimeleft / 60;
@@ -306,6 +305,7 @@ if('serviceWorker' in navigator) {
 			//
 			//Travel Bar
 			//
+			document.getElementById("travelSection").style = "visibility:visible";
 			document.getElementById("playerTravelremaining").innerHTML = outputplayertimeleft; //good
 			playerTravelbar = 100;
 			getplayerTravelbar = playerTravelbar;
