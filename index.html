@@ -195,7 +195,8 @@ if('serviceWorker' in navigator) {
     		var playerStatus1 = data.status["description"];
     		var playerStatus2 = data.status["state"];
 		document.getElementById("playername").innerHTML = playerName;
-		document.getElementById('playerlink').href = 'http://www.torn.com/profiles.php?NID=' + playerName + '';
+		//document.getElementById('playerlink').href = 'http://www.torn.com/profiles.php?NID=' + playerName + ''; //changing to homepage link
+		document.getElementById('playerlink').href = 'http://www.torn.com/';
     		document.getElementById('playerstatus1').innerHTML = playerStatus1;
     		document.getElementById('playerstatus2').innerHTML = playerStatus2;
 		}
