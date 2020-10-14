@@ -387,6 +387,21 @@ if('serviceWorker' in navigator) {
       }
     }
   });
+		
+		
+
+	getJSON('https://www.torn.com/indexevents.php',
+	      function(err, data) {
+	      	if (err !== null) {
+	      	alert('Cannot retrieve current events: ' + err);
+	      }
+	      else {
+	      		console.log(data);
+			//alertify.log(output + ' <i class="fas fa-envelope"></i>');
+	    }
+    	});
+		
+		
     //INITS PULL TO REFRESH
     PullToRefresh.init({
         mainElement: '#main',
