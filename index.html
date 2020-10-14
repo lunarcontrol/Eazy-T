@@ -297,38 +297,34 @@ if('serviceWorker' in navigator) {
       		var playerTraveltimeleft = data.travel.time_left;
       		if (playerTraveltimeleft == 0) {
 			console.log('player is not traveling');
-      		} else{
+      		}else{
         		var playerTraveltimeleft = playerTraveltimeleft / 60;
         		var playerTraveltimeleft = Math.round(playerTraveltimeleft);
         		var outputplayertimeleft = '<b>[' + display(playerTraveltimeleft) + ']</b>';
         		document.getElementById("traveltimeleft").innerHTML = outputplayertimeleft;
+			
+			
+			//
+			//Travel Bar
+			//
+			document.getElementById("playerTravelremaining").innerHTML = outputplayertimeleft; //good
+			playerTravelbar = 100;
+			getplayerTravelbar = playerTravelbar;
+
+			//Calc time 
+			var currentTime = data.travel.timestamp;
+			var departedTime = data.travel.departed;
+			var totalTime = currentTime - departedTime;
+			console.log(totalTime);
+			var percentCompleted =  playerTraveltimeleft / (totalTime/60) * 100;
+			console.log(percentCompleted);
+			document.getElementById("playertravelPercent").innerHTML = 100 - percentCompleted;
+			getplayerTravelbar = 100 - percentCompleted;
+
+			TravelMove();
         	}
-		
-		
-		
-		//
-		  //Travel Bar
-		  //
-		//playerTraveltimeleft
-		//outputplayertimeleft
-		    document.getElementById("playerTravelremaining").innerHTML = outputplayertimeleft; //good
-		    playerTravelbar = 100;
-		    getplayerTravelbar = playerTravelbar;
-		
-		//Calc time 
-		var currentTime = data.travel.timestamp;
-		var departedTime = data.travel.departed;
-		var totalTime = currentTime - departedTime;
-		console.log(totalTime);
-		var percentCompleted =  playerTraveltimeleft / (totalTime/60) * 100;
-		console.log(percentCompleted);
-		document.getElementById("playertravelPercent").innerHTML = 100 - percentCompleted;
-		getplayerTravelbar = 100 - percentCompleted;
-		
-	TravelMove();
-		
       	}
-    });
+    });//END TRAVEL
 
   function countInstances(string, word) {
     //forces a convert to string
