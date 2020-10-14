@@ -289,21 +289,37 @@ if('serviceWorker' in navigator) {
 
   getJSON('https://api.torn.com/user/?selections=travel&key=' + localStorage.apiKey,
       function(err, data) {
-      if (err !== null) {
-      alert('Cannot retrieve travel information: ' + err);
-      }
-      else {
-      //var playerTraveldestination = data.travel.destination;
-      var playerTraveltimeleft = data.travel.time_left;
-      if (playerTraveltimeleft == 0) {
-
-      } else{
-        var playerTraveltimeleft = playerTraveltimeleft / 60;
-        var playerTraveltimeleft = Math.round(playerTraveltimeleft);
-        var outputplayertimeleft = '<b>[' + display(playerTraveltimeleft) + ']</b>';
-        document.getElementById("traveltimeleft").innerHTML = outputplayertimeleft;
-        }
-      }
+      	if (err !== null) {
+      		alert('Cannot retrieve travel information: ' + err);
+      	}
+      	else {
+      		//var playerTraveldestination = data.travel.destination;
+      		var playerTraveltimeleft = data.travel.time_left;
+      		if (playerTraveltimeleft == 0) {
+			console.log('player is not traveling');
+      		} else{
+        		var playerTraveltimeleft = playerTraveltimeleft / 60;
+        		var playerTraveltimeleft = Math.round(playerTraveltimeleft);
+        		var outputplayertimeleft = '<b>[' + display(playerTraveltimeleft) + ']</b>';
+        		document.getElementById("traveltimeleft").innerHTML = outputplayertimeleft;
+        	}
+		
+		
+		
+		//
+		  //Travel Bar
+		  //
+		//playerTraveltimeleft
+		//outputplayertimeleft
+		    document.getElementById("playerTravelremaining").innerHTML = outputplayertimeleft; //good
+		    document.getElementById("playertravelPercent").innerHTML = "50"; //static
+		    playerTravelbar = 100;
+		    getplayerTravelbar = playerTravelbar;
+		
+		
+	
+		
+      	}
     });
 
   function countInstances(string, word) {
@@ -411,6 +427,18 @@ if('serviceWorker' in navigator) {
                             </tr>
                           </tbody>
                         </table>
+			      
+			  Travel - <span id="playerTravelremaining"></span> - <span id="playertravelPercent"></span>%
+                          <div id="TravelProgress">
+                            <div id="TravelBar"></div>
+                          </div>
+                          <br>
+                          <script>
+                          function TravelMove() {
+                            var elem = document.getElementById("TravelBar");   
+                            elem.style.width = getplayerTravelbar + '%'; 
+                          }
+                          </script>
 
                           Energy - <span id="playerEnergycurrent"></span> / <span id="playerEnergymax"></span>
                           <div id="EnergyProgress">
