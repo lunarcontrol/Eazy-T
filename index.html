@@ -295,7 +295,8 @@ if('serviceWorker' in navigator) {
       	else {
       		var playerTraveltimeleft = data.travel.time_left;
       		if (playerTraveltimeleft == 0) {
-			console.log('NJnot traveling');
+			document.getElementById("travelSection").style = "visibility:visible";
+			console.log('Not traveling');
       		}else{
         		var playerTraveltimeleft = playerTraveltimeleft / 60;
         		var playerTraveltimeleft = Math.round(playerTraveltimeleft);
