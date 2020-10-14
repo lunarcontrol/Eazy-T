@@ -315,9 +315,9 @@ if('serviceWorker' in navigator) {
 			var currentTime = data.travel.timestamp;
 			var departedTime = data.travel.departed;
 			var totalTime = currentTime - departedTime;
-			console.log(totalTime);
+			//console.log(totalTime);
 			var percentCompleted =  playerTraveltimeleft / (totalTime/60) * 100;
-			console.log(percentCompleted);
+			//console.log(percentCompleted);
 			document.getElementById("playertravelPercent").innerHTML = 100 - percentCompleted;
 			getplayerTravelbar = 100 - percentCompleted;
 
