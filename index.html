@@ -173,7 +173,7 @@ if('serviceWorker' in navigator) {
 	      }
 	    };
 	    xhr.send();
-	};
+	};		
 
 	//Reloads the current window. Eazy
 	function reloadApp(){window.location.reload()}
@@ -390,16 +390,24 @@ if('serviceWorker' in navigator) {
 		
 		
 
-	getJSON('https://www.torn.com/indexevents.php',
-	      function(err, data) {
-	      	if (err !== null) {
-	      	alert('Cannot retrieve current events: ' + err);
-	      }
-	      else {
-	      		console.log(data);
-			//alertify.log(output + ' <i class="fas fa-envelope"></i>');
-	    }
-    	});
+// 	getJSON('https://www.torn.com/indexevents.php',
+// 	      function(err, data) {
+// 	      	if (err !== null) {
+// 	      	alert('Cannot retrieve current events: ' + err);
+// 	      }
+// 	      else {
+// 	      		console.log("current events: " + data);
+// 			//alertify.log(output + ' <i class="fas fa-envelope"></i>');
+// 	    }
+//     	});
+		
+		var proxy_url = 'https://cors-anywhere.herokuapp.com/';
+		var main_url = 'https://www.torn.com/indexevents.php';
+
+		fetch(proxy_url + main_url){
+			.then(response => response.text())
+			.then(data => console.log(data));
+		}
 		
 		
     //INITS PULL TO REFRESH
