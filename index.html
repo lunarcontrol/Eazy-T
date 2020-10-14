@@ -396,6 +396,20 @@ if('serviceWorker' in navigator) {
 // 		x.send();
 		
 		
+		
+		
+		document.onload = () => { 
+		    let URL = 'https://www.torn.com/indexevents.php'
+
+		    fetch(URL)
+		    	.then(response => response.text())
+ 			.then(data => console.log(data));
+		    })
+		};
+		
+		
+		
+		
     //INITS PULL TO REFRESH
     PullToRefresh.init({
         mainElement: '#main',
