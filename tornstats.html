@@ -72,18 +72,18 @@ var getJSON = function(url, callback) {
   //
     var tornstatsStatus = data.status;
     var tornstatsMessage = data.message;
-    if(tornstatsStatus == 'true'){
+    if(tornstatsStatus == true){
       tornstatsStatus = '<!-- Login -->';
       alertify.success('Login to TornStats successfull!'); 
     }
-    if(tornstatsStatus == 'false'){
+    if(tornstatsStatus == false){
       tornstatsStatus = 'Login failed!';
       alertify.error('Login to TornStats failed');
     }
 
     if(tornstatsMessage == 'User already exists. No action necessary.'){
       //tornstatsMessage = '<!--<i class="fas fa-check"></i> -->';
-      alertify.success(tornstatsMessage); 
+      alertify.log(tornstatsMessage); 
     }
 
 
