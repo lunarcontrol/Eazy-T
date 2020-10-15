@@ -140,7 +140,7 @@ var ctx = document.getElementById('myChart').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'line',
     data: {
-        labels: ['strength', 'defense', 'speed', 'dexterity', 'timestamp', 'total'],
+        labels: ['strength', 'defense', 'speed', 'dexterity'],
         datasets: [{
             label: '# of Votes',
             data: [{
@@ -192,15 +192,6 @@ var myChart = new Chart(ctx, {
             borderWidth: 1
         }]
     },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
-    }
 });
 </script>
 			      
