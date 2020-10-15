@@ -276,7 +276,7 @@
 						var percentCompleted =  playerTraveltimeleft / (totalTime/60) * 100;
 						//console.log(percentCompleted);
 						document.getElementById("playertravelPercent").innerHTML = 100 - percentCompleted;
-						getplayerTravelbar = 100 - percentCompleted;
+						getplayerTravelbar = Math.round(100 - percentCompleted);
 
 						TravelMove();
 					}
