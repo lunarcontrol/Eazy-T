@@ -89,284 +89,272 @@ p,span,ul,ol  {color:white;}
 
 	//Main function that is called ASAP
 	function main() {
-	    	//if(localStorage.dark == 'true'){
-            	//	var element = document.createElement("link");
-            	//	element.setAttribute("rel", "stylesheet");
-            	//	element.setAttribute("type", "text/css");
-            	//	element.setAttribute("href", "/Eazy-T/css/dark.css");
-            	//	document.getElementsByTagName("head")[0].appendChild(element);
-        	//}
-
-	//Service Worker
-	//
-if('serviceWorker' in navigator) {
-	navigator.serviceWorker.register('/Eazy-T/sw.js', {
-		"start_url": "./",
-		"scope": "."
-	}).then(function(reg) {
-			console.log("Service worker registered")
-		}).catch(function(err) {
-			console.log(err);
-		});
-}
-	
-	
-	if("refreshrate" in localStorage){
-	    	//Do nothing, continue
-		} 
-	else {window.location="intro.html";}
-	
-	if("apiKey" in localStorage){
-	    	//Do nothing, continue
-        var reloadnotify = localStorage.refreshrate - 3000
-        setTimeout(function(){
-          alertify.log("Reloading");
-        },reloadnotify)
-        setTimeout(function(){
-          reloadApp();
-        },localStorage.refreshrate)
-		} 
-	else {window.location="intro.html";}
-
-	//Core Json function
-	//Opens JSON request & sends it to APP
-	var getJSON = function(url, callback) {
-	    var xhr = new XMLHttpRequest();
-	    xhr.open('GET', url, true);
-	    xhr.responseType = 'json';
-	    xhr.onload = function() {
-	      var status = xhr.status;
-	      if (status === 200) {
-	        callback(null, xhr.response);
-	      } else {
-	        callback(status, xhr.response);
-	      }
-	    };
-	    xhr.send();
-	};		
-
-	//Reloads the current window. Eazy
-	function reloadApp(){window.location.reload()}
-
-	//Graps the profile [BASIC] data from TORN
-	getJSON('https://api.torn.com/user/?selections=basic&key=' + localStorage.apiKey,
-		function(err, data) {
-		if (err !== null) {
-			alertify.log('Cannot retrieve BASIC information: ' + err);
-		} //MjyUA
-		else {
-
-		//
-		//Profile Information
-		//
-		//var playerLevel = data.level;
-		//var playerID = data.player_id;
-		var playerName = data.name;
-    		var playerStatus1 = data.status["description"];
-    		var playerStatus2 = data.status["state"];
-		document.getElementById("playername").innerHTML = playerName;
-		//document.getElementById('playerlink').href = 'http://www.torn.com/profiles.php?NID=' + playerName + ''; //changing to homepage link
-		document.getElementById('playerlink').href = 'http://www.torn.com/';
-    		document.getElementById('playerstatus1').innerHTML = playerStatus1;
-    		document.getElementById('playerstatus2').innerHTML = playerStatus2;
+		//Service Worker
+		if('serviceWorker' in navigator) {
+			navigator.serviceWorker.register('/Eazy-T/sw.js', {
+				"start_url": "./",
+				"scope": "."
+			}).then(function(reg) {
+					console.log("Service worker registered")
+				}).catch(function(err) {
+					console.log(err);
+				});
 		}
-	});
 
-  //Grabs BAR information from TORN
-  getJSON('https://api.torn.com/user/?selections=bars&key=' + localStorage.apiKey,
-    function(err, data) {
-    if (err !== null) {
-    alertify.log('Cannot retrieve BAR information: ' + err);
-    }
-    else {
+		if("refreshrate" in localStorage){
+			//Do nothing, continue
+			} 
+		else {window.location="intro.html";}
+	
+		if("apiKey" in localStorage){
+        		var reloadnotify = localStorage.refreshrate - 3000
+        		setTimeout(function(){
+          			alertify.log("Reloading");
+        		},reloadnotify)
+        		setTimeout(function(){
+          			reloadApp();
+        		},localStorage.refreshrate)
+		} else {window.location="intro.html";}
 
-  //
-  //HAPPY
-  //
-    var playerHappymax = data.happy.maximum;
-    var playerHappycurrent = data.happy.current;
-    var playerHappybar = playerHappycurrent / playerHappymax;
-    document.getElementById("playerHappycurrent").innerHTML = playerHappycurrent;
-    document.getElementById("playerHappymax").innerHTML = playerHappymax;
-    //if (playerHappycurrent > playerHappymax)playerHappybar = 100;
-    if (playerHappybar == 1)playerHappybar = 100;
-    else {
-      playerHappybar = playerHappybar * 100
-    }
-    getplayerHappybar = playerHappybar;
-    //document.getElementById("HappyBar").innerHTML = playerHappybar;
+		//Core Json function
+		//Opens JSON request & sends it to APP
+		var getJSON = function(url, callback) {
+		    var xhr = new XMLHttpRequest();
+		    xhr.open('GET', url, true);
+		    xhr.responseType = 'json';
+		    xhr.onload = function() {
+		      var status = xhr.status;
+		      if (status === 200) {
+			callback(null, xhr.response);
+		      } else {
+			callback(status, xhr.response);
+		      }
+		    };
+		    xhr.send();
+		};		
 
-  //
-  //ENERGY
-  //
-    var playerEnergymax = data.energy.maximum;
-    var playerEnergycurrent = data.energy.current;
-    var playerEnergybar = playerEnergycurrent / playerEnergymax;
-    document.getElementById("playerEnergycurrent").innerHTML = playerEnergycurrent;
-    document.getElementById("playerEnergymax").innerHTML = playerEnergymax;
-    if(playerEnergybar == 1)playerEnergybar = 100;
-    if(playerEnergybar > 1)playerEnergybar = 100;
-    if(playerEnergybar < 1)playerEnergybar = playerEnergybar * 100;
-    getplayerEnergybar = playerEnergybar;
-    // document.getElementById("EnergyBar").innerHTML = playerEnergybar;
+		//Reloads the current window. Eazy
+		function reloadApp(){window.location.reload()}
 
-  //
-  //Nerve
-  //
-    var playerNervemax = data.nerve.maximum;
-    var playerNervecurrent = data.nerve.current;
-    var playerNervebar = playerNervecurrent / playerNervemax;
-    document.getElementById("playerNervecurrent").innerHTML = playerNervecurrent;
-    document.getElementById("playerNervemax").innerHTML = playerNervemax;
+		//Graps the profile [BASIC] data from TORN
+		getJSON('https://api.torn.com/user/?selections=basic&key=' + localStorage.apiKey,
+			function(err, data) {
+				if (err !== null) {
+					alertify.log('Cannot retrieve BASIC information: ' + err);
+				}
+				else {
+					//
+					//Profile Information
+					//
+					//var playerLevel = data.level;
+					//var playerID = data.player_id;
+					var playerName = data.name;
+					var playerStatus1 = data.status["description"];
+					var playerStatus2 = data.status["state"];
+					document.getElementById("playername").innerHTML = playerName;
+					//document.getElementById('playerlink').href = 'http://www.torn.com/profiles.php?NID=' + playerName + ''; //changing to homepage link
+					document.getElementById('playerlink').href = 'http://www.torn.com/';
+					document.getElementById('playerstatus1').innerHTML = playerStatus1;
+					document.getElementById('playerstatus2').innerHTML = playerStatus2;
+				}
+			}
+		); //END basic
 
-    if (playerNervecurrent > playerNervemax)playerNervebar = 100;
-    if (playerNervebar == 1)playerNervebar = 100;
-    else {
-      playerNervebar = playerNervebar * 100
-    }
-    getplayerNervebar = playerNervebar;
-    // document.getElementById("EnergyBar").innerHTML = playerEnergybar;
+		//Grabs BAR information from TORN
+		getJSON('https://api.torn.com/user/?selections=bars&key=' + localStorage.apiKey,
+			function(err, data) {
+		    		if (err !== null) {
+		    		alertify.log('Cannot retrieve BAR information: ' + err);
+		    		}
+		    		else {
+					//
+					//HAPPY
+					//
+					var playerHappymax = data.happy.maximum;
+					var playerHappycurrent = data.happy.current;
+					var playerHappybar = playerHappycurrent / playerHappymax;
+					document.getElementById("playerHappycurrent").innerHTML = playerHappycurrent;
+					document.getElementById("playerHappymax").innerHTML = playerHappymax;
+					//if (playerHappycurrent > playerHappymax)playerHappybar = 100;
+					if (playerHappybar == 1)playerHappybar = 100;
+					else {
+						playerHappybar = playerHappybar * 100
+					}
+					getplayerHappybar = playerHappybar;
+					//document.getElementById("HappyBar").innerHTML = playerHappybar;
 
-  //
-  //Life
-  //
-    var playerLifemax = data.life.maximum;
-    var playerLifecurrent = data.life.current;
-    var playerLifebar = playerLifecurrent / playerLifemax;
-    document.getElementById("playerLifecurrent").innerHTML = playerLifecurrent;
-    document.getElementById("playerLifemax").innerHTML = playerLifemax;
-    if (playerLifebar == 1)playerLifebar = 100;
-    else {
-      playerLifebar = playerLifebar * 100
-    }
-    getplayerLifebar = playerLifebar;
+					//
+					//ENERGY
+					//
+					var playerEnergymax = data.energy.maximum;
+					var playerEnergycurrent = data.energy.current;
+					var playerEnergybar = playerEnergycurrent / playerEnergymax;
+					document.getElementById("playerEnergycurrent").innerHTML = playerEnergycurrent;
+					document.getElementById("playerEnergymax").innerHTML = playerEnergymax;
+					if(playerEnergybar == 1)playerEnergybar = 100;
+					if(playerEnergybar > 1)playerEnergybar = 100;
+					if(playerEnergybar < 1)playerEnergybar = playerEnergybar * 100;
+					getplayerEnergybar = playerEnergybar;
+					// document.getElementById("EnergyBar").innerHTML = playerEnergybar;
+
+					//
+					//Nerve
+					//
+					var playerNervemax = data.nerve.maximum;
+					var playerNervecurrent = data.nerve.current;
+					var playerNervebar = playerNervecurrent / playerNervemax;
+					document.getElementById("playerNervecurrent").innerHTML = playerNervecurrent;
+					document.getElementById("playerNervemax").innerHTML = playerNervemax;
+
+					if (playerNervecurrent > playerNervemax)playerNervebar = 100;
+					if (playerNervebar == 1)playerNervebar = 100;
+					else {
+						playerNervebar = playerNervebar * 100
+					}
+					getplayerNervebar = playerNervebar;
+					// document.getElementById("EnergyBar").innerHTML = playerEnergybar;
+
+					//
+					//Life
+					//
+					var playerLifemax = data.life.maximum;
+					var playerLifecurrent = data.life.current;
+					var playerLifebar = playerLifecurrent / playerLifemax;
+					document.getElementById("playerLifecurrent").innerHTML = playerLifecurrent;
+					document.getElementById("playerLifemax").innerHTML = playerLifemax;
+					if (playerLifebar == 1)playerLifebar = 100;
+					else {
+						playerLifebar = playerLifebar * 100
+					}
+					getplayerLifebar = playerLifebar;
 
 
-    //Updates graphs
-    	EnergyMove();
-    	HappyMove();
-    	NerveMove();
-    	LifeMove();
-    }
-  });
+					//Updates graphs
+					EnergyMove();
+					HappyMove();
+					NerveMove();
+					LifeMove();
+				}
+ 	 		}
+		);//END bars
 
-  //Formats a time of minutes into a nice format of ##:##
-  function display(a){
-    var hours = Math.trunc(a/60);
-    var minutes = a % 60;
-    if(minutes < 10)minutes = ('0' + minutes).slice(-2);
-    return(hours +":"+ minutes);
-  }
+		//Formats a time of minutes into a nice format of ##:##
+		function display(a){
+			var hours = Math.trunc(a/60);
+			var minutes = a % 60;
+			if(minutes < 10)minutes = ('0' + minutes).slice(-2);
+			return(hours +":"+ minutes);
+		}
 
-  getJSON('https://api.torn.com/user/?selections=travel&key=' + localStorage.apiKey,
-      function(err, data) {
-      	if (err !== null) {
-      		alert('Cannot retrieve travel information: ' + err);
-      	}
-      	else {
-      		var playerTraveltimeleft = data.travel.time_left;
-      		if (playerTraveltimeleft == 0) {
-			console.log('Not traveling');
-      		}else{
-        		var playerTraveltimeleft = playerTraveltimeleft / 60;
-        		var playerTraveltimeleft = Math.round(playerTraveltimeleft);
-        		var outputplayertimeleft = '<b>[' + display(playerTraveltimeleft) + ']</b>';
-        		document.getElementById("traveltimeleft").innerHTML = outputplayertimeleft;
-			
-			//
-			//Travel Bar
-			//
-			document.getElementById("travelSection").style = "visibility:visible";
-			document.getElementById("playerTravelremaining").innerHTML = outputplayertimeleft; //good
-			playerTravelbar = 100;
-			getplayerTravelbar = playerTravelbar;
+		getJSON('https://api.torn.com/user/?selections=travel&key=' + localStorage.apiKey,
+			function(err, data) {
+				if (err !== null) {
+					alertify.log('Cannot retrieve travel information: ' + err);
+				}
+				else {
+					var playerTraveltimeleft = data.travel.time_left;
+					if (playerTraveltimeleft == 0) {
+						console.log('Not traveling');
+					}else{
+						var playerTraveltimeleft = playerTraveltimeleft / 60;
+						var playerTraveltimeleft = Math.round(playerTraveltimeleft);
+						var outputplayertimeleft = '<b>[' + display(playerTraveltimeleft) + ']</b>';
+						document.getElementById("traveltimeleft").innerHTML = outputplayertimeleft;
 
-			//Calc time 
-			var currentTime = data.travel.timestamp;
-			var departedTime = data.travel.departed;
-			var totalTime = currentTime - departedTime;
-			//console.log(totalTime);
-			var percentCompleted =  playerTraveltimeleft / (totalTime/60) * 100;
-			//console.log(percentCompleted);
-			document.getElementById("playertravelPercent").innerHTML = 100 - percentCompleted;
-			getplayerTravelbar = 100 - percentCompleted;
+						//
+						//Travel Bar
+						//
+						document.getElementById("travelSection").style = "visibility:visible";
+						document.getElementById("playerTravelremaining").innerHTML = outputplayertimeleft; //good
+						playerTravelbar = 100;
+						getplayerTravelbar = playerTravelbar;
 
-			TravelMove();
-        	}
-      	}
-    });//END TRAVEL
+						//Calc time 
+						var currentTime = data.travel.timestamp;
+						var departedTime = data.travel.departed;
+						var totalTime = currentTime - departedTime;
+						//console.log(totalTime);
+						var percentCompleted =  playerTraveltimeleft / (totalTime/60) * 100;
+						//console.log(percentCompleted);
+						document.getElementById("playertravelPercent").innerHTML = 100 - percentCompleted;
+						getplayerTravelbar = 100 - percentCompleted;
 
-  function countInstances(string, word) {
-    //forces a convert to string
-    var string = string + '';
-     return string.split(word).length - 1;
-  }
-  getJSON('https://api.torn.com/user/?selections=events&key=' + localStorage.apiKey,
-      function(err, data) {
-      if (err !== null) {
-      alert('Cannot retrieve events: ' + err);
-      }
-      else {
-      var eventsSeenstatus = jsonQ(data), eventsSeenstatus = eventsSeenstatus.find('seen');
-      var output = eventsSeenstatus.value()
-      output = countInstances(output, 0);
-      // output =1;
+						TravelMove();
+					}
+				}
+			}
+		);//END TRAVEL
 
-      //var x = document.getElementById("unreadEventsbutton");
+		function countInstances(string, word) {
+			//forces a convert to string
+		    	var string = string + '';
+		     	return string.split(word).length - 1;
+		}
+  		getJSON('https://api.torn.com/user/?selections=events&key=' + localStorage.apiKey,
+      			function(err, data) {
+      				if (err !== null) {
+      					alertify.log('Cannot retrieve events: ' + err);
+      				}
+      				else {
+      					var eventsSeenstatus = jsonQ(data), eventsSeenstatus = eventsSeenstatus.find('seen');
+      					var output = eventsSeenstatus.value()
+      					output = countInstances(output, 0);
+      					// output =1;
 
-      if(output == 1){
-        //x.style.display = "block";
-        document.getElementById("unreadEvents").innerHTML = output + ' <i class="fas fa-bell"></i>';
-        alertify.log(output + ' <i class="fas fa-bell"></i>');
-      }
-      if(output == 0){
-        //x.style.display = "none";
-        document.getElementById("unreadEvents").innerHTML = output + ' <i class="fas fa-bell"></i>';
-        alertify.log('0 <i class="fas fa-bell"></i>');
-      }
-      if(output > 1){
-        document.getElementById("unreadEvents").innerHTML = output + ' <i class="fas fa-bell"></i>';
-        //x.style.display = "block";
-        alertify.log(output + ' <i class="fas fa-bell"></i>');
-      }
-      }
-    });
+      					//var x = document.getElementById("unreadEventsbutton");
 
-  getJSON('https://api.torn.com/user/?selections=messages&key=' + localStorage.apiKey,
-      function(err, data) {
-      if (err !== null) {
-      alert('Cannot retrieve messages: ' + err);
-      }
-      else {
-      var eventsSeenstatus = jsonQ(data), eventsSeenstatus = eventsSeenstatus.find('seen');
-      var output = eventsSeenstatus.value()
-      output = countInstances(output, 0);
-      //output = 1;
+      					if(output == 1){
+        					//x.style.display = "block";
+        					document.getElementById("unreadEvents").innerHTML = output + ' <i class="fas fa-bell"></i>';
+        					alertify.log(output + ' <i class="fas fa-bell"></i>');
+      					}
+      					if(output == 0){
+        					//x.style.display = "none";
+        					document.getElementById("unreadEvents").innerHTML = output + ' <i class="fas fa-bell"></i>';
+        					alertify.log('0 <i class="fas fa-bell"></i>');
+      					}
+					if(output > 1){
+						document.getElementById("unreadEvents").innerHTML = output + ' <i class="fas fa-bell"></i>';
+						//x.style.display = "block";
+						alertify.log(output + ' <i class="fas fa-bell"></i>');
+					}
+      				}
+    			}
+		);//END events
 
-     // var y = document.getElementById("unreadMessagesbutton");
+  		getJSON('https://api.torn.com/user/?selections=messages&key=' + localStorage.apiKey,
+      			function(err, data) {
+      				if (err !== null) {
+      					alertify.log('Cannot retrieve messages: ' + err);
+      				}
+      				else {
+      					var eventsSeenstatus = jsonQ(data), eventsSeenstatus = eventsSeenstatus.find('seen');
+      					var output = eventsSeenstatus.value()
+      					output = countInstances(output, 0);
+      					//output = 1;
 
-      if(output == 0){
-        //y.style.display = "none";
-        document.getElementById("unreadMessages").innerHTML = output + ' <i class="fas fa-envelope"></i>';
-        alertify.log('0 <i class="fas fa-envelope"></i>');
-      }
-      if(output > 0){
-        //y.style.display = "block";
-        document.getElementById("unreadMessages").innerHTML = output + ' <i class="fas fa-envelope"></i>';
-        alertify.log(output + ' <i class="fas fa-envelope"></i>');
-      }
-    }
-  });
-		
-		
+     					// var y = document.getElementById("unreadMessagesbutton");
 
-		
-	//INITS PULL TO REFRESH
-	    PullToRefresh.init({
-		mainElement: '#main',
-		onRefresh: function() { reloadApp(); }
-	      });
-}//Endof device ready
+      					if(output == 0){
+        					//y.style.display = "none";
+        					document.getElementById("unreadMessages").innerHTML = output + ' <i class="fas fa-envelope"></i>';
+       	 					alertify.log('0 <i class="fas fa-envelope"></i>');
+      					}
+      					if(output > 0){
+        					//y.style.display = "block";
+        					document.getElementById("unreadMessages").innerHTML = output + ' <i class="fas fa-envelope"></i>';
+        					alertify.log(output + ' <i class="fas fa-envelope"></i>');
+      					}
+    				}
+  			}
+		);
+
+		//INITS PULL TO REFRESH
+	    	PullToRefresh.init({
+			mainElement: '#main',
+			onRefresh: function() { reloadApp(); }
+	      	});
+	}//End of device ready (main)
 </script>
     <table border="0" cellpadding="0" cellspacing="0" class="body">
       <tr>
@@ -425,10 +413,10 @@ if('serviceWorker' in navigator) {
                           </div>
                           <br>
                           <script>
-                          function EnergyMove() {
-                            var elem = document.getElementById("EnergyBar");   
-                            elem.style.width = getplayerEnergybar + '%'; 
-                          }
+				  function EnergyMove() {
+				    var elem = document.getElementById("EnergyBar");   
+				    elem.style.width = getplayerEnergybar + '%'; 
+				  }
                           </script>
 
 
@@ -438,10 +426,10 @@ if('serviceWorker' in navigator) {
                           </div>
                           <br>
                           <script>
-                          function NerveMove() {
-                            var elem = document.getElementById("NerveBar");   
-                            elem.style.width = getplayerNervebar + '%'; 
-                          }
+				  function NerveMove() {
+				    var elem = document.getElementById("NerveBar");   
+				    elem.style.width = getplayerNervebar + '%'; 
+				  }
                           </script>
 
 
@@ -452,10 +440,10 @@ if('serviceWorker' in navigator) {
                           </div>
                           <br>
                           <script>
-                          function HappyMove() {
-                            var elem = document.getElementById("HappyBar");   
-                            elem.style.width = getplayerHappybar + '%'; 
-                          }
+				  function HappyMove() {
+				    var elem = document.getElementById("HappyBar");   
+				    elem.style.width = getplayerHappybar + '%'; 
+				  }
                           </script>
 
                           Life - <span id="playerLifecurrent"></span> / <span id="playerLifemax"></span>
@@ -464,10 +452,10 @@ if('serviceWorker' in navigator) {
                           </div>
                           <br>
                           <script>
-                          function LifeMove() {
-                            var elem = document.getElementById("LifeBar");   
-                            elem.style.width = getplayerLifebar + '%'; 
-                          }
+				  function LifeMove() {
+				    var elem = document.getElementById("LifeBar");   
+				    elem.style.width = getplayerLifebar + '%'; 
+				  }
                           </script>
                       </td>
                     </tr>
