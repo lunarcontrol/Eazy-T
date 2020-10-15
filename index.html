@@ -290,6 +290,9 @@ if('serviceWorker' in navigator) {
 			//console.log(percentCompleted);
 			document.getElementById("playertravelPercent").innerHTML = 100 - percentCompleted;
 			getplayerTravelbar = 100 - percentCompleted;
+			
+			localStorage.setItem("currentTravelPercent", getplayerTravelbar);
+			console.log(localStorage.currentTravelPercent);
 
 			TravelMove();
         	}
