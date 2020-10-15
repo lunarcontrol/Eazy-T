@@ -82,8 +82,8 @@ var getJSON = function(url, callback) {
     }
 
     if(tornstatsMessage == 'User already exists. No action necessary.'){
-      tornstatsMessage = '<!--<i class="fas fa-check"></i> -->';
-      //alertify.success('Login to TornStats successfull'); 
+      //tornstatsMessage = '<!--<i class="fas fa-check"></i> -->';
+      alertify.success(tornstatsMessage); 
     }
 
 
@@ -107,7 +107,7 @@ var getJSON = function(url, callback) {
     });
 
     function goHome() {
-    window.location="index.html";
+    	window.location="index.html";
     }
 </script>
     <table border="0" cellpadding="0" cellspacing="0" class="body">
