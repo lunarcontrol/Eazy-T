@@ -138,13 +138,12 @@ var getJSON = function(url, callback) {
 	
 var ctx = document.getElementById('myChart').getContext('2d');
 var myChart = new Chart(ctx, {
-    type: 'bar',
+    type: 'line',
     data: {
-        labels: ['Strength', 'defense', 'speed', 'dexterity'],
+        labels: ['strength', 'defense', 'speed', 'dexterity', 'timestamp', 'total'],
         datasets: [{
             label: '# of Votes',
-            data: [
-      {
+            data: [{
          "strength":1745943,
          "defense":1749098,
          "speed":1761505,
@@ -247,8 +246,7 @@ var myChart = new Chart(ctx, {
          "dexterity":1796708,
          "timestamp":1602720000,
          "total":7210240
-      }
-],
+      }],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
