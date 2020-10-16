@@ -29,77 +29,78 @@
 
 </head>
 <body id="main" onload="main()">
-<script>
-	function main() {
-	  if("apiKey" in localStorage){
-	    	alertify.success('API key found');
-		} 
-		else {
-      window.location="intro.html";
-		}
-	}//END
+	<script>
+		function main() {
+	  		if("apiKey" in localStorage){
+	    			alertify.success('API key found');
+			} 
+			else {
+      				window.location="intro.html";
+			}
+		}//END
 
-  var getJSON = function(url, callback) {
-      var xhr = new XMLHttpRequest();
-      xhr.open('GET', url, true);
-      xhr.responseType = 'json';
-      xhr.onload = function() {
-        var status = xhr.status;
-        if (status === 200) {
-          callback(null, xhr.response);
-        } else {
-          callback(status, xhr.response);
-        }
-      };
-      xhr.send();
-  };
+		var getJSON = function(url, callback) {
+			var xhr = new XMLHttpRequest();
+			xhr.open('GET', url, true);
+			xhr.responseType = 'json';
+			xhr.onload = function() {
+				var status = xhr.status;
+				if (status === 200) {
+					callback(null, xhr.response);
+				}
+				else {
+					callback(status, xhr.response);
+				}
+			};
+			xhr.send();
+		};
 
-  getJSON('https://api.torn.com/user/?selections=messages&key=' + localStorage.apiKey,
-    function(err, data) {
-    if (err !== null) {
-    alertify.error('Cannot retrieve messages: ' + err);
-    }
-    else {
-    var messages = jsonQ(data),
-    //to find all the name
-    messagesS = messages.find('title');
-    var messagesSName = messages.find('name');
-    
-    messagesS = messagesS.value();
-    messagesS = messagesS.reverse(); 
-    
-    messagesSName = messagesSName.value();
-    messagesSName = messagesSName.reverse();
-    
-    var result = messagesS.reduce(function(arr, v, i) {
-                              return arr.concat(v, messagesSName[i]); 
-                           }, []);
-    document.getElementById("list0").innerHTML = result[0] + ' // ' + result[1];
-    document.getElementById("list1").innerHTML = result[2] + ' // ' + result[3];
-    document.getElementById("list2").innerHTML = result[4] + ' // ' + result[5];
-    document.getElementById("list3").innerHTML = result[6] + ' // ' + result[7];
-    document.getElementById("list4").innerHTML = result[8] + ' // ' + result[9];
-    document.getElementById("list5").innerHTML = result[10] + ' // ' + result[11];
-    document.getElementById("list6").innerHTML = result[12] + ' // ' + result[13];
-    document.getElementById("list7").innerHTML = result[14] + ' // ' + result[15];
-    document.getElementById("list8").innerHTML = result[16] + ' // ' + result[17];
-    document.getElementById("list9").innerHTML = result[18] + ' // ' + result[19];
-    document.getElementById("list10").innerHTML = result[20] + ' // ' + result[21];
-    document.getElementById("list11").innerHTML = result[22] + ' // ' + result[23];
-    document.getElementById("list12").innerHTML = result[24] + ' // ' + result[25];
-    }
-  });
+		getJSON('https://api.torn.com/user/?selections=messages&key=' + localStorage.apiKey,
+			function(err, data) {
+			if (err !== null) {
+			    alertify.error('Cannot retrieve messages: ' + err);
+			} else {
+			    var messages = jsonQ(data),
+				//to find all the name
+				messagesS = messages.find('title');
+			    var messagesSName = messages.find('name');
+
+			    messagesS = messagesS.value();
+			    messagesS = messagesS.reverse();
+
+			    messagesSName = messagesSName.value();
+			    messagesSName = messagesSName.reverse();
+
+			    var result = messagesS.reduce(function(arr, v, i) {
+				    return arr.concat(v, messagesSName[i]);
+				},
+				[]);
+			    document.getElementById("list0").innerHTML = result[0] + ' // ' + result[1];
+			    document.getElementById("list1").innerHTML = result[2] + ' // ' + result[3];
+			    document.getElementById("list2").innerHTML = result[4] + ' // ' + result[5];
+			    document.getElementById("list3").innerHTML = result[6] + ' // ' + result[7];
+			    document.getElementById("list4").innerHTML = result[8] + ' // ' + result[9];
+			    document.getElementById("list5").innerHTML = result[10] + ' // ' + result[11];
+			    document.getElementById("list6").innerHTML = result[12] + ' // ' + result[13];
+			    document.getElementById("list7").innerHTML = result[14] + ' // ' + result[15];
+			    document.getElementById("list8").innerHTML = result[16] + ' // ' + result[17];
+			    document.getElementById("list9").innerHTML = result[18] + ' // ' + result[19];
+			    document.getElementById("list10").innerHTML = result[20] + ' // ' + result[21];
+			    document.getElementById("list11").innerHTML = result[22] + ' // ' + result[23];
+			    document.getElementById("list12").innerHTML = result[24] + ' // ' + result[25];
+			}
+		    });
 
     
 
-	//Reloads the current window.
-	function reloadApp(){window.location.reload()}
+		//Reloads the current window.
+		function reloadApp(){window.location.reload()}
   
-    function goHome() {
-    window.location="index.html";
-  }
+    		function goHome() {
+    			window.location="index.html";
+  		}
 
-</script>
+	</script>
     <table border="0" cellpadding="0" cellspacing="0" class="body">
       <tr>
         <td>&nbsp;</td>
