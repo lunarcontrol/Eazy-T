@@ -22,6 +22,35 @@
     <link rel="stylesheet" href="./css/css/fontawesome-all.css" />
     <link rel="manifest" href="./manifest.json">
     <!-- <link rel="stylesheet" type="text/css" href="progress/progress.css" /> -->
+    <script>
+	function applyBackgroundTheme(color) {
+		var css = `
+			/* --------- Dark Theme --------- */
+			html{background-color: #27292C;}
+			.body {background-color: #27292C;color: white;}
+			.main {background: #35383C;}
+			body {background-color: #27292C;}
+			h1,h2,h3,h4 {color: #ffffff;}
+			.btn a {background-color: #ffffff;border: solid 1px #27292C;color: #27292C;}
+			.btn-primary table td {background-color: #27292C;}
+			.btn-primary a {background-color: #27292C;border-color: #27292C;color: #ffffff; }
+			p,span,ul,ol  {color:white;}
+		`,
+		head = document.head || document.getElementsByTagName('head')[0],
+		style = document.createElement('style');
+		head.appendChild(style);
+		style.type = 'text/css';
+		if (style.styleSheet){
+			style.styleSheet.cssText = css;
+		}
+		else {
+			style.appendChild(document.createTextNode(css));
+		}
+	    }
+	if(localStorage.dark == 'true'){
+		applyBackgroundTheme("black") // color for dark mode
+	}
+    </script>
     <title>Eazy-T: About</title>
     <!-- <meta name="viewport" content="width=device-width" /> -->
     <!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> -->
