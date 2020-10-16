@@ -156,62 +156,43 @@ var getJSON = function(url, callback) {
                       <td>
                         <a href="#"><h1 id="playername">Eazy-T</h1></a>
                         <span id="status"></span><span id="message"></span>
-                        <!-- <iframe style="height: 310px; width: 100%; border: none" src="https://www.tornstats.com/apiHome.php"></iframe> -->
-			      
-			      
-			      
-			      
-			      <h2>WIP</h2>	      
-<div id='myDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
-<script>
-trace1 = {
-  type: 'scatter',
-  x: [1, 2, 3, 4],
-  y: [10, 15, 13, 17],
-  mode: 'lines',
-  name: 'Red',
-  line: {
-    color: 'rgb(219, 64, 82)',
-    width: 3
-  }
-};
 
-trace2 = {
-  type: 'scatter',
-  x: [1, 2, 3, 4],
-  y: [12, 9, 15, 12],
-  mode: 'lines',
-  name: 'Blue',
-  line: {
-    color: 'rgb(55, 128, 191)',
-    width: 1
-  }
-};
+			<div id='myDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
+			<script>
+				trace1 = {
+				  type: 'scatter',
+				  x: [1, 2, 3, 4],
+				  y: [10, 15, 13, 17],
+				  mode: 'lines',
+				  name: 'Red',
+				  line: {
+				    color: 'rgb(219, 64, 82)',
+				    width: 3
+				  }
+				};
 
-var layout = {
-  width: 500,
-  height: 500
-};
+				trace2 = {
+				  type: 'scatter',
+				  x: [1, 2, 3, 4],
+				  y: [12, 9, 15, 12],
+				  mode: 'lines',
+				  name: 'Blue',
+				  line: {
+				    color: 'rgb(55, 128, 191)',
+				    width: 1
+				  }
+				};
 
-var data = [trace1, trace2];
+				var layout = {
+				  width: 500,
+				  height: 500
+				};
 
-Plotly.newPlot('myDiv', data, layout);
-			      </script>		      
-			      
-			      
-			      
-			      
-			      
-			      
-			      
-			      
-			      
-			      
-			      
-			      
-			      
-			      
-			      
+				var data = [trace1, trace2];
+
+				Plotly.newPlot('myDiv', data, layout);
+			</script>		      
+
                         <!-- Button -->
                         <table>
                           <tbody>
