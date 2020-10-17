@@ -18,6 +18,10 @@ self.addEventListener('install', function(event) {
       // And add resources to it
       return cache.addAll([
         '/Eazy-T/index.html',
+        '/Eazy-T/about.html',
+        '/Eazy-T/config.html',
+        '/Eazy-T/settings.html',
+        '/Eazy-T/delete.html',
         '/Eazy-T/css/index.css',
         '/Eazy-T/css/bars.css',
         '/Eazy-T/js/alertify.js',
