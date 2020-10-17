@@ -38,23 +38,29 @@ self.addEventListener('install', function(event) {
 // ServiceWorker's scope, and any request made within that
 // page
 self.addEventListener('fetch', function(event) {
-  if ( event.request.url.match( '^.*(\/user\/).*$' ) ) {
-        event.respondWith(fetch(event.request));
-        //return false;
-    }
-  
   
   // Calling event.respondWith means we're in charge
   // of providing the response. We pass in a promise
   // that resolves with a response object
   event.respondWith(
+    
+    if ( event.request.url.match( '^.*(\/user\/).*$' ) ) {
+        event.respondWith(fetch(event.request));
+        //return false;
+    }
+    else{
     // First we look for something in the caches that
     // matches the request
-    caches.match(event.request).then(function(response) {
-      // If we get something, we return it, otherwise
-      // it's null, and we'll pass the request to
-      // fetch, which will use the network.
-      return response || fetch(event.request);
-    })
+      caches.match(event.request).then(function(response) {
+        // If we get something, we return it, otherwise
+        // it's null, and we'll pass the request to
+        // fetch, which will use the network.
+        return response || fetch(event.request);
+      })
+   }
+  
+  
+  
+  
   );
 });
