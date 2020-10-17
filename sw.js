@@ -25,7 +25,8 @@ self.addEventListener('install', function(event) {
         '/Eazy-T/css/css/fontawesome-all.css',
         '/Eazy-T/js/pulltorefresh-js-0.1.14/dist/pulltorefresh.js',
         '/Eazy-T/css/webfonts/fa-solid-900.woff2',
-        'https://unpkg.com/hammer-touchemulator@0.0.2/touch-emulator.js'
+        'https://unpkg.com/hammer-touchemulator@0.0.2/touch-emulator.js',
+        '/Eazy-T/manifest.json'
       ]);
     })
   );
