@@ -53,46 +53,12 @@
 		//alert('This feature is currently in development!');
 		window.location="index.html";
   	}
-  	
-let id1 = "simplev5";
-caches.open(id1)
-.then(cache => cache.keys()
-  .then(keys => {
-    for (let key of keys) {
-      cache.delete(key)
-    }
-    //alertify.log('Old cache cleared');
-  }));
-let id = "eazymain";
-caches.open(id)
-.then(cache => cache.keys()
-  .then(keys => {
-    for (let key of keys) {
-      cache.delete(key)
-    }
-    //alertify.log('Application cache cleared');
-  }));
-caches.open('eazymain').then(function(cache) {
-      // And add resources to it
-      return cache.addAll([
-        './',
-        '/torn/eazy-t/css/bars.css',
-        '/torn/eazy-t/css/dark.css',
-        '/torn/eazy-t/css/index.css',
-        '/torn/eazy-t/js/pulltorefresh-js-0.1.14/dist/pulltorefresh.js',
-        '/torn/eazy-t/js/alertify.js',
-        '/torn/eazy-t/css/webfonts/fa-solid-900.woff2',
-        '/torn/eazy-t/css/css/fontawesome-all.css',
-        '/torn/eazy-t/js/jsonQ/jsonQ.min.js',
-        '/torn/eazy-t/settings.html',
-        '/torn/eazy-t/tornstats.html',
-        '/torn/eazy-t/events.html',
-        '/torn/eazy-t/messages.html',
-        '/torn/eazy-t/tornstatsupdate.html',
-        '/torn/eazy-t/about.html',
-        '/torn/eazy-t/index.html'
-      ]);
-    })
+  
+	//Deletes all aplication caches
+	caches.keys().then(function(names) {
+	    for (let name of names)
+		caches.delete(name);
+	});
 </script>
     <table border="0" cellpadding="0" cellspacing="0" class="body">
       <tr>
