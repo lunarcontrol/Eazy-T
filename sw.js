@@ -22,6 +22,9 @@ self.addEventListener('install', function(event) {
         '/Eazy-T/css/bars.css',
         '/Eazy-T/js/alertify.js',
         '/Eazy-T/js/jsonQ/jsonQ.min.js',
+        '/Eazy-T/css/css/fontawesome-all.css',
+        '/Eazy-T/js/pulltorefresh-js-0.1.14/dist/pulltorefresh.js',
+        '/Eazy-T/css/webfonts/fa-solid-900.woff2'
       ]);
     })
   );
