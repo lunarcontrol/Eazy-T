@@ -43,12 +43,6 @@ self.addEventListener('fetch', function(event) {
   // of providing the response. We pass in a promise
   // that resolves with a response object
   event.respondWith(
-    
-    if ( event.request.url.match( '^.*(\/user\/).*$' ) ) {
-        event.respondWith(fetch(event.request));
-        //return false;
-    }
-    else{
     // First we look for something in the caches that
     // matches the request
       caches.match(event.request).then(function(response) {
@@ -57,10 +51,5 @@ self.addEventListener('fetch', function(event) {
         // fetch, which will use the network.
         return response || fetch(event.request);
       })
-   }
-  
-  
-  
-  
   );
 });
