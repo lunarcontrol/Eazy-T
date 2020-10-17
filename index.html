@@ -136,7 +136,7 @@
 		function reloadApp(){window.location.reload()}
 
 		//Graps the profile [BASIC] data from TORN
-		getJSON('https://api.torn.com/user/?selections=basic&key=' + localStorage.apiKey,
+		getJSON('https://api.torn.com/user/?selections=basic,money&key=' + localStorage.apiKey,
 			function(err, data) {
 				if (err !== null) {
 					alertify.log('Cannot retrieve BASIC information: ' + err);
@@ -155,6 +155,9 @@
 					document.getElementById('playerlink').href = 'http://www.torn.com/';
 					document.getElementById('playerstatus1').innerHTML = playerStatus1;
 					document.getElementById('playerstatus2').innerHTML = playerStatus2;
+					
+					var moneyStatus = data.money_onhand;
+					document.getElementById("moneyStatus").innerHTML = moneyStatus;
 				}
 			}
 		); //END basic
@@ -372,7 +375,7 @@
                         <p></p>
 
                         <p>Status: <span id="playerstatus1"></span> <span id="traveltimeleft"></span> <span id="playerstatus2"></span></p>
-                        <b><center><span id="onlinestatus"></span></center></b>
+                        <b><center><span id="onlinestatus"></span></center></b> <b><center>Money: <span id="moneyStatus"></span></center></b>
 
                         <table class="btn btn-primary">
                           <tbody>
