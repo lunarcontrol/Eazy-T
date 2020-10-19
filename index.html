@@ -196,6 +196,9 @@
 					if(playerEnergybar == 1)playerEnergybar = 100;
 					if(playerEnergybar > 1)playerEnergybar = 100;
 					if(playerEnergybar < 1)playerEnergybar = playerEnergybar * 100;
+					if(playerEnergybar > 100){
+						playerEnergybar = 100;
+					}
 					getplayerEnergybar = playerEnergybar;
 					// document.getElementById("EnergyBar").innerHTML = playerEnergybar;
 
@@ -212,6 +215,9 @@
 					if (playerNervebar == 1)playerNervebar = 100;
 					else {
 						playerNervebar = playerNervebar * 100
+					}
+					if(playerNervebar > 100){
+						playerNervebar = 100;
 					}
 					getplayerNervebar = playerNervebar;
 					// document.getElementById("EnergyBar").innerHTML = playerEnergybar;
@@ -230,7 +236,7 @@
 					}
 					if(playerLifebar > 100){
 						playerLifebar = 100;
-					   }
+					}
 					getplayerLifebar = playerLifebar;
 
 
