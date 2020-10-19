@@ -159,7 +159,7 @@
 					document.getElementById('playerstatus1').innerHTML = playerStatus1;
 					document.getElementById('playerstatus2').innerHTML = playerStatus2;
 					
-					var moneyStatus = data.money_onhand;
+					var moneyStatus = formatMoney(data.money_onhand);
 					document.getElementById("moneyStatus").innerHTML = moneyStatus;
 				}
 			}
@@ -519,6 +519,27 @@
     <script type="text/javascript" src="js/pulltorefresh-js-0.1.14/dist/pulltorefresh.js"></script>
     <script src="js/alertify.js"></script>
     <script src="js/jsonQ/jsonQ.min.js"></script>
+	<script>
+	function formatMoney(amount, decimalCount = 2, decimal = ".", thousands = ",") {
+	  try {
+	    decimalCount = Math.abs(decimalCount);
+	    decimalCount = isNaN(decimalCount) ? 2 : decimalCount;
+
+	    const negativeSign = amount < 0 ? "-" : "";
+
+	    let i = parseInt(amount = Math.abs(Number(amount) || 0).toFixed(decimalCount)).toString();
+	    let j = (i.length > 3) ? i.length % 3 : 0;
+
+	    return negativeSign + (j ? i.substr(0, j) + thousands : '') + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + thousands) + (decimalCount ? decimal + Math.abs(amount - i).toFixed(decimalCount).slice(2) : "");
+	  } catch (e) {
+	    console.log(e)
+	  }
+	};
+	document.getElementById("b").addEventListener("click", event => {
+	  document.getElementById("x").innerText = "Result was: " + formatMoney(document.getElementById("d").value);
+	});
+	</script>
+	
    
 
   </body>
