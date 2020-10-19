@@ -150,6 +150,9 @@
 					var playerName = data.name;
 					var playerStatus1 = data.status["description"];
 					var playerStatus2 = data.status["state"];
+					if(playerStatus2 == "Traveling"){
+						playerStatus2 = "";
+					}
 					document.getElementById("playername").innerHTML = playerName;
 					//document.getElementById('playerlink').href = 'http://www.torn.com/profiles.php?NID=' + playerName + ''; //changing to homepage link
 					document.getElementById('playerlink').href = 'http://www.torn.com/';
