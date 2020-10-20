@@ -39,7 +39,7 @@
 		}
 
 		if("refreshrate" in localStorage){
-	    	alertify.log('Refreshrate was successfully set!')
+	    		alertify.log('Refreshrate was successfully set!')
 		} 
 		else {
 			alertify.error("Refreshrate was not set for some reason. Weird!");
@@ -48,7 +48,7 @@
 			alertify.success("It's all good now..");
 		}
 		if("dark" in localStorage){
-	    	alertify.log('Dark theme setting found!')
+			alertify.log('Dark theme setting found!')
 		} 
 		else {
 			//alertify.error("Setting up dark theme");
@@ -60,7 +60,7 @@
 	function reloadApp(){window.location.reload()}
 
   	function goHome() {
-    	window.location="index.html";
+    		window.location="index.html";
   	}
   	function askUser(){
   			//alertify.error("API key not found");
@@ -187,7 +187,7 @@
                 </tr>
                 <tr>
                   <td class="content-block powered-by">
-                    Created by: <a href="https://www.torn.com/profiles.php?XID=1947498">Eazy-E</a>
+                    Created by: <a href="https://www.torn.com/profiles.php?XID=1947498">LunarControl</a>
                   </td>
                 </tr>
               </table>
@@ -199,16 +199,16 @@
         <td>&nbsp;</td>
       </tr>
     </table>
-    <script src="//unpkg.com/hammer-touchemulator@0.0.2/touch-emulator.js"></script>
-    <script>TouchEmulator()</script>
-    <script type="text/javascript" src="js/pulltorefresh-js-0.1.14/dist/pulltorefresh.js"></script>
-    <script type="text/javascript" src="js/alertify.js"></script>
-    <script>
-      /* global PullToRefresh */
-      PullToRefresh.init({
-        mainElement: '#main',
-        onRefresh: function() { reloadApp(); }
-      });
+	<script src="//unpkg.com/hammer-touchemulator@0.0.2/touch-emulator.js"></script>
+	<script>TouchEmulator()</script>
+	<script type="text/javascript" src="js/pulltorefresh-js-0.1.14/dist/pulltorefresh.js"></script>
+	<script type="text/javascript" src="js/alertify.js"></script>
+	<script>
+		/* global PullToRefresh */
+      		PullToRefresh.init({
+       			mainElement: '#main',
+        		onRefresh: function() { reloadApp(); }
+      		});
     </script>
   </body>
 </html>
