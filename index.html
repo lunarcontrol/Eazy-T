@@ -157,7 +157,7 @@
 						playerStatus2 = "";
 					}	
 					
-					playerStatus2 = playerStatus2 + " | " + data.last_action["status"] + " - " + data.last_action["relative"];
+					playerStatus2 = playerStatus2 + data.last_action["status"] + " - " + data.last_action["relative"];
 					document.getElementById("playername").innerHTML = playerName;
 					//document.getElementById('playerlink').href = 'http://www.torn.com/profiles.php?NID=' + playerName + ''; //changing to homepage link
 					document.getElementById('playerlink').href = 'http://www.torn.com/';
@@ -391,7 +391,7 @@
                         <a id="playerlink"><h1 id="playername">Eazy-T</h1></a>
                         <p></p>
 
-                        <p>Status: <span id="playerstatus1"></span> <span id="traveltimeleft"></span> <span id="playerstatus2"></span></p>
+                        <p><span id="playerstatus1"></span> <span id="traveltimeleft"></span> <br> <span id="playerstatus2"></span></p>
                         <b><center><span id="onlinestatus"></span></center></b> <b><center>Money: <span id="moneyStatus"></span></center></b>
 
                         <table class="btn btn-primary">
