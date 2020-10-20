@@ -157,7 +157,7 @@
 						playerStatus2 = "";
 					}	
 					
-					playerStatus2 = playerStatus2 +  data.status["last_action"]["status"] + " - " + data.status["last_action"]["relative"];
+					playerStatus2 = playerStatus2 + data.last_action["status"] + " - " + data.last_action["relative"];
 					document.getElementById("playername").innerHTML = playerName;
 					//document.getElementById('playerlink').href = 'http://www.torn.com/profiles.php?NID=' + playerName + ''; //changing to homepage link
 					document.getElementById('playerlink').href = 'http://www.torn.com/';
