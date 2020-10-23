@@ -167,7 +167,14 @@
 					var moneyStatus = formatMoney(data.money_onhand);
 					document.getElementById("moneyStatus").innerHTML = moneyStatus;
 					
-					
+					//DRUG TAKEN
+					if(data.icons["icon51"]){
+						console.log("There is a drug cooldown~");
+						var drugStatus = data.icons["icon51"];
+						drugStatus = drugStatus.replace(/Drug Cooldown - Under the influence of /g,'');
+						drugStatus = drugStatus.slice(0, -4); //Slice off seconds from drug addiction. Makes it cleaner.
+						document.getElementById('drugStatus').innerHTML = drugStatus;
+					}
 					if(data.icons["icon52"]){
 						console.log("There is a drug cooldown~");
 						var drugStatus = data.icons["icon52"];
@@ -183,6 +190,8 @@
 						document.getElementById('drugStatus').innerHTML = drugStatus;
 					}
 					
+					
+					//DRUG ADDICTION
 					if(data.icons["icon57"]){
 						console.log("Drug addiction");
 						var addictionStatus = data.icons["icon57"];
