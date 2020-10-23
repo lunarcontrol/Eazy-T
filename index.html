@@ -168,9 +168,9 @@
 					document.getElementById("moneyStatus").innerHTML = moneyStatus;
 					
 					if(data.icons["icon53"]){
-						console.log("There is a drug cooldown!");
+						console.log("There is a drug cooldown~");
 						var drugStatus = data.icons["icon53"];
-						drugStatus = drugStatus.replace(/- Under the influence of /g,'');
+						drugStatus = drugStatus.replace(/Drug Cooldown - Under the influence of /g,'');
 						document.getElementById('drugStatus').innerHTML = drugStatus;
 					}
 				}
