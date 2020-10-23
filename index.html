@@ -149,6 +149,7 @@
 					//var playerID = data.player_id;
 					var playerName = data.name;
 					var playerStatus1 = data.status["description"];
+					playerStatus1 = playerStatus1.replace(/ to Torn/g,'');
 					var playerStatus2 = data.status["state"];
 					if(playerStatus2 == "Traveling"){
 						playerStatus2 = "";
