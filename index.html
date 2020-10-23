@@ -167,8 +167,11 @@
 					var moneyStatus = formatMoney(data.money_onhand);
 					document.getElementById("moneyStatus").innerHTML = moneyStatus;
 					
-					var drugStatus = data.icons["icon53"];
-					document.getElementById('drugStatus').innerHTML = drugStatus;
+					if(data.icons["icon53"]){
+						console.log("There is a drug cooldown");
+						var drugStatus = data.icons["icon53"];
+						document.getElementById('drugStatus').innerHTML = drugStatus;
+					}
 				}
 			}
 		); //END basic
