@@ -136,7 +136,7 @@
 		function reloadApp(){window.location.reload()}
 
 		//Graps the profile [BASIC] data from TORN
-		getJSON('https://api.torn.com/user/?selections=basic,money,profile&key=' + localStorage.apiKey,
+		getJSON('https://api.torn.com/user/?selections=basic,money,profile,icons&key=' + localStorage.apiKey,
 			function(err, data) {
 				if (err !== null) {
 					alertify.log('Cannot retrieve BASIC information: ' + err);
@@ -166,6 +166,9 @@
 					
 					var moneyStatus = formatMoney(data.money_onhand);
 					document.getElementById("moneyStatus").innerHTML = moneyStatus;
+					
+					var drugStatus = data.icons["icon53"];
+					document.getElementById('drugStatus').innerHTML = drugStatus;
 				}
 			}
 		); //END basic
@@ -392,7 +395,13 @@
                         <p></p>
 
                         <center><p><span id="playerstatus1"></span> <span id="traveltimeleft"></span> <br> <span id="playerstatus2"></span></p></center>
-                        <b><center><span id="onlinestatus"></span></center></b> <b><center>$<span id="moneyStatus"></span></center></b>
+                        
+		
+			<b><center><span id="onlinestatus"></span></center></b> 
+			    
+			<b><center><span id="drugStatus"></span></center></b>
+			
+			<b><center>$<span id="moneyStatus"></span></center></b>
 
                         <table class="btn btn-primary">
                           <tbody>
