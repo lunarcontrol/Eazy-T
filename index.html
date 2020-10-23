@@ -177,7 +177,7 @@
 					if(data.icons["icon57"]){
 						console.log("Drug addiction");
 						var addictionStatus = data.icons["icon57"];
-						addictionStatus = addictionStatus.replace(/Your battle stats in combat are slightly reduced /g,'');
+						addictionStatus = addictionStatus.replace(/- Your battle stats in combat are slightly reduced /g,'');
 						document.getElementById('addictionStatus').innerHTML = addictionStatus;
 					}
 				}
