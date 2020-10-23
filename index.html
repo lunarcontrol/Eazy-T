@@ -171,7 +171,7 @@
 						console.log("There is a drug cooldown~");
 						var drugStatus = data.icons["icon53"];
 						drugStatus = drugStatus.replace(/Drug Cooldown - Under the influence of /g,'');
-						drugStatus = drugStatus.slice(0, -3); //Slice off seconds from drug addiction. Makes it cleaner.
+						drugStatus = drugStatus.slice(0, -4); //Slice off seconds from drug addiction. Makes it cleaner.
 						document.getElementById('drugStatus').innerHTML = drugStatus;
 					}
 					
