@@ -72,15 +72,16 @@
 	//Reloads the current window. Eazy
 	function reloadApp(){window.location.reload()}
 
-	function getName(){
-		if("playerName" in localStorage){
-		var name1 = ' ' + localStorage.playerName;
-		}
-		else{
-		var name1 = "";
-		}
-		document.getElementById("playername1").innerHTML = name1;
-	}
+	//DELETE
+// 	function getName(){
+// 		if("playerName" in localStorage){
+// 		var name1 = ' ' + localStorage.playerName;
+// 		}
+// 		else{
+// 		var name1 = "";
+// 		}
+// 		document.getElementById("playername1").innerHTML = name1;
+// 	}
 
     	function goHome() {
 		//alert('This feature is currently in development!');
@@ -106,16 +107,7 @@
                     <tr>
                       <td>
                         <a href="#"><h1 id="playername">Eazy-T</h1></a>
-                        <p>Hey<span id="playername1"></span>,</p>
-                        <p>Thank you for using Eazy-T. Be sure to leave any suggestions, comments, or bugs on the forum post!</p>
-                        <p>This is a very early development verson of the Eazy-T TORN extension and mobile app.
-                            Thank you for participating in alpha testing!</p>
-			      
-			      <p>Other Apps: <a href="https://yata.alwaysdata.net/">YATA</a> - <a href="http://torn.sliw.co/resources/stockmarket.png">Benefit Blocks</a></p>
-                        <p><a href="https://www.torn.com/forums.php#/p=threads&f=67&t=16044679">Forum Post</a></p>
-                        <p>Installed Version: Alpha 0.0.4</p>
-			      <p><b>0.0.4</b> - Current Release. Working on tornstats integration.</p>
-			      <p><b>0.0.3</b> - Intitial release, functional but many broken pieces. Includes bars, broken tornstats integration...</p>
+                        
                       </td>
                     </tr>
                   </table>
