@@ -87,6 +87,17 @@
 		//alert('This feature is currently in development!');
 		window.location="index.html";
   	}
+	
+	
+	var names = [];
+	names[0] = prompt("New member name?");
+	localStorage.setItem("names", JSON.stringify(names));
+
+	//...
+	var storedNames = JSON.parse(localStorage.getItem("names"));
+	
+	
+	
  
   // function getError() {
   //   var error = data.error.error;
@@ -107,6 +118,19 @@
                     <tr>
                       <td>
                         <a href="#"><h1 id="playername">Eazy-T</h1></a>
+			      
+			      
+			      
+			      
+				<button onclick="store()" type="button">StoreEmail</button>
+
+				<script  type="text/javascript">
+			  		function store(){
+			     			var inputEmail= document.getElementById("email");
+			     			localStorage.setItem("email", inputEmail.value);
+			    		}
+				</script>
+			      
                         
                       </td>
                     </tr>
