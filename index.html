@@ -165,7 +165,7 @@
 					document.getElementById("playername").innerHTML = playerName;
 					//document.getElementById('playerlink').href = 'http://www.torn.com/profiles.php?NID=' + playerName + ''; //changing to homepage link
 					document.getElementById('playerlink').href = 'http://www.torn.com/';
-					document.getElementById('playerstatus1').innerHTML = playerStatus1;
+					document.getElementById('playerstatus1').innerHTML = "<span style='color:" + data.status["color"] + "'>" + playerStatus1 + "</span>";
 					document.getElementById('playerstatus2').innerHTML = playerStatus2;
 					
 					var moneyStatus = formatMoney(data.money_onhand);
