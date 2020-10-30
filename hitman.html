@@ -268,7 +268,7 @@
 						console.log(playerName);
 						var playerStatus1 = data.status["description"];
 						console.log(playerStatus1);
-						document.getElementById(randomItem).innerHTML = playerName + " - " + playerStatus1;
+						document.getElementById(randomItem).innerHTML = "[<a href='https://www.torn.com/loader2.php?sid=getInAttack&user2ID=" + randomItem + "'>Attack</a>]" + playerName + " - " + playerStatus1;
 						console.log("Done");
 
 					      }
@@ -276,7 +276,7 @@
 					  ); //END basic
 
 
-					setTimeout(updateTarget, 5000);
+					setTimeout(updateTarget, 2000);
 					}
 
 					updateTarget();
