@@ -248,13 +248,11 @@
 					  //Update information
 					  //Send notification if needed
 
-					  console.log(tempTargets);
 					  var randomItem = tempTargets[Math.floor(Math.random()*tempTargets.length)];
 					  console.log("Selected: " + randomItem);
 
-
-					  var apiKey = "BcB8aMys7lncbQCi";
-					  getJSON('https://api.torn.com/user/' + randomItem + '?selections=basic,icons&key=' + apiKey,
+						
+					  getJSON('https://api.torn.com/user/' + randomItem + '?selections=basic,icons&key=' + localStorage.apiKey,
 					    function(err, data) {
 					      if (err !== null) {
 						alertify.log('Cannot retrieve BASIC information: ' + err);
@@ -263,22 +261,16 @@
 						//
 						//Profile Information
 						//
-						//var playerLevel = data.level;
-						//var playerID = data.player_id;
 						var playerName = data.name;
-						console.log(playerName);
 						var playerStatus1 = data.status["description"];
-						console.log(playerStatus1);
 						
 						var imageSource = "";
 						if(data.icons["icon13"]){
 							console.log("// Bounty on " + randomItem);
 							imageSource = "<img src='./img/bounty.png'></img>";
 						}
-						
-						      
+						     
 						document.getElementById(randomItem).innerHTML = imageSource + " [<a href='https://www.torn.com/loader2.php?sid=getInAttack&user2ID=" + randomItem + "'>Attack</a>] <a style='text-decoration:none; color: inherit' href='https://www.torn.com/profiles.php?XID=" + randomItem + "'>" + playerName + "</a> - <span style='color:" + data.status["color"] + "'>" + playerStatus1 + "</span>";
-						console.log("Done");
 
 					      }
 					    }
