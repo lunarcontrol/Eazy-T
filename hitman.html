@@ -97,31 +97,6 @@
 			      
 			      	<!-- Start Page -->
 			      
-			      <style>
-				      .d [class^=user-status-],.d [class*=" user-status-"] {
-					    background: url(./img/user_status_icons.svg) 0 0 no-repeat
-					}
-
-					.d [class^=user-status-16-],.d [class*=" user-status-16-"] {
-					    height: 16px;
-					    width: 16px
-					}
-
-					.d [class^=user-status-14-],.d [class*=" user-status-14-"] {
-					    height: 14px;
-					    width: 14px
-					}
-
-					.d [class^=user-status-12-],.d [class*=" user-status-12-"] {
-					    height: 12px;
-					    width: 12px
-					}
-				      .d .user-status-14-bounty {
-					    background-position: -217px -19px
-					}
-
-			      </style>
-			      
 				 <h1>Targets:</h1>
 			      
 			      
@@ -306,7 +281,7 @@
 						}
 						
 						      
-						document.getElementById(randomItem).innerHTML = "[<a href='https://www.torn.com/loader2.php?sid=getInAttack&user2ID=" + randomItem + "'>Attack</a>] <a style='text-decoration:none; color: inherit' href='https://www.torn.com/profiles.php?XID=" + randomItem + "'>" + playerName + "</a> - <span style='color:" + data.status["color"] + "'>" + playerStatus1 + "</span>";
+						document.getElementById(randomItem).innerHTML = "<img src='/img/bounty.png'></img> [<a href='https://www.torn.com/loader2.php?sid=getInAttack&user2ID=" + randomItem + "'>Attack</a>] <a style='text-decoration:none; color: inherit' href='https://www.torn.com/profiles.php?XID=" + randomItem + "'>" + playerName + "</a> - <span style='color:" + data.status["color"] + "'>" + playerStatus1 + "</span>";
 						console.log("Done");
 
 					      }
