@@ -52,8 +52,6 @@
 	}
     </script>
     <title>Eazy-T: About</title>
-    <!-- <meta name="viewport" content="width=device-width" /> -->
-    <!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> -->
 
 </head>
 <body id="main" onload="main()">
@@ -66,22 +64,11 @@
 		else {
       			alertify.error('API key not found');
 		}
-		//getName();
 		
 	}//END
+
 	//Reloads the current window. Eazy
 	function reloadApp(){window.location.reload()}
-
-	//DELETE
-// 	function getName(){
-// 		if("playerName" in localStorage){
-// 		var name1 = ' ' + localStorage.playerName;
-// 		}
-// 		else{
-// 		var name1 = "";
-// 		}
-// 		document.getElementById("playername1").innerHTML = name1;
-// 	}
 
     	function goHome() {
 		//alert('This feature is currently in development!');
@@ -108,196 +95,194 @@
                       <td>
                         <a href="#"><h1 id="playername">Eazy-T</h1></a>
 			      
-			      
+			      	<!-- Start Page -->
 			      
 			      
 				 <h1>Targets:</h1>
-<input type="text" name="skill" id="newSkill">
-<input type="button" value="Add Target">
+				<input type="text" name="skill" id="newSkill">
+				<input type="button" value="Add Target">
 
-<ul id="skillList"></ul>
-    <script type="text/javascript">
-        // Get all the element references you'll need just once:
-        var skillList = document.querySelector("#skillList");
-        var newSkill = document.querySelector("#newSkill");
-        var btnAddSkill = document.querySelector("input[type='button'");
+				<ul id="skillList"></ul>
+    				<script type="text/javascript">
+					// Get all the element references you'll need just once:
+					var skillList = document.querySelector("#skillList");
+					var newSkill = document.querySelector("#newSkill");
+					var btnAddSkill = document.querySelector("input[type='button'");
 
-        // Do all of your event binding in JavaScript, not with inline HTML event attributes
-        btnAddSkill.addEventListener("click", addSkill);
+					// Do all of your event binding in JavaScript, not with inline HTML event attributes
+					btnAddSkill.addEventListener("click", addSkill);
 
-        var tempTargets = []; //used to temp store and manipulate targets.
-        //USE JSON.stringify() && JSON.parse()
+					var tempTargets = []; //used to temp store and manipulate targets.
+					//USE JSON.stringify() && JSON.parse()
 
-        if("targets" in localStorage){
-          tempTargets = localStorage.targets;
-          tempTargets = JSON.parse(tempTargets);
-          console.log("Done Parsing: " + tempTargets);
+					if("targets" in localStorage){
+					  tempTargets = localStorage.targets;
+					  tempTargets = JSON.parse(tempTargets);
+					  console.log("Done Parsing: " + tempTargets);
 
-          tempTargets.forEach(element => addExistingSkill(element));
+					  tempTargets.forEach(element => addExistingSkill(element));
 
-        } else {alertify.log("No targets found!")}
-
-
-        function addExistingSkill(target){
-          if(target !== ""){
-            // Don't build new HTML by concatenating strings. Create elements and configure them as objects
-            var li = document.createElement("li");
-            li.setAttribute("id", target);
-            li.textContent = target;
-           
-            console.log("Found existing target: " + target); // The new value
-
-            // Only use hyperlinks for navigation, not to have something to click on. Any element can be clicked
-            var span = document.createElement("span");
-            span.classList.add("remove");
-            span.textContent = " - Delete";
-            span.addEventListener("click", removeSkill);  
-            li.appendChild(span);  // Add the span to the bullet
-            skillList.appendChild(li); // Add the bullet to the list
-            target = "";  
-          }
-        }
-
-        function addSkill(){
-          if(newSkill.value !== ""){
-            // Don't build new HTML by concatenating strings. Create elements and configure them as objects
-            var li = document.createElement("li");
-            li.setAttribute("id", newSkill.value);
-            li.textContent = newSkill.value;
-           
-            console.log("Adding new target: " + newSkill.value); // The new value
-            tempTargets.push(newSkill.value);
-            localStorage.setItem("targets",  JSON.stringify(tempTargets));
-
-            // Only use hyperlinks for navigation, not to have something to click on. Any element can be clicked
-            var span = document.createElement("span");
-            span.classList.add("remove");
-            span.textContent = " - Delete";
-            span.addEventListener("click", removeSkill);  
-            li.appendChild(span);  // Add the span to the bullet
-            skillList.appendChild(li); // Add the bullet to the list
-            newSkill.value = "";	
-          }
-        }
-			
-        function removeSkill(){
-
-          //console.log(this.closest("li").nodeValue);
-          xxxx = getStringsFromChildren(this.closest("li")).toString();
-          console.log(xxxx);
-          tempTargets = tempTargets.filter(val => val !== xxxx);
-          localStorage.setItem("targets",  JSON.stringify(tempTargets));
-
-          // Just remove the closest <li> ancestor to the <span> that got clicked
-          skillList.removeChild(this.closest("li"));
-        }
+					} else {alertify.log("No targets found!")}
 
 
-        //https://stackoverflow.com/questions/6520192/how-to-get-the-text-node-of-an-element
-        /**
-        * Collects strings from child text nodes.
-        * Generic, cross platform solution. No string filtering or conditioning.
-        *
-        * @author Anthony Rutledge
-        * @version 7.0
-        * @param parentNode An instance of the Node interface, such as an Element. object.
-        * @return Array of strings, or null.
-        * @throws TypeError if the parentNode is not a Node object.
-        */
-        function getStringsFromChildren(parentNode)
-        {
-            var strings = [],
-                nodeList,
-                length,
-                i = 0;
+					function addExistingSkill(target){
+					  if(target !== ""){
+					    // Don't build new HTML by concatenating strings. Create elements and configure them as objects
+					    var li = document.createElement("li");
+					    li.setAttribute("id", target);
+					    li.textContent = target;
 
-            if (!parentNode instanceof Node) {
-                throw new TypeError("The parentNode parameter expects an instance of a Node.");
-            }
+					    console.log("Found existing target: " + target); // The new value
 
-            if (!parentNode.hasChildNodes()) {
-                return null; // We are done. Node may resemble <element></element>
-            }
+					    // Only use hyperlinks for navigation, not to have something to click on. Any element can be clicked
+					    var span = document.createElement("span");
+					    span.classList.add("remove");
+					    span.textContent = " - Delete";
+					    span.addEventListener("click", removeSkill);  
+					    li.appendChild(span);  // Add the span to the bullet
+					    skillList.appendChild(li); // Add the bullet to the list
+					    target = "";  
+					  }
+					}
 
-            nodeList = parentNode.childNodes;
-            length = nodeList.length;
+					function addSkill(){
+					  if(newSkill.value !== ""){
+					    // Don't build new HTML by concatenating strings. Create elements and configure them as objects
+					    var li = document.createElement("li");
+					    li.setAttribute("id", newSkill.value);
+					    li.textContent = newSkill.value;
 
-            do {
-                if ((nodeList[i].nodeType === Node.TEXT_NODE)) {
-                    strings.push(nodeList[i].nodeValue);
-                 }
+					    console.log("Adding new target: " + newSkill.value); // The new value
+					    tempTargets.push(newSkill.value);
+					    localStorage.setItem("targets",  JSON.stringify(tempTargets));
 
-                i++;
-            } while (i < length);
+					    // Only use hyperlinks for navigation, not to have something to click on. Any element can be clicked
+					    var span = document.createElement("span");
+					    span.classList.add("remove");
+					    span.textContent = " - Delete";
+					    span.addEventListener("click", removeSkill);  
+					    li.appendChild(span);  // Add the span to the bullet
+					    skillList.appendChild(li); // Add the bullet to the list
+					    newSkill.value = "";	
+					  }
+					}
 
-            if (strings.length > 0) {
-                return strings;
-            }
+					function removeSkill(){
 
-            return null;
-        }
+					  //console.log(this.closest("li").nodeValue);
+					  xxxx = getStringsFromChildren(this.closest("li")).toString();
+					  console.log(xxxx);
+					  tempTargets = tempTargets.filter(val => val !== xxxx);
+					  localStorage.setItem("targets",  JSON.stringify(tempTargets));
 
-        var getJSON = function(url, callback) {
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', url, true);
-            xhr.responseType = 'json';
-            xhr.onload = function() {
-              var status = xhr.status;
-              if (status === 200) {
-          callback(null, xhr.response);
-              } else {
-          callback(status, xhr.response);
-              }
-            };
-            xhr.send();
-        };
+					  // Just remove the closest <li> ancestor to the <span> that got clicked
+					  skillList.removeChild(this.closest("li"));
+					}
 
 
-        function updateTarget(){
+					//https://stackoverflow.com/questions/6520192/how-to-get-the-text-node-of-an-element
+					/**
+					* Collects strings from child text nodes.
+					* Generic, cross platform solution. No string filtering or conditioning.
+					*
+					* @author Anthony Rutledge
+					* @version 7.0
+					* @param parentNode An instance of the Node interface, such as an Element. object.
+					* @return Array of strings, or null.
+					* @throws TypeError if the parentNode is not a Node object.
+					*/
+					function getStringsFromChildren(parentNode)
+					{
+					    var strings = [],
+						nodeList,
+						length,
+						i = 0;
 
-          //Randomly Select Target
-          //make sure still has a bounty
-          //Update information
-          //Send notification if needed
+					    if (!parentNode instanceof Node) {
+						throw new TypeError("The parentNode parameter expects an instance of a Node.");
+					    }
 
-          console.log(tempTargets);
-          var randomItem = tempTargets[Math.floor(Math.random()*tempTargets.length)];
-          console.log("Selected: " + randomItem);
+					    if (!parentNode.hasChildNodes()) {
+						return null; // We are done. Node may resemble <element></element>
+					    }
+
+					    nodeList = parentNode.childNodes;
+					    length = nodeList.length;
+
+					    do {
+						if ((nodeList[i].nodeType === Node.TEXT_NODE)) {
+						    strings.push(nodeList[i].nodeValue);
+						 }
+
+						i++;
+					    } while (i < length);
+
+					    if (strings.length > 0) {
+						return strings;
+					    }
+
+					    return null;
+					}
+
+					var getJSON = function(url, callback) {
+					    var xhr = new XMLHttpRequest();
+					    xhr.open('GET', url, true);
+					    xhr.responseType = 'json';
+					    xhr.onload = function() {
+					      var status = xhr.status;
+					      if (status === 200) {
+					  callback(null, xhr.response);
+					      } else {
+					  callback(status, xhr.response);
+					      }
+					    };
+					    xhr.send();
+					};
 
 
-          var apiKey = "BcB8aMys7lncbQCi";
-          getJSON('https://api.torn.com/user/' + randomItem + '?selections=basic&key=' + apiKey,
-            function(err, data) {
-              if (err !== null) {
-                alertify.log('Cannot retrieve BASIC information: ' + err);
-              }
-              else {
-                //
-                //Profile Information
-                //
-                //var playerLevel = data.level;
-                //var playerID = data.player_id;
-                var playerName = data.name;
-                console.log(playerName);
-                var playerStatus1 = data.status["description"];
-                console.log(playerStatus1);
-                document.getElementById(randomItem).innerHTML = playerName + " - " + playerStatus1;
-                console.log("Done");
-                
-              }
-            }
-          ); //END basic
+					function updateTarget(){
+
+					  //Randomly Select Target
+					  //make sure still has a bounty
+					  //Update information
+					  //Send notification if needed
+
+					  console.log(tempTargets);
+					  var randomItem = tempTargets[Math.floor(Math.random()*tempTargets.length)];
+					  console.log("Selected: " + randomItem);
 
 
-        setTimeout(updateTarget, 5000);
-        }
+					  var apiKey = "BcB8aMys7lncbQCi";
+					  getJSON('https://api.torn.com/user/' + randomItem + '?selections=basic&key=' + apiKey,
+					    function(err, data) {
+					      if (err !== null) {
+						alertify.log('Cannot retrieve BASIC information: ' + err);
+					      }
+					      else {
+						//
+						//Profile Information
+						//
+						//var playerLevel = data.level;
+						//var playerID = data.player_id;
+						var playerName = data.name;
+						console.log(playerName);
+						var playerStatus1 = data.status["description"];
+						console.log(playerStatus1);
+						document.getElementById(randomItem).innerHTML = playerName + " - " + playerStatus1;
+						console.log("Done");
 
-        updateTarget();
+					      }
+					    }
+					  ); //END basic
 
 
+					setTimeout(updateTarget, 5000);
+					}
 
-    </script>
+					updateTarget();
+    				</script>
 			      
+			      <!-- END PAGE -->
                         
                       </td>
                     </tr>
