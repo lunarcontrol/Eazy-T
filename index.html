@@ -263,6 +263,10 @@
 					if(playerNervebar > 100){
 						playerNervebar = 100;
 					}
+					
+					if(playerNerveCurrent > 10){
+						document.getElementById("playerNerveArson").style = "display:block";
+					}
 					getplayerNervebar = playerNervebar;
 					// document.getElementById("EnergyBar").innerHTML = playerEnergybar;
 
@@ -483,7 +487,7 @@
                           </script>
 
 
-                          Nerve - <span id="playerNervecurrent"></span> / <span id="playerNervemax"></span>
+                          Nerve - <span id="playerNervecurrent"></span> / <span id="playerNervemax"></span> <span style="display:none;" id="playerNerveArson">[<a href="https://www.torn.com/crimes.php">Arson</a>]</span>
                           <div id="NerveProgress">
                             <div id="NerveBar"></div>
                           </div>
