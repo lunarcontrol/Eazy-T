@@ -272,16 +272,14 @@
 						var playerStatus1 = data.status["description"];
 						console.log(playerStatus1);
 						
+						var imageSource = "";
 						if(data.icons["icon13"]){
 							console.log("// Bounty on " + randomItem);
-							//var bountyStatus = data.icons["icon13"];
-							//bountyStatus = bountyStatus.replace(/Drug Cooldown - Under the influence of /g,'');
-							//bountyStatus = bountyStatus.slice(0, -4); //Slice off seconds from drug addiction. Makes it cleaner.
-							//document.getElementById('bountyStatus').innerHTML = bountyStatus;
+							imageSource = "<img src='./img/bounty.png'></img>";
 						}
 						
 						      
-						document.getElementById(randomItem).innerHTML = "<img src='./img/bounty.png'></img> [<a href='https://www.torn.com/loader2.php?sid=getInAttack&user2ID=" + randomItem + "'>Attack</a>] <a style='text-decoration:none; color: inherit' href='https://www.torn.com/profiles.php?XID=" + randomItem + "'>" + playerName + "</a> - <span style='color:" + data.status["color"] + "'>" + playerStatus1 + "</span>";
+						document.getElementById(randomItem).innerHTML = imageSource + "[<a href='https://www.torn.com/loader2.php?sid=getInAttack&user2ID=" + randomItem + "'>Attack</a>] <a style='text-decoration:none; color: inherit' href='https://www.torn.com/profiles.php?XID=" + randomItem + "'>" + playerName + "</a> - <span style='color:" + data.status["color"] + "'>" + playerStatus1 + "</span>";
 						console.log("Done");
 
 					      }
