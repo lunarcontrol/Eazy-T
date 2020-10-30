@@ -268,7 +268,10 @@
 						console.log(playerName);
 						var playerStatus1 = data.status["description"];
 						console.log(playerStatus1);
-						document.getElementById(randomItem).innerHTML = "[<a href='https://www.torn.com/loader2.php?sid=getInAttack&user2ID=" + randomItem + "'>Attack</a>]" + playerName + " - " + playerStatus1;
+						      
+						
+						      
+						document.getElementById(randomItem).innerHTML = "[<a href='https://www.torn.com/loader2.php?sid=getInAttack&user2ID=" + randomItem + "'>Attack</a>] " + playerName + " - <span style='color:" + data.status["color"] + "'>" + playerStatus1 + "</span>";
 						console.log("Done");
 
 					      }
