@@ -134,9 +134,9 @@
 
 		//Reloads the current window. Eazy
 		function reloadApp(){window.location.reload()}
-
-		//Graps the profile [BASIC] data from TORN
 		var isTraveling = false;
+		console.log("Set default travel state as false");
+		//Graps the profile [BASIC] data from TORN
 		getJSON('https://api.torn.com/user/?selections=basic,money,profile,icons&key=' + localStorage.apiKey,
 			function(err, data) {
 				if (err !== null) {
@@ -155,6 +155,7 @@
 					if(playerStatus2 == "Traveling"){
 						playerStatus2 = "";
 						isTraveling = true;
+						console.log("Updated travel state to true");
 					}
 					if(playerStatus2 == "Okay"){
 						playerStatus2 = "";
@@ -246,8 +247,10 @@
 						playerEnergybar = 100;
 					}
 					
+					console.log("Make sure user has energy and is not traveling");
 					if(playerEnergycurrent > 9 && isTraveling == false){
 						document.getElementById("playerGym").style = "display:inline";
+						console.log('User has the required energy and is not traveling.');
 					}
 					
 					getplayerEnergybar = playerEnergybar;
@@ -273,6 +276,7 @@
 					
 					if(playerNervecurrent > 10 && isTraveling == false){
 						document.getElementById("playerNerveArson").style = "display:inline";
+						console.log('User has the required nerve and is not traveling.');
 					}
 					getplayerNervebar = playerNervebar;
 					// document.getElementById("EnergyBar").innerHTML = playerEnergybar;
