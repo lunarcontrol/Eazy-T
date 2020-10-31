@@ -75,39 +75,6 @@
 </head>
 <body onload="main()" id="main">
 	<script>
-		if(localStorage.desktop == "true"){
-			document.write(`
-				<style>
-				.container {
-				    display: flex;
-				    Margin: 0 auto !important;
-				    /* max-width: 580px; */
-				    padding: 10px;
-				    width: 100%;
-				}
-
-				.content {
-				    box-sizing: border-box;
-				    display: block;
-				    Margin: 0 auto;
-				    /* max-width: 100%; */
-				    padding: 10px;
-				    width: 100%;
-				}
-
-				.main {
-				    background: #ffffff;
-				    border-radius: 3px;
-				    width: 100%;
-				}
-				</style>
-			`)
-			document.getElementById("section2").style = "display:block";
-		   
-		   }
-		
-	</script>
-	<script>
 
 	//APP LAYOUT
 	//1. Listens for DEVICE READY
@@ -147,6 +114,53 @@
           			reloadApp();
         		},localStorage.refreshrate)
 		} else {window.location="intro.html";}
+		
+		
+		
+		
+		
+
+		
+		if(localStorage.desktop == "true"){
+			document.write(`
+				<style>
+				.container {
+				    display: flex;
+				    Margin: 0 auto !important;
+				    /* max-width: 580px; */
+				    padding: 10px;
+				    width: 100%;
+				}
+
+				.content {
+				    box-sizing: border-box;
+				    display: block;
+				    Margin: 0 auto;
+				    /* max-width: 100%; */
+				    padding: 10px;
+				    width: 100%;
+				}
+
+				.main {
+				    background: #ffffff;
+				    border-radius: 3px;
+				    width: 100%;
+				}
+				</style>
+			`)
+			document.getElementById("section2").style = "display:block";
+		   
+		   }
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 
 		//Core Json function
 		//Opens JSON request & sends it to APP
