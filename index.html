@@ -136,6 +136,7 @@
 		function reloadApp(){window.location.reload()}
 
 		//Graps the profile [BASIC] data from TORN
+		var isTraveling = false;
 		getJSON('https://api.torn.com/user/?selections=basic,money,profile,icons&key=' + localStorage.apiKey,
 			function(err, data) {
 				if (err !== null) {
@@ -153,6 +154,7 @@
 					var playerStatus2 = data.status["state"];
 					if(playerStatus2 == "Traveling"){
 						playerStatus2 = "";
+						isTraveling = true;
 					}
 					if(playerStatus2 == "Okay"){
 						playerStatus2 = "";
@@ -269,7 +271,7 @@
 						playerNervebar = 100;
 					}
 					
-					if(playerNervecurrent > 10){
+					if(playerNervecurrent > 10 && isTraveling == false){
 						document.getElementById("playerNerveArson").style = "display:inline";
 					}
 					getplayerNervebar = playerNervebar;
