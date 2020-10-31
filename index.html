@@ -148,12 +148,15 @@
 				}
 				</style>
 			`);
-			//try {
+			try {
   				document.getElementById("section2").style = "display:block";
-			//} catch (error) {
-  			//	console.error(error);
-  			//}
+			} catch (error) {
+  				console.error(error);
+  			}
 
+		   }
+		   else{
+		   	console.log("Desktop mode not enabled.");
 		   }
 		
 		
