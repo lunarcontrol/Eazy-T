@@ -117,57 +117,6 @@
 		
 		
 		
-		
-		
-
-		
-		if(localStorage.desktop == "true"){
-			document.write(`
-				<style>
-				.container {
-				    display: flex;
-				    Margin: 0 auto !important;
-				    /* max-width: 580px; */
-				    padding: 10px;
-				    width: 100%;
-				}
-
-				.content {
-				    box-sizing: border-box;
-				    display: block;
-				    Margin: 0 auto;
-				    /* max-width: 100%; */
-				    padding: 10px;
-				    width: 100%;
-				}
-
-				.main {
-				    background: #ffffff;
-				    border-radius: 3px;
-				    width: 100%;
-				}
-				</style>
-			`);
-			try {
-  				document.getElementById("section2").style = "display:block";
-			} catch (error) {
-  				console.error(error);
-  			}
-
-		   }
-		   else{
-		   	console.log("Desktop mode not enabled.");
-		   }
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 
 		//Core Json function
 		//Opens JSON request & sends it to APP
@@ -645,7 +594,7 @@
 	      
 	      
 	
-	<div class="content" id="section2" style="display:none;">
+	<div class="content" id="sectiontwo" style="display:none;">
             <!-- START CENTERED WHITE CONTAINER -->
             <table class="main">
               <!-- START MAIN CONTENT AREA -->
@@ -751,6 +700,48 @@
 	    console.log(e)
 	  }
 	};
+		
+		
+		if(localStorage.desktop == "true"){
+			document.write(`
+				<style>
+				.container {
+				    display: flex;
+				    Margin: 0 auto !important;
+				    /* max-width: 580px; */
+				    padding: 10px;
+				    width: 100%;
+				}
+
+				.content {
+				    box-sizing: border-box;
+				    display: block;
+				    Margin: 0 auto;
+				    /* max-width: 100%; */
+				    padding: 10px;
+				    width: 100%;
+				}
+
+				.main {
+				    background: #ffffff;
+				    border-radius: 3px;
+				    width: 100%;
+				}
+				</style>
+			`);
+			try {
+  				document.getElementById("sectiontwo").style = "display:block";
+			} catch (error) {
+  				console.log(error);
+  			}
+
+		   }
+		   else{
+		   	console.log("Desktop mode not enabled.");
+		   }
+		
+		
+		
 	</script>
 	
    
