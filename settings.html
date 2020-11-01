@@ -122,6 +122,23 @@
 			    //DISABLES DARK THEME
 			});
   }
+	
+	
+function setDesktop(){
+        alertify.confirm("Would you like to enable Desktop Mode? Press 'cancel' to disable." , function () {
+			    // user clicked "ok"
+			    var desktopEnable = true;
+			    localStorage.setItem("desktop", desktopEnable);
+			    alertify.success('Dark theme has been ENABLED');
+			    //ENABLES Desktop
+			}, function() {
+			    // user clicked cancel
+			    var desktopDisable = false;
+			    localStorage.setItem("desktop", desktopDisable);
+			    alertify.error('Dark theme has been DISABLED');
+			    //DISABLES Desktop
+			});
+  }
 
 	function deleteAPI() {
     //alertify.log("Your API key has been removed.");
@@ -222,6 +239,8 @@ btnAdd.addEventListener('click', (e) => {
                         <button class="btn btn-primary" onclick="setRefreshrate()" type="button">Refresh rate</button>
                         <p></p>
                         <button class="btn btn-primary" onclick="setDark()" type="button">Dark Theme</button>
+                        <p></p>
+			<button class="btn btn-primary" onclick="setDesktop()" type="button">Desktop Mode</button>
                         <p></p>
                         <button class="btn btn-primary" onclick="goDelete()" type="button">Delete cache & update app</button>
                         <p></p>
