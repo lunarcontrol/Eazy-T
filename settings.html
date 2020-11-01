@@ -129,13 +129,13 @@ function setDesktop(){
 			    // user clicked "ok"
 			    var desktopEnable = true;
 			    localStorage.setItem("desktop", desktopEnable);
-			    alertify.success('Dark theme has been ENABLED');
+			    alertify.success('Desktop mode has been ENABLED');
 			    //ENABLES Desktop
 			}, function() {
 			    // user clicked cancel
 			    var desktopDisable = false;
 			    localStorage.setItem("desktop", desktopDisable);
-			    alertify.error('Dark theme has been DISABLED');
+			    alertify.error('Desktop mode has been DISABLED');
 			    //DISABLES Desktop
 			});
   }
