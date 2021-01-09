@@ -187,6 +187,30 @@
 						console.log("removed: " + id);
 						document.getElementById(id).innerHTML = "Deleted: " + id;
 					}
+					
+					
+					
+					function updateList(){
+						var ul = document.getElementById("skillList");
+						var items = ul.getElementsByTagName("li");
+						for (var i = 0; i < items.length; ++i) {
+						  // do something with items[i], which is a <li> element
+						  var meat = items[i].querySelector("#statusTime").textContent;
+						  var parent = $(items[i]).closest("li");
+						  parent.attr('data-position', meat);
+						  //console.log(meat);
+						  //console.log(parent);
+						}
+
+
+						$(function() {
+						  $("#skillList li").sort(sort_li).appendTo('#skillList');
+						  function sort_li(a, b) {
+						    return ($(b).data('position')) < ($(a).data('position')) ? 1 : -1;
+						  }
+						});
+						console.log("Updated list to sort by hospital time");
+					}
 
 
 					//https://stackoverflow.com/questions/6520192/how-to-get-the-text-node-of-an-element
@@ -304,7 +328,7 @@
 					    }
 					  ); //END basic
 
-
+					updateList();
 					setTimeout(updateTarget, 2000);
 					}
 
