@@ -274,6 +274,8 @@
 						var playerStatus1 = data.status["description"];
 						      
 						var playerActivity = data.last_action["status"].toLowerCase();
+						      
+						var statusTime = data.status["until"];
 						
 						var imageSource = "";
 						if(playerActivity == "offline"){
@@ -295,7 +297,7 @@
 						
 						var deleteButton = "<span onclick=\"removeById('" + randomItem + "'); return false;\"> - Delete</span>";
 						console.log(deleteButton);
-						document.getElementById(randomItem).innerHTML = imageSource + " [<a href='https://www.torn.com/loader2.php?sid=getInAttack&user2ID=" + randomItem + "'>Attack</a>] <a style='text-decoration:none; color: inherit' href='https://www.torn.com/profiles.php?XID=" + randomItem + "'>" + playerName + "</a> - <span style='color:" + data.status["color"] + "'>" + playerStatus1 + "</span>";
+						document.getElementById(randomItem).innerHTML = imageSource + " [<a href='https://www.torn.com/loader2.php?sid=getInAttack&user2ID=" + randomItem + "'>Attack</a>] <a style='text-decoration:none; color: inherit' href='https://www.torn.com/profiles.php?XID=" + randomItem + "'>" + playerName + "</a> - <span style='color:" + data.status["color"] + "'>" + playerStatus1 + " (" + statusTime + ")</span>";
 						document.getElementById(randomItem).innerHTML += unescape(deleteButton);
 						$(document.getElementById(randomItem)).fadeIn();
 					      }
