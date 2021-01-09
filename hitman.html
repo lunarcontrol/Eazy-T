@@ -252,7 +252,7 @@
 					  console.log("Selected: " + randomItem);
 
 						
-					  getJSON('https://api.torn.com/user/' + randomItem + '?selections=basic,icons&key=' + localStorage.apiKey,
+					  getJSON('https://api.torn.com/user/' + randomItem + '?selections=basic,icons,profile&key=' + localStorage.apiKey,
 					    function(err, data) {
 					      if (err !== null) {
 						alertify.log('Cannot retrieve BASIC information: ' + err);
@@ -263,11 +263,25 @@
 						//
 						var playerName = data.name;
 						var playerStatus1 = data.status["description"];
+						      
+						var playerActivity = data.last_action["status"].toLowerCase();
 						
 						var imageSource = "";
+						if(playerActivity == "offline"){
+							imageSource = "<img style='margin-bottom: -0.25em;' src='./img/offline.png'></img>";
+						}
+						else if(playerActivity == "online"){
+							imageSource = "<img style='margin-bottom: -0.25em;' src='./img/online.png'></img>";
+						}
+						else{
+							//must be idle
+							imageSource = "<img style='margin-bottom: -0.25em;' src='./img/idle.png'></img>";
+						}
+						      
+						//Checking for bounty status
 						if(data.icons["icon13"]){
 							console.log("// Bounty on " + randomItem);
-							imageSource = "<img style='margin-bottom: -0.25em;' src='./img/bounty.png'></img>";
+							imageSource = imageSource.concat("<img style='margin-bottom: -0.25em;' src='./img/bounty.png'></img>");
 						}
 						     
 						document.getElementById(randomItem).innerHTML = imageSource + " [<a href='https://www.torn.com/loader2.php?sid=getInAttack&user2ID=" + randomItem + "'>Attack</a>] <a style='text-decoration:none; color: inherit' href='https://www.torn.com/profiles.php?XID=" + randomItem + "'>" + playerName + "</a> - <span style='color:" + data.status["color"] + "'>" + playerStatus1 + "</span>";
