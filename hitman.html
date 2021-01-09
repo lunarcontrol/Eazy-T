@@ -195,11 +195,16 @@
 						var items = ul.getElementsByTagName("li");
 						for (var i = 0; i < items.length; ++i) {
 						  // do something with items[i], which is a <li> element
-						  var meat = items[i].querySelector("#statusTime").textContent;
-						  var parent = $(items[i]).closest("li");
-						  parent.attr('data-position', meat);
-						  //console.log(meat);
-						  //console.log(parent);
+							try {
+							   var meat = items[i].querySelector("#statusTime").textContent;
+						  	   var parent = $(items[i]).closest("li");
+						  	   parent.attr('data-position', meat);
+						  	   //console.log(meat);
+						  	   //console.log(parent);
+							}
+							catch(err) {
+								console.log("Error updating list: " + err);
+							}
 						}
 
 
