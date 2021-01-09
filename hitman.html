@@ -184,6 +184,7 @@
 						tempTargets = tempTargets.filter(val => val !== id);
 					  	localStorage.setItem("targets",  JSON.stringify(tempTargets));
 						console.log("removed: " + id);
+						document.getElementById(id).innerHTML = "Deleted: " + id;
 					}
 
 
