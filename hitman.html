@@ -295,7 +295,7 @@
 					    	//span.textContent = " - Delete";
 					    	//span.addEventListener("click", removeSkill);  
 					    	//li.appendChild(span);  // Add the span to the bullet
-						var deleteButton = "<span onclick=\"removeById(\"" + randomItem + "\")\" class=\"remove\"> - Delete</span>";
+						var deleteButton = "<span onclick='removeById('" + randomItem + "')' class='remove'> - Delete</span>";
 						     
 						document.getElementById(randomItem).innerHTML = imageSource + " [<a href='https://www.torn.com/loader2.php?sid=getInAttack&user2ID=" + randomItem + "'>Attack</a>] <a style='text-decoration:none; color: inherit' href='https://www.torn.com/profiles.php?XID=" + randomItem + "'>" + playerName + "</a> - <span style='color:" + data.status["color"] + "'>" + playerStatus1 + deleteButton + "</span>";
 
