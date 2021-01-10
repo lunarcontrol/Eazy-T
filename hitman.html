@@ -132,6 +132,7 @@
 					    // Don't build new HTML by concatenating strings. Create elements and configure them as objects
 					    var li = document.createElement("li");
 					    li.setAttribute("id", target);
+					    li.setAttribute("data-position", "1");
 					    li.textContent = target;
 
 					    console.log("Found existing target: " + target); // The new value
