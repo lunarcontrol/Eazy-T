@@ -227,13 +227,19 @@
 					
 					
 					function updateListTwo(){
-						$(function() {
-						  $("#skillList li").sort(sort_li).appendTo('#skillList');
-						  function sort_li(a, b) {
-							console.log("////");
-						    	return ($(b).data('position')) < ($(a).data('position')) ? 1 : -1;
-						  }
-						});
+// 						$(function() {
+// 						  $("#skillList li").sort(sort_li).appendTo('#skillList');
+// 						  function sort_li(a, b) {
+// 							console.log("////");
+// 						    	return ($(b).data('position')) < ($(a).data('position')) ? 1 : -1;
+// 						  }
+// 						});
+						var $wrapper = $('#skillList');
+
+						$wrapper.find('li').sort(function (a, b) {
+						    return +a.dataset.percentage - +b.dataset.percentage;
+						})
+						.appendTo( $wrapper );
 						console.log("============ / ============");
 						console.log("Updated list to sort by hospital time");
 					}
