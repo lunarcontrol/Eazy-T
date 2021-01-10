@@ -235,7 +235,8 @@
 // 						    	return ($(b).data('position')) < ($(a).data('position')) ? 1 : -1;
 // 						  }
 // 						});
-						$("#test > div").tinysort("",{attr:"data-position"});
+						//$("#test > div").tinysort("",{attr:"data-position"});
+						tinysort('ul#skillList>li',{attr:'data-position'});
 						console.log("============ / ============");
 						console.log("Updated list to sort by hospital time");
 					}
