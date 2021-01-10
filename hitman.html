@@ -347,11 +347,22 @@
 					    }
 					  ); //END basic
 
-					updateList();
+					
 					setTimeout(updateTarget, 2000);
 					}
 
 					updateTarget();
+					
+					
+					
+					const interval = setInterval(function() {
+					  updateList();
+					 }, 6000);
+
+					//clearInterval(interval); 
+
+					
+					
     				</script>
 			      <style>
 				      #statusTime{
