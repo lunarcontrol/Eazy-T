@@ -193,35 +193,57 @@
 					function updateList(){
 						var ul = document.getElementById("skillList");
 						var items = ul.getElementsByTagName("li");
-						for (var i = 0; i < items.length; ++i) {
-						  // do something with items[i], which is a <li> element
+						
+						//START promise
+						var bar = new Promise((resolve, reject) => {
+						    for (var i = 0; i < items.length; ++i) {
 							try {
 							   var meat = items[i].querySelector("#statusTime").textContent;
 						  	   var parent = $(items[i]).closest("li");
 						  	   parent.attr('data-position', meat);
 						  	   //console.log(meat);
 						  	   //console.log(parent);
-								console.log("1");
+								console.log("Working");
 							}
 							catch(err) {
 								console.log("Error updating list: " + err);
 							}
-							console.log("2");
-						}
+							if (i === items.length -1) resolve();
+						    });
+						});
 
-						console.log("3");
+						bar.then(() => {
+						    console.log('All done!');
+						});
+						
+						//END promise stuff
+						
+// 						for (var i = 0; i < items.length; ++i) {
+// 						  // do something with items[i], which is a <li> element
+// 							try {
+// 							   var meat = items[i].querySelector("#statusTime").textContent;
+// 						  	   var parent = $(items[i]).closest("li");
+// 						  	   parent.attr('data-position', meat);
+// 						  	   //console.log(meat);
+// 						  	   //console.log(parent);
+// 								console.log("1");
+// 							}
+// 							catch(err) {
+// 								console.log("Error updating list: " + err);
+// 							}
+// 							console.log("2");
+// 						}
+						
+						console.log("============");
 						$(function() {
-							console.log("4");
 						  $("#skillList li").sort(sort_li).appendTo('#skillList');
-							console.log("5");
 						  function sort_li(a, b) {
-							  console.log("6");
-						    return ($(b).data('position')) < ($(a).data('position')) ? 1 : -1;
+							console.log("6");
+						    	return ($(b).data('position')) < ($(a).data('position')) ? 1 : -1;
 						  }
 						});
-						console.log("7");
+						console.log("============ / ============");
 						console.log("Updated list to sort by hospital time");
-						return 0;
 					}
 
 
