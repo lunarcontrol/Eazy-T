@@ -300,8 +300,13 @@
 						//
 						//Profile Information
 						//
+						 try{   
+							delete data.status["details"];
+						 }
+						 catch(err) {
+							console.log("Error deleting problematic details field: " + err);
+						}
 						      
-						
 						var playerName = data.name;
 						var playerStatus1 = data.status["description"];
 						      
