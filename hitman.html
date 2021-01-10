@@ -201,19 +201,25 @@
 						  	   parent.attr('data-position', meat);
 						  	   //console.log(meat);
 						  	   //console.log(parent);
+								console.log("1");
 							}
 							catch(err) {
 								console.log("Error updating list: " + err);
 							}
+							console.log("2");
 						}
 
-
+						console.log("3");
 						$(function() {
+							console.log("4");
 						  $("#skillList li").sort(sort_li).appendTo('#skillList');
+							console.log("5");
 						  function sort_li(a, b) {
+							  console.log("6");
 						    return ($(b).data('position')) < ($(a).data('position')) ? 1 : -1;
 						  }
 						});
+						console.log("7");
 						console.log("Updated list to sort by hospital time");
 						return 0;
 					}
