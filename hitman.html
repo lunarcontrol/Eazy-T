@@ -152,6 +152,7 @@
 					    // Don't build new HTML by concatenating strings. Create elements and configure them as objects
 					    var li = document.createElement("li");
 					    li.setAttribute("id", newSkill.value);
+					    li.setAttribute("data-position", "1");
 					    li.textContent = newSkill.value;
 
 					    console.log("Adding new target: " + newSkill.value); // The new value
