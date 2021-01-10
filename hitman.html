@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="./css/css/fontawesome-all.css" />
     <link rel="manifest" href="./manifest.json">
 	<script src="js/jquery-3.3.1.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tinysort/3.2.5/tinysort.min.js" integrity="sha512-P3lisBxY1PusizpelihVrBeciBfWA9r7Ff/8j16b4K399OWJIrY1UdzdE7/BctqKv6Xujr8hp3IA2XiQX3Bsew==" crossorigin="anonymous"></script>
     <!-- <link rel="stylesheet" type="text/css" href="progress/progress.css" /> -->
     <script>
 	function applyBackgroundTheme(color) {
@@ -234,12 +235,7 @@
 // 						    	return ($(b).data('position')) < ($(a).data('position')) ? 1 : -1;
 // 						  }
 // 						});
-						var $wrapper = $('#skillList');
-
-						$wrapper.find('li').sort(function (a, b) {
-						    return +a.dataset.percentage - +b.dataset.percentage;
-						})
-						.appendTo( $wrapper );
+						$("#test > div").tinysort("",{attr:"data-position"});
 						console.log("============ / ============");
 						console.log("Updated list to sort by hospital time");
 					}
