@@ -206,7 +206,6 @@
 						  	   parent.attr('data-position', meat);
 						  	   //console.log(meat);
 						  	   //console.log(parent);
-								console.log("Working");
 							}
 							catch(err) {
 								console.log("Error updating list: " + err);
@@ -216,26 +215,11 @@
 						});
 
 						bar.then(() => {
-							console.log("============");
 							updateListTwo();
-						    	console.log('All done!');
-						});
-						
-						//END promise stuff
-						
-						
+						});	
 					}
 					
-					
 					function updateListTwo(){
-// 						$(function() {
-// 						  $("#skillList li").sort(sort_li).appendTo('#skillList');
-// 						  function sort_li(a, b) {
-// 							console.log("////");
-// 						    	return ($(b).data('position')) < ($(a).data('position')) ? 1 : -1;
-// 						  }
-// 						});
-						//$("#test > div").tinysort("",{attr:"data-position"});
 						tinysort('ul#skillList>li',{attr:'data-position'});
 						console.log("============ / ============");
 						console.log("Updated list to sort by hospital time");
@@ -370,16 +354,12 @@
 
 					updateTarget();
 					
-					
-					
 					const interval = setInterval(function() {
 					  updateList();
 					 }, 6000);
 
 					//clearInterval(interval); 
 
-					
-					
     				</script>
 			      <style>
 				      #statusTime{
