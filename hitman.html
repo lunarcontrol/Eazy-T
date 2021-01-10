@@ -213,32 +213,22 @@
 						});
 
 						bar.then(() => {
-						    console.log('All done!');
+							console.log("============");
+							updateListTwo();
+						    	console.log('All done!');
 						});
 						
 						//END promise stuff
 						
-// 						for (var i = 0; i < items.length; ++i) {
-// 						  // do something with items[i], which is a <li> element
-// 							try {
-// 							   var meat = items[i].querySelector("#statusTime").textContent;
-// 						  	   var parent = $(items[i]).closest("li");
-// 						  	   parent.attr('data-position', meat);
-// 						  	   //console.log(meat);
-// 						  	   //console.log(parent);
-// 								console.log("1");
-// 							}
-// 							catch(err) {
-// 								console.log("Error updating list: " + err);
-// 							}
-// 							console.log("2");
-// 						}
 						
-						console.log("============");
+					}
+					
+					
+					function updateListTwo(){
 						$(function() {
 						  $("#skillList li").sort(sort_li).appendTo('#skillList');
 						  function sort_li(a, b) {
-							console.log("6");
+							console.log("////");
 						    	return ($(b).data('position')) < ($(a).data('position')) ? 1 : -1;
 						  }
 						});
