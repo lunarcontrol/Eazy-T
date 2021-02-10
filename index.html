@@ -139,9 +139,14 @@
 		    xhr.send();
 		};
 		
-		function updateInformation(){
+		function updateInformation(selectedCategory){
 			var category = ["bars","basic,money,profile,icons", "travel", "events","messages"];
 			var randomCategory = category[Math.floor(Math.random()*category.length)];
+
+			if(selectedCategory !== undefined){
+				randomCategory = selectedCategory;
+			}
+
 			console.log("Selected: " + randomCategory);
 
 			
@@ -391,9 +396,8 @@
 			//setTimeout(updateInformation, 4000);
 		}
 
-		updateInformation();
-		updateInformation();
-		updateInformation();
+		updateInformation("bars");
+		updateInformation("basic,money,profile,icons");
 
 		const interval = setInterval(function() {
 			updateInformation();
