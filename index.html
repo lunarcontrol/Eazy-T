@@ -198,6 +198,8 @@
 						var playerTraveltimeleft = data.travel.time_left;
 						if (playerTraveltimeleft == 0) {
 							console.log('Not traveling');
+							document.getElementById("traveltimeleft").innerHTML = "";
+							document.getElementById("travelSection").style = "display:none";
 						}else{
 							var playerTraveltimeleft = playerTraveltimeleft / 60;
 							var playerTraveltimeleft = Math.round(playerTraveltimeleft);
