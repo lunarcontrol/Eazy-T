@@ -63,18 +63,12 @@
     		window.location="index.html";
   	}
   	function askUser(){
-  			//alertify.error("API key not found");
-  			alertify.confirm("Your API key will be stored locally and only sent to TORN & TornStats.", function () {
+  			alertify.confirm("Your API key will be stored locally and sent to: <br> Torn.com & TornStats.com", function () {
 			    // user clicked "ok"
 			    setAPI();
 			}, function() {
 			    alertify.error('You must accept!');
 			});
-  			//alert('Your API key will be stored locally and only sent to TORN.com servers.');
-	   		//var apiKey = prompt("Please enter your API Key:", "");
-	   		//localStorage.setItem("apiKey", apiKey);
-	   		//alert("Reloading the app & performing first time setup!");
-	   		//goHome();
   	}
   	function setAPI() {
 		  alertify.defaultValue("")
@@ -125,10 +119,6 @@
                     <tr>
                       <td>
                         <a href="#"><h1 id="playername">Eazy-T</h1></a>
-                        <!--<button class="btn btn-primary" onclick="askUser()" type="button">Enter API key!</button>-->
-                        <!--<p></p> -->
-                        <!--<button class="btn btn-primary" onclick="tutorial()" type="button">Where is my api key?</button>-->
-                        <!--<p></p>-->
                         
                         
                         <table class="btn btn-primary">
@@ -138,7 +128,8 @@
                                 <center><table border="0" cellpadding="0" cellspacing="15">
                                   <tbody>
                                     <tr>
-                                      <td> <a onclick="askUser()"><i class="fas fa-sign-in-alt"> API</i></a> </td>
+                                      <p>Please enter your API key from Torn.com or click on the help button to help you locate it.</p>
+                                      <td> <a onclick="askUser()"><i class="fas fa-sign-in-alt"> Enter API key</i></a> </td>
                                       <td> <a onclick="tutorial()"><i class="fas fa-question-circle"> Help</i></a> </td>
                                     </tr>
                                   </tbody>
