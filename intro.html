@@ -47,12 +47,12 @@
 	    
 	  if("apiKey" in localStorage){
 	    	window.location="index.html";
-	    	var refreshrate = 20000;
+	    	var refreshrate = 500000;
 			localStorage.setItem("refreshrate", refreshrate);
 		} 
 		else {
 			alertify.error("API key not found!");
-			var refreshrate = 20000;
+			var refreshrate = 500000;
 			localStorage.setItem("refreshrate", refreshrate);
 			alertify.success("Set default refresh rate");
 			//alert("Welcome to Eazy-T. An API key has not been set. Please Continue...");
@@ -146,7 +146,7 @@
       </tr>
     </table>
     <script src="//unpkg.com/hammer-touchemulator@0.0.2/touch-emulator.js"></script>
-    <script>TouchEmulator()</script>
+    <script>//TouchEmulator()</script>
     <script type="text/javascript" src="js/pulltorefresh-js-0.1.14/dist/pulltorefresh.js"></script>
     <script src="js/alertify.js"></script>
     <script>

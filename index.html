@@ -116,6 +116,10 @@
 		} else {window.location="intro.html";}
 		
 		
+		//Reloads the current window. Eazy
+		function reloadApp(){window.location.reload()}
+		var isTraveling = false;
+		console.log("Set default travel state as false");
 		
 
 		//Core Json function
@@ -133,275 +137,22 @@
 		      }
 		    };
 		    xhr.send();
-		};		
+		};
+		
+		function updateInformation(){
+			var category = ["bars","basic,money,profile,icons", "travel", "events","messages"];
+			var randomCategory = category[Math.floor(Math.random()*category.length)];
+			console.log("Selected: " + randomCategory);
 
-		//Reloads the current window. Eazy
-		function reloadApp(){window.location.reload()}
-		var isTraveling = false;
-		console.log("Set default travel state as false");
-		//Graps the profile [BASIC] data from TORN
-		getJSON('https://api.torn.com/user/?selections=basic,money,profile,icons&key=' + localStorage.apiKey,
+			
+			getJSON('https://api.torn.com/user/?selections=' + randomCategory + '&key=' + localStorage.apiKey,
 			function(err, data) {
 				if (err !== null) {
-					alertify.log('Cannot retrieve BASIC information: ' + err);
+					alertify.log('Cannot retrieve information: ' + err);
 				}
 				else {
-					//
-					//Profile Information
-					//
-					//var playerLevel = data.level;
-					//var playerID = data.player_id;
-					var playerName = data.name;
-					var playerStatus1 = data.status["description"];
-					playerStatus1 = playerStatus1.replace(/ to Torn/g,'');
-					var playerStatus2 = data.status["state"];
-					if(playerStatus2 == "Traveling"){
-						playerStatus2 = "";
-						isTraveling = true;
-						console.log("Updated travel state to true");
-					}
-					if(playerStatus2 == "Okay"){
-						playerStatus2 = "";
-					}
-					if(playerStatus2 == "Hospital"){
-						playerStatus2 = data.status["details"] + "<br>";
-					}
-					
-					playerStatus2 = playerStatus2 + data.last_action["status"] + " - " + data.last_action["relative"];
-					document.getElementById("playername").innerHTML = playerName;
-					//document.getElementById('playerlink').href = 'http://www.torn.com/profiles.php?NID=' + playerName + ''; //changing to homepage link
-					document.getElementById('playerlink').href = 'http://www.torn.com/';
-					document.getElementById('playerstatus1').innerHTML = "<span style='color:" + data.status["color"] + "'>" + playerStatus1 + "</span>";
-					document.getElementById('playerstatus2').innerHTML = playerStatus2;
-					
-					var moneyStatus = formatMoney(data.money_onhand);
-					document.getElementById("moneyStatus").innerHTML = moneyStatus;
-					
-					//DRUG TAKEN
-					if(data.icons["icon51"]){
-						console.log("There is a drug cooldown~");
-						var drugStatus = data.icons["icon51"];
-						drugStatus = drugStatus.replace(/Drug Cooldown - Under the influence of /g,'');
-						drugStatus = drugStatus.slice(0, -4); //Slice off seconds from drug addiction. Makes it cleaner.
-						document.getElementById('drugStatus').innerHTML = drugStatus;
-					}
-					if(data.icons["icon52"]){
-						console.log("There is a drug cooldown~");
-						var drugStatus = data.icons["icon52"];
-						drugStatus = drugStatus.replace(/Drug Cooldown - Under the influence of /g,'');
-						drugStatus = drugStatus.slice(0, -4); //Slice off seconds from drug addiction. Makes it cleaner.
-						document.getElementById('drugStatus').innerHTML = drugStatus;
-					}
-					if(data.icons["icon53"]){
-						console.log("There is a drug cooldown~");
-						var drugStatus = data.icons["icon53"];
-						drugStatus = drugStatus.replace(/Drug Cooldown - Under the influence of /g,'');
-						drugStatus = drugStatus.slice(0, -4); //Slice off seconds from drug addiction. Makes it cleaner.
-						document.getElementById('drugStatus').innerHTML = drugStatus;
-					}
-					
-					
-					//DRUG ADDICTION
-					if(data.icons["icon57"]){
-						console.log("Drug addiction");
-						var addictionStatus = data.icons["icon57"];
-						addictionStatus = addictionStatus.replace(/- Your battle stats in combat are slightly reduced /g,'');
-						document.getElementById('addictionStatus').innerHTML = addictionStatus;
-					}
-				}
-			}
-		); //END basic
-
-		//Grabs BAR information from TORN
-		getJSON('https://api.torn.com/user/?selections=bars&key=' + localStorage.apiKey,
-			function(err, data) {
-		    		if (err !== null) {
-		    		alertify.log('Cannot retrieve BAR information: ' + err);
-		    		}
-		    		else {
-					//
-					//HAPPY
-					//
-					var playerHappymax = data.happy.maximum;
-					var playerHappycurrent = data.happy.current;
-					var playerHappybar = playerHappycurrent / playerHappymax;
-					document.getElementById("playerHappycurrent").innerHTML = playerHappycurrent;
-					document.getElementById("playerHappymax").innerHTML = playerHappymax;
-					//if (playerHappycurrent > playerHappymax)playerHappybar = 100;
-					if (playerHappybar == 1)playerHappybar = 100;
-					else {
-						playerHappybar = playerHappybar * 100
-					}
-					getplayerHappybar = playerHappybar;
-					//document.getElementById("HappyBar").innerHTML = playerHappybar;
-
-					//
-					//ENERGY
-					//
-					var playerEnergymax = data.energy.maximum;
-					var playerEnergycurrent = data.energy.current;
-					var playerEnergybar = playerEnergycurrent / playerEnergymax;
-					document.getElementById("playerEnergycurrent").innerHTML = playerEnergycurrent;
-					document.getElementById("playerEnergymax").innerHTML = playerEnergymax;
-					if(playerEnergybar == 1)playerEnergybar = 100;
-					if(playerEnergybar > 1)playerEnergybar = 100;
-					if(playerEnergybar < 1)playerEnergybar = playerEnergybar * 100;
-					if(playerEnergybar > 100){
-						playerEnergybar = 100;
-					}
-					
-					console.log("Make sure user has energy and is not traveling");
-					if(playerEnergycurrent > 9 && isTraveling == false){
-						document.getElementById("playerGym").style = "display:inline";
-						console.log('User has the required energy and is not traveling.');
-					}
-					
-					getplayerEnergybar = playerEnergybar;
-					// document.getElementById("EnergyBar").innerHTML = playerEnergybar;
-
-					//
-					//Nerve
-					//
-					var playerNervemax = data.nerve.maximum;
-					var playerNervecurrent = data.nerve.current;
-					var playerNervebar = playerNervecurrent / playerNervemax;
-					document.getElementById("playerNervecurrent").innerHTML = playerNervecurrent;
-					document.getElementById("playerNervemax").innerHTML = playerNervemax;
-
-					if (playerNervecurrent > playerNervemax)playerNervebar = 100;
-					if (playerNervebar == 1)playerNervebar = 100;
-					else {
-						playerNervebar = playerNervebar * 100
-					}
-					if(playerNervebar > 100){
-						playerNervebar = 100;
-					}
-					
-					if(playerNervecurrent > 10 && isTraveling == false){
-						document.getElementById("playerNerveArson").style = "display:inline";
-						console.log('User has the required nerve and is not traveling.');
-					}
-					getplayerNervebar = playerNervebar;
-					// document.getElementById("EnergyBar").innerHTML = playerEnergybar;
-
-					//
-					//Life
-					//
-					var playerLifemax = data.life.maximum;
-					var playerLifecurrent = data.life.current;
-					var playerLifebar = playerLifecurrent / playerLifemax;
-					document.getElementById("playerLifecurrent").innerHTML = playerLifecurrent;
-					document.getElementById("playerLifemax").innerHTML = playerLifemax;
-					if (playerLifebar == 1)playerLifebar = 100;
-					else {
-						playerLifebar = playerLifebar * 100
-					}
-					if(playerLifebar > 100){
-						playerLifebar = 100;
-					}
-					getplayerLifebar = playerLifebar;
-
-
-					//Updates graphs
-					EnergyMove();
-					HappyMove();
-					NerveMove();
-					LifeMove();
-				}
- 	 		}
-		);//END bars
-
-		//Formats a time of minutes into a nice format of ##:##
-		function display(a){
-			var hours = Math.trunc(a/60);
-			var minutes = a % 60;
-			if(minutes < 10)minutes = ('0' + minutes).slice(-2);
-			return(hours +":"+ minutes);
-		}
-
-		getJSON('https://api.torn.com/user/?selections=travel&key=' + localStorage.apiKey,
-			function(err, data) {
-				if (err !== null) {
-					alertify.log('Cannot retrieve travel information: ' + err);
-				}
-				else {
-					var playerTraveltimeleft = data.travel.time_left;
-					if (playerTraveltimeleft == 0) {
-						console.log('Not traveling');
-					}else{
-						var playerTraveltimeleft = playerTraveltimeleft / 60;
-						var playerTraveltimeleft = Math.round(playerTraveltimeleft);
-						var outputplayertimeleft = '<b>[' + display(playerTraveltimeleft) + ']</b>';
-						document.getElementById("traveltimeleft").innerHTML = outputplayertimeleft;
-
-						//
-						//Travel Bar
-						//
-						document.getElementById("travelSection").style = "display:block";
-						document.getElementById("playerTravelremaining").innerHTML = outputplayertimeleft; //good
-						playerTravelbar = 100;
-						getplayerTravelbar = playerTravelbar;
-
-						//Calc time 
-						var currentTime = data.travel.timestamp;
-						var departedTime = data.travel.departed;
-						var totalTime = currentTime - departedTime;
-						//console.log(totalTime);
-						var percentCompleted =  playerTraveltimeleft / (totalTime/60) * 100;
-						//console.log(percentCompleted);
-						document.getElementById("playertravelPercent").innerHTML = Math.round(100 - percentCompleted);
-						getplayerTravelbar = Math.round(100 - percentCompleted);
-
-						TravelMove();
-					}
-				}
-			}
-		);//END TRAVEL
-
-		function countInstances(string, word) {
-			//forces a convert to string
-		    	var string = string + '';
-		     	return string.split(word).length - 1;
-		}
-  		getJSON('https://api.torn.com/user/?selections=events&key=' + localStorage.apiKey,
-      			function(err, data) {
-      				if (err !== null) {
-      					alertify.log('Cannot retrieve events: ' + err);
-      				}
-      				else {
-      					var eventsSeenstatus = jsonQ(data), eventsSeenstatus = eventsSeenstatus.find('seen');
-      					var output = eventsSeenstatus.value()
-      					output = countInstances(output, 0);
-      					// output =1;
-
-      					//var x = document.getElementById("unreadEventsbutton");
-
-      					if(output == 1){
-        					//x.style.display = "block";
-        					document.getElementById("unreadEvents").innerHTML = output + ' <i class="fas fa-bell"></i>';
-        					alertify.log(output + ' <i class="fas fa-bell"></i>');
-      					}
-      					if(output == 0){
-        					//x.style.display = "none";
-        					document.getElementById("unreadEvents").innerHTML = output + ' <i class="fas fa-bell"></i>';
-        					alertify.log('0 <i class="fas fa-bell"></i>');
-      					}
-					if(output > 1){
-						document.getElementById("unreadEvents").innerHTML = output + ' <i class="fas fa-bell"></i>';
-						//x.style.display = "block";
-						alertify.log(output + ' <i class="fas fa-bell"></i>');
-					}
-      				}
-    			}
-		);//END events
-
-  		getJSON('https://api.torn.com/user/?selections=messages&key=' + localStorage.apiKey,
-      			function(err, data) {
-      				if (err !== null) {
-      					alertify.log('Cannot retrieve messages: ' + err);
-      				}
-      				else {
-      					var eventsSeenstatus = jsonQ(data), eventsSeenstatus = eventsSeenstatus.find('seen');
+					if(randomCategory == "messages"){
+						var eventsSeenstatus = jsonQ(data), eventsSeenstatus = eventsSeenstatus.find('seen');
       					var output = eventsSeenstatus.value()
       					output = countInstances(output, 0);
       					//output = 1;
@@ -418,9 +169,247 @@
         					document.getElementById("unreadMessages").innerHTML = output + ' <i class="fas fa-envelope"></i>';
         					alertify.log(output + ' <i class="fas fa-envelope"></i>');
       					}
-    				}
-  			}
-		);
+					}
+					if(randomCategory == "events"){
+						var eventsSeenstatus = jsonQ(data), eventsSeenstatus = eventsSeenstatus.find('seen');
+      					var output = eventsSeenstatus.value()
+      					output = countInstances(output, 0);
+      					// output =1;
+
+      					//var x = document.getElementById("unreadEventsbutton");
+
+      					if(output == 1){
+        					//x.style.display = "block";
+        					document.getElementById("unreadEvents").innerHTML = output + ' <i class="fas fa-bell"></i>';
+        					alertify.log(output + ' <i class="fas fa-bell"></i>');
+      					}
+      					if(output == 0){
+        					//x.style.display = "none";
+        					document.getElementById("unreadEvents").innerHTML = output + ' <i class="fas fa-bell"></i>';
+        					alertify.log('0 <i class="fas fa-bell"></i>');
+      					}
+						if(output > 1){
+							document.getElementById("unreadEvents").innerHTML = output + ' <i class="fas fa-bell"></i>';
+							//x.style.display = "block";
+							alertify.log(output + ' <i class="fas fa-bell"></i>');
+						}
+					}
+					if(randomCategory == "travel"){
+						var playerTraveltimeleft = data.travel.time_left;
+						if (playerTraveltimeleft == 0) {
+							console.log('Not traveling');
+						}else{
+							var playerTraveltimeleft = playerTraveltimeleft / 60;
+							var playerTraveltimeleft = Math.round(playerTraveltimeleft);
+							var outputplayertimeleft = '<b>[' + display(playerTraveltimeleft) + ']</b>';
+							document.getElementById("traveltimeleft").innerHTML = outputplayertimeleft;
+
+							//
+							//Travel Bar
+							//
+							document.getElementById("travelSection").style = "display:block";
+							document.getElementById("playerTravelremaining").innerHTML = outputplayertimeleft; //good
+							playerTravelbar = 100;
+							getplayerTravelbar = playerTravelbar;
+
+							//Calc time 
+							var currentTime = data.travel.timestamp;
+							var departedTime = data.travel.departed;
+							var totalTime = currentTime - departedTime;
+							//console.log(totalTime);
+							var percentCompleted =  playerTraveltimeleft / (totalTime/60) * 100;
+							//console.log(percentCompleted);
+							document.getElementById("playertravelPercent").innerHTML = Math.round(100 - percentCompleted);
+							getplayerTravelbar = Math.round(100 - percentCompleted);
+
+							alertify.log('Travel <i class="fas fa-plane"></i>');
+
+							TravelMove();
+						}
+					}
+					if(randomCategory == "basic,money,profile,icons"){
+						//
+						//Profile Information
+						//
+						var playerName = data.name;
+						var playerStatus1 = data.status["description"];
+						playerStatus1 = playerStatus1.replace(/ to Torn/g,'');
+						var playerStatus2 = data.status["state"];
+						if(playerStatus2 == "Traveling"){
+							playerStatus2 = "";
+							isTraveling = true;
+							console.log("Updated travel state to true");
+						}
+						if(playerStatus2 == "Okay"){
+							playerStatus2 = "";
+						}
+						if(playerStatus2 == "Hospital"){
+							playerStatus2 = data.status["details"] + "<br>";
+						}
+						
+						playerStatus2 = playerStatus2 + data.last_action["status"] + " - " + data.last_action["relative"];
+						document.getElementById("playername").innerHTML = playerName;
+						//document.getElementById('playerlink').href = 'http://www.torn.com/profiles.php?NID=' + playerName + ''; //changing to homepage link
+						document.getElementById('playerlink').href = 'http://www.torn.com/';
+						document.getElementById('playerstatus1').innerHTML = "<span style='color:" + data.status["color"] + "'>" + playerStatus1 + "</span>";
+						document.getElementById('playerstatus2').innerHTML = playerStatus2;
+						
+						var moneyStatus = formatMoney(data.money_onhand);
+						document.getElementById("moneyStatus").innerHTML = moneyStatus;
+						
+						//DRUG TAKEN
+						if(data.icons["icon51"]){
+							console.log("There is a drug cooldown~");
+							var drugStatus = data.icons["icon51"];
+							drugStatus = drugStatus.replace(/Drug Cooldown - Under the influence of /g,'');
+							drugStatus = drugStatus.slice(0, -4); //Slice off seconds from drug addiction. Makes it cleaner.
+							document.getElementById('drugStatus').innerHTML = drugStatus;
+						}
+						if(data.icons["icon52"]){
+							console.log("There is a drug cooldown~");
+							var drugStatus = data.icons["icon52"];
+							drugStatus = drugStatus.replace(/Drug Cooldown - Under the influence of /g,'');
+							drugStatus = drugStatus.slice(0, -4); //Slice off seconds from drug addiction. Makes it cleaner.
+							document.getElementById('drugStatus').innerHTML = drugStatus;
+						}
+						if(data.icons["icon53"]){
+							console.log("There is a drug cooldown~");
+							var drugStatus = data.icons["icon53"];
+							drugStatus = drugStatus.replace(/Drug Cooldown - Under the influence of /g,'');
+							drugStatus = drugStatus.slice(0, -4); //Slice off seconds from drug addiction. Makes it cleaner.
+							document.getElementById('drugStatus').innerHTML = drugStatus;
+						}
+						
+						
+						//DRUG ADDICTION
+						if(data.icons["icon57"]){
+							console.log("Drug addiction");
+							var addictionStatus = data.icons["icon57"];
+							addictionStatus = addictionStatus.replace(/- Your battle stats in combat are slightly reduced /g,'');
+							document.getElementById('addictionStatus').innerHTML = addictionStatus;
+						}
+						alertify.log('Info <i class="fas fa-info"></i>');
+					}
+					if(randomCategory == "bars"){
+						//
+						//HAPPY
+						//
+						var playerHappymax = data.happy.maximum;
+						var playerHappycurrent = data.happy.current;
+						var playerHappybar = playerHappycurrent / playerHappymax;
+						document.getElementById("playerHappycurrent").innerHTML = playerHappycurrent;
+						document.getElementById("playerHappymax").innerHTML = playerHappymax;
+						//if (playerHappycurrent > playerHappymax)playerHappybar = 100;
+						if (playerHappybar == 1)playerHappybar = 100;
+						else {
+							playerHappybar = playerHappybar * 100
+						}
+						getplayerHappybar = playerHappybar;
+						//document.getElementById("HappyBar").innerHTML = playerHappybar;
+
+						//
+						//ENERGY
+						//
+						var playerEnergymax = data.energy.maximum;
+						var playerEnergycurrent = data.energy.current;
+						var playerEnergybar = playerEnergycurrent / playerEnergymax;
+						document.getElementById("playerEnergycurrent").innerHTML = playerEnergycurrent;
+						document.getElementById("playerEnergymax").innerHTML = playerEnergymax;
+						if(playerEnergybar == 1)playerEnergybar = 100;
+						if(playerEnergybar > 1)playerEnergybar = 100;
+						if(playerEnergybar < 1)playerEnergybar = playerEnergybar * 100;
+						if(playerEnergybar > 100){
+							playerEnergybar = 100;
+						}
+						
+						console.log("Make sure user has energy and is not traveling");
+						if(playerEnergycurrent > 9 && isTraveling == false){
+							document.getElementById("playerGym").style = "display:inline";
+							console.log('User has the required energy and is not traveling.');
+						}
+						
+						getplayerEnergybar = playerEnergybar;
+						// document.getElementById("EnergyBar").innerHTML = playerEnergybar;
+
+						//
+						//Nerve
+						//
+						var playerNervemax = data.nerve.maximum;
+						var playerNervecurrent = data.nerve.current;
+						var playerNervebar = playerNervecurrent / playerNervemax;
+						document.getElementById("playerNervecurrent").innerHTML = playerNervecurrent;
+						document.getElementById("playerNervemax").innerHTML = playerNervemax;
+
+						if (playerNervecurrent > playerNervemax)playerNervebar = 100;
+						if (playerNervebar == 1)playerNervebar = 100;
+						else {
+							playerNervebar = playerNervebar * 100
+						}
+						if(playerNervebar > 100){
+							playerNervebar = 100;
+						}
+						
+						if(playerNervecurrent > 10 && isTraveling == false){
+							document.getElementById("playerNerveArson").style = "display:inline";
+							console.log('User has the required nerve and is not traveling.');
+						}
+						getplayerNervebar = playerNervebar;
+						// document.getElementById("EnergyBar").innerHTML = playerEnergybar;
+
+						//
+						//Life
+						//
+						var playerLifemax = data.life.maximum;
+						var playerLifecurrent = data.life.current;
+						var playerLifebar = playerLifecurrent / playerLifemax;
+						document.getElementById("playerLifecurrent").innerHTML = playerLifecurrent;
+						document.getElementById("playerLifemax").innerHTML = playerLifemax;
+						if (playerLifebar == 1)playerLifebar = 100;
+						else {
+							playerLifebar = playerLifebar * 100
+						}
+						if(playerLifebar > 100){
+							playerLifebar = 100;
+						}
+						getplayerLifebar = playerLifebar;
+
+						alertify.log('Bars <i class="fas fa-bars"></i>');
+
+						//Updates graphs
+						EnergyMove();
+						HappyMove();
+						NerveMove();
+						LifeMove();
+					}
+				}
+			}
+			); //END basic
+
+
+			//setTimeout(updateInformation, 4000);
+		}
+
+		updateInformation();
+
+		const interval = setInterval(function() {
+			updateInformation();
+		}, 4000);
+
+		//clearInterval(interval); 
+
+		//Formats a time of minutes into a nice format of ##:##
+		function display(a){
+			var hours = Math.trunc(a/60);
+			var minutes = a % 60;
+			if(minutes < 10)minutes = ('0' + minutes).slice(-2);
+			return(hours +":"+ minutes);
+		}
+
+		function countInstances(string, word) {
+			//forces a convert to string
+		    	var string = string + '';
+		     	return string.split(word).length - 1;
+		}
 
 		//INITS PULL TO REFRESH
 	    	PullToRefresh.init({
@@ -701,7 +690,7 @@
 	  }
 	};
 		
-		
+		//START CONFIGURE DESTOP MODE
 		if(localStorage.desktop == "true"){
 			document.write(`
 				<style>
@@ -733,6 +722,7 @@
 		   else{
 		   	console.log("Desktop mode not enabled.");
 		   }
+		   //END CONFIGURE DESTOP MODE
 		
 		
 		

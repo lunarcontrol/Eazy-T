@@ -99,7 +99,7 @@
   });
 
   function setRefreshrate(){
-    var refreshrate = prompt("Please enter your desired refresh rate in seconds. Each refresh will consume 3 API calls! [20 default, 10 minimum]:", "20");
+    var refreshrate = prompt("Please enter your desired refresh rate in seconds. Each refresh will consume 3 API calls! [500 default, 10 minimum]:", localStorage.refreshrate/1000);
     refreshrate = refreshrate * 1000;
     if(refreshrate < 10000)refreshrate = 10000;
     localStorage.setItem("refreshrate", refreshrate);

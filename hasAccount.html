@@ -43,7 +43,7 @@
 		} 
 		else {
 			alertify.error("Refreshrate was not set for some reason. Weird!");
-			var refreshrate = 20000;
+			var refreshrate = 500000;
 			localStorage.setItem("refreshrate", refreshrate);
 			alertify.success("It's all good now..");
 		}
@@ -200,7 +200,7 @@
       </tr>
     </table>
 	<script src="//unpkg.com/hammer-touchemulator@0.0.2/touch-emulator.js"></script>
-	<script>TouchEmulator()</script>
+	<script>//TouchEmulator()</script>
 	<script type="text/javascript" src="js/pulltorefresh-js-0.1.14/dist/pulltorefresh.js"></script>
 	<script type="text/javascript" src="js/alertify.js"></script>
 	<script>
