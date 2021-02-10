@@ -390,6 +390,8 @@
 		}
 
 		updateInformation();
+		updateInformation();
+		updateInformation();
 
 		const interval = setInterval(function() {
 			updateInformation();
@@ -439,16 +441,15 @@
                         <a id="playerlink"><h1 id="playername">Eazy-T</h1></a>
                         <p></p>
 
-                        <center><p><span id="playerstatus1"></span> <span id="traveltimeleft"></span> <br> <span id="playerstatus2"></span></p></center>
-                        
-		
-			<b><center><span id="onlinestatus"></span></center></b>
+                        <center><p><span id="playerstatus1">Loading...</span> <span id="traveltimeleft"></span>
+						<br><span id="playerstatus2"></span></p></center>
+						
 			    
-			<center><span id="drugStatus"></span></center>
+						<center><span id="drugStatus"></span></center>
 			      
-			<center><span id="addictionStatus"></span></center>
+						<center><span id="addictionStatus"></span></center>
 			
-			<b><center>$<span id="moneyStatus"></span></center></b>
+						<center><b>$<span id="moneyStatus"></span></b></center>
 
                         <table class="btn btn-primary">
                           <tbody>
@@ -459,8 +460,8 @@
                                     <tr>
                                       <script>function openEvents() {window.location="events.html"}</script>
                                       <script>function openMessages() {window.location="messages.html"}</script>
-                                      <td id="unreadEventsbutton"> <a id="unreadEvents" onclick="openEvents()"></a> </td>
-                                      <td id="unreadMessagesbutton"> <a id="unreadMessages" onclick="openMessages()"></a> </td>
+                                      <td id="unreadEventsbutton"> <a id="unreadEvents" onclick="openEvents()"><i class="fas fa-bell"></i></a> </td>
+                                      <td id="unreadMessagesbutton"> <a id="unreadMessages" onclick="openMessages()"><i class="fas fa-envelope"></i></a> </td>
                                     </tr>
                                   </tbody>
                                 </table></center>
