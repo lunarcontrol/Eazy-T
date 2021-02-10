@@ -198,8 +198,8 @@
 						var playerTraveltimeleft = data.travel.time_left;
 						if (playerTraveltimeleft == 0) {
 							console.log('Not traveling');
-							document.getElementById("traveltimeleft").innerHTML = "";
-							document.getElementById("travelSection").style = "display:none";
+							document.getElementById("traveltimeleft").innerHTML = " ";
+							document.getElementById("travelSection").style = "display:none;";
 						}else{
 							var playerTraveltimeleft = playerTraveltimeleft / 60;
 							var playerTraveltimeleft = Math.round(playerTraveltimeleft);
@@ -249,7 +249,7 @@
 							playerStatus2 = data.status["details"] + "<br>";
 						}
 						
-						playerStatus2 = playerStatus2 + data.last_action["status"] + " - " + data.last_action["relative"];
+						playerStatus2 = playerStatus2 + " " + data.last_action["status"] + " - " + data.last_action["relative"];
 						document.getElementById("playername").innerHTML = playerName;
 						//document.getElementById('playerlink').href = 'http://www.torn.com/profiles.php?NID=' + playerName + ''; //changing to homepage link
 						document.getElementById('playerlink').href = 'http://www.torn.com/';
@@ -444,7 +444,7 @@
                         <p></p>
 
                         <center><p><span id="playerstatus1">Loading...</span> <span id="traveltimeleft"></span>
-						<br>  <span id="playerstatus2"></span></p></center>
+						<br><span id="playerstatus2"></span></p></center>
 						
 			    
 						<center><span id="drugStatus"></span></center>
