@@ -320,9 +320,8 @@
 						var playerActivity = data.last_action["status"].toLowerCase();
 						      
 						var statusTime = data.status["until"];
-						      
-						var bountyText = data.icons["icon13"]; //Bounty - On this person's head for $100,000
-						    bountyText = bountyText.substring(35);
+						
+						var bountyText = "$0";
 						
 						var imageSource = "";
 						if(playerActivity == "offline"){
@@ -340,6 +339,10 @@
 						if(data.icons["icon13"]){
 							console.log("// Bounty on " + randomItem);
 							imageSource = imageSource.concat("<img style='margin-bottom: -0.25em;' src='./img/bounty.png'></img>");
+							
+							bountyText = data.icons["icon13"]; //Bounty - On this person's head for $100,000
+						    	bountyText = bountyText.substring(35).replace(/\:.*/, '').trim();
+							
 						}
 						
 						var deleteButton = "<span onclick=\"removeById('" + randomItem + "'); return false;\"> - Delete</span>";
