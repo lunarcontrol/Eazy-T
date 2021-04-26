@@ -320,6 +320,9 @@
 						var playerActivity = data.last_action["status"].toLowerCase();
 						      
 						var statusTime = data.status["until"];
+						      
+						var bountyText = data.icons["icon13"]; //Bounty - On this person's head for $100,000
+						    bountyText = bountyText.substring(35);
 						
 						var imageSource = "";
 						if(playerActivity == "offline"){
@@ -341,7 +344,7 @@
 						
 						var deleteButton = "<span onclick=\"removeById('" + randomItem + "'); return false;\"> - Delete</span>";
 						//console.log(deleteButton);
-						document.getElementById(randomItem).innerHTML = imageSource + " [<a href='https://www.torn.com/loader2.php?sid=getInAttack&user2ID=" + randomItem + "'>Attack</a>] <a style='text-decoration:none; color: inherit' href='https://www.torn.com/profiles.php?XID=" + randomItem + "'>" + playerName + "</a> - <span style='color:" + data.status["color"] + "'>" + playerStatus1 + " <span id='statusTime'>" + statusTime + "</span></span>";
+						document.getElementById(randomItem).innerHTML = imageSource + " [" + bountyText + "] <a style='text-decoration:none; color: inherit' href='https://www.torn.com/profiles.php?XID=" + randomItem + "'>" + playerName + "</a> - <span style='color:" + data.status["color"] + "'>" + playerStatus1 + " <span id='statusTime'>" + statusTime + "</span></span>";
 						document.getElementById(randomItem).innerHTML += unescape(deleteButton);
 						$(document.getElementById(randomItem)).fadeIn();
 					      }
