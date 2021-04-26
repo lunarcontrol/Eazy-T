@@ -107,9 +107,7 @@
 
 				<ul id="skillList"></ul>
     				<script type="text/javascript">
-					
-					
-					
+
 					function numFormatter(num) {
 					    if(num > 999 && num < 1000000){
 						return (num/1000).toFixed(0) + 'K'; // convert to K for number from > 1000 < 1 million 
@@ -121,10 +119,6 @@
 						return num; // if value < 1000, nothing to do
 					    }
 					}
-					
-					
-					
-					
 					
 					// Get all the element references you'll need just once:
 					var skillList = document.querySelector("#skillList");
@@ -341,6 +335,7 @@
 						var statusTime = data.status["until"];
 						
 						var bountyText = "$0";
+						var bountyColor = "";
 						
 						var imageSource = "";
 						if(playerActivity == "offline"){
@@ -362,13 +357,19 @@
 							bountyText = data.icons["icon13"]; //Bounty - On this person's head for $100,000
 						    	bountyText = bountyText.substring(36).replace(/\:.*/, '').trim(); //150,000
 							bountyText = Number(bountyText.replace(/[^0-9.-]+/g,"")); //150,000 => 150000
+							if(bountyText > 199000){
+							   bountyColor = "green";
+							}
+							if(bountyText > 999000){
+							   bountyColor = "yellow";
+							}
 							
 							
 						}
 						
 						var deleteButton = "<span onclick=\"removeById('" + randomItem + "'); return false;\"> - Delete</span>";
 						//console.log(deleteButton);
-						document.getElementById(randomItem).innerHTML = imageSource + " [" + numFormatter(bountyText) + "] <a style='text-decoration:none; color: inherit' href='https://www.torn.com/profiles.php?XID=" + randomItem + "'>" + playerName + "</a> - <span style='color:" + data.status["color"] + "'>" + playerStatus1 + " <span id='statusTime'>" + statusTime + "</span></span>";
+						document.getElementById(randomItem).innerHTML = imageSource + " [<span style='color: " + bountyColor +"'>" + numFormatter(bountyText) + "</span>] <a style='text-decoration:none; color: inherit' href='https://www.torn.com/profiles.php?XID=" + randomItem + "'>" + playerName + "</a> - <span style='color:" + data.status["color"] + "'>" + playerStatus1 + " <span id='statusTime'>" + statusTime + "</span></span>";
 						document.getElementById(randomItem).innerHTML += unescape(deleteButton);
 						$(document.getElementById(randomItem)).fadeIn();
 					      }
