@@ -341,7 +341,8 @@
 							imageSource = imageSource.concat("<img style='margin-bottom: -0.25em;' src='./img/bounty.png'></img>");
 							
 							bountyText = data.icons["icon13"]; //Bounty - On this person's head for $100,000
-						    	bountyText = bountyText.substring(35).replace(/\:.*/, '').trim();
+						    	bountyText = bountyText.substring(36).replace(/\:.*/, '').trim();
+							bountyText = Number(bountyText.replace(/[^0-9.-]+/g,""));
 							
 						}
 						
