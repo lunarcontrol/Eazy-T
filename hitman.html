@@ -330,6 +330,12 @@
 						var playerName = data.name;
 						var playerStatus1 = data.status["description"];
 						      
+						const abroadHospitals = ['Emirati', 'def', 'xyz'];
+						const found = abroadHospitals.find(v => playerStatus1.includes(v));
+						if(found != undefined){
+							playerStatus1 = "Hospital Abroad";
+						}
+						      
 						var playerActivity = data.last_action["status"].toLowerCase();
 						      
 						var statusTime = data.status["until"];
