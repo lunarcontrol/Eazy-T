@@ -235,7 +235,7 @@
 					function updateListTwo(){
 						tinysort('ul#skillList>li',{attr:'data-position'});
 						console.log("============ / ============");
-						console.log("Updated list to sort by hospital time");
+						//console.log("Updated list to sort by hospital time");
 					}
 
 
@@ -307,7 +307,7 @@
 					  //Send notification if needed
 
 					  var randomItem = tempTargets[Math.floor(Math.random()*tempTargets.length)];
-					  console.log("Selected: " + randomItem);
+					  //console.log("Selected: " + randomItem);
 
 						
 					  getJSON('https://api.torn.com/user/' + randomItem + '?selections=basic,icons,profile&key=' + localStorage.apiKey,
@@ -369,9 +369,7 @@
 							if(bountyText > 999000){
 							   bountyColor = "yellow";
 							}
-							
-							
-						}
+						}else{console.log("|| NO Bounty on " + randomItem);}
 						
 						var deleteButton = "<span onclick=\"removeById('" + randomItem + "'); return false;\"> - Delete</span>";
 						//console.log(deleteButton);
