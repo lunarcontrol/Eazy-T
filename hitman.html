@@ -339,6 +339,13 @@
 						var playerActivity = data.last_action["status"].toLowerCase();
 						      
 						var statusTime = data.status["until"];
+						      
+						var statusColor = data.status["color"];
+						if(statusColor == "blue"){
+							statusColor =  "#00BFFF";
+						}else if(statusColor == "red"){
+							statusColor = "#ff4000";
+						}
 						
 						var bountyText = "0";
 						var bountyColor = "";
@@ -373,7 +380,7 @@
 						
 						var deleteButton = "<span onclick=\"removeById('" + randomItem + "'); return false;\"> - Delete</span>";
 						//console.log(deleteButton);
-						document.getElementById(randomItem).innerHTML = imageSource + " [<span style='color: " + bountyColor +"'>" + numFormatter(bountyText) + "</span>] <a style='text-decoration:none; color: inherit' href='https://www.torn.com/profiles.php?XID=" + randomItem + "'>" + playerName + "</a> - <span style='color:" + data.status["color"] + "'>" + playerStatus1 + " <span id='statusTime'>" + statusTime + "</span></span>";
+						document.getElementById(randomItem).innerHTML = imageSource + " [<span style='color: " + bountyColor +"'>" + numFormatter(bountyText) + "</span>] <a style='text-decoration:none; color: inherit' href='https://www.torn.com/profiles.php?XID=" + randomItem + "'>" + playerName + "</a> - <span style='color:" + statusColor + "'>" + playerStatus1 + " <span id='statusTime'>" + statusTime + "</span></span>";
 						document.getElementById(randomItem).innerHTML += unescape(deleteButton);
 						$(document.getElementById(randomItem)).fadeIn();
 					      }
