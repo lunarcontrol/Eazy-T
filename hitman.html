@@ -386,7 +386,7 @@
 							}
 						}else{console.log("|| NO Bounty on " + randomItem);}
 						
-						var deleteButton = "<span onclick=\"removeById('" + randomItem + "'); return false;\"> - Delete</span>";
+						var deleteButton = "<span onclick=\"removeById('" + randomItem + "'); return false;\"> - &#x274C;</span>";
 						//console.log(deleteButton);
 						document.getElementById(randomItem).innerHTML = imageSource + " [<span style='color: " + bountyColor +"'>" + numFormatter(bountyText) + "</span>] <a style='text-decoration:none; color: inherit' href='https://www.torn.com/profiles.php?XID=" + randomItem + "'>" + playerName + "</a> - <span style='color:" + statusColor + "'>" + playerStatus1 + " <span id='statusTime'>" + statusTime + "</span></span>";
 						document.getElementById(randomItem).innerHTML += unescape(deleteButton);
