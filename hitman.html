@@ -336,9 +336,10 @@
 							playerStatus1 = "Hospital Abroad";
 						}
 						
-						//remove 'In hospital for '
+						//remove 'In hospital for ' & 'Traveling to'
 						try {
   							playerStatus1 = playerStatus1.replace('In hospital for ','');
+							playerStatus1 = playerStatus1.replace('Traveling to ','&#x27A1;&#xFE0F; ');
 						}
 						catch(err) {
 							Console.log("Error: Unable to remove 'In hospital for' string: " + err.message);
