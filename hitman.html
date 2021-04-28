@@ -335,6 +335,14 @@
 						if(found != undefined){
 							playerStatus1 = "Hospital Abroad";
 						}
+						
+						//remove 'In hospital for '
+						try {
+  							playerStatus1.replace('In hospital for ','');
+						}
+						catch(err) {
+							Console.log("Error: Unable to remove 'In hospital for' string: " + err.message);
+						}
 						      
 						var playerActivity = data.last_action["status"].toLowerCase();
 						      
